@@ -17,12 +17,12 @@ import { ConfigService } from '@nestjs/config';
 import { Throttle } from '@nestjs/throttler';
 import type { Request, Response } from 'express';
 import { AuthService, OAuthProfile } from './auth.service';
-import { Public } from '../common/decorators/public.decorator';
-import { GoogleOAuthGuard, GithubOAuthGuard } from '../common/guards/oauth.guard';
+import { Public } from '../shared/decorators/public.decorator';
+import { GoogleOAuthGuard, GithubOAuthGuard } from '../shared/guards/oauth.guard';
 import {
   type AuthUser,
   CurrentUser,
-} from '../common/decorators/current-user.decorator';
+} from '../shared/decorators/current-user.decorator';
 import {
   ConfirmTotpDto,
   Disable2faDto,
@@ -33,7 +33,7 @@ import {
   Verify2faDto,
   VerifyEmailOtpDto,
 } from './dto/auth.dto';
-import { Device, type DeviceInfo } from '../common/decorators/device.decorator';
+import { Device, type DeviceInfo } from '../shared/decorators/device.decorator';
 
 const REFRESH_COOKIE = 'refresh_token';
 
