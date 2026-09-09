@@ -9,8 +9,24 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(helmet());
   app.use(cookieParser());
+  const configuredFrontends = (process.env.FRONTEND_URL ?? '')
+    .split(',')
+    .map((u) => u.trim())
+    .filter(Boolean);
+
   app.enableCors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+      // Cho phép request không có header origin (curl, mobile, server-side)
+      if (!origin) return callback(null, true);
+
+      // Cho phép mọi port localhost hoặc 127.0.0.1 (ví dụ 5173, 5174, 5175,...)
+      const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+
+      if (isLocalhost || configuredFrontends.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
     credentials: true,
     exposedHeaders: ['X-Session-Revoked'],
   });

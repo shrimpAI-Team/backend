@@ -40,6 +40,9 @@ export class MailService {
         <p style="font-size:34px;letter-spacing:10px;font-weight:700;color:#4f46e5">${code}</p>
         <p style="color:#6b7280;font-size:13px">Mã hết hạn sau ${ttlMinutes} phút. Không chia sẻ mã này cho bất kỳ ai.</p>
       </div>`;
+    this.logger.log(
+      `[OTP] Mã xác thực gửi tới ${to} (${purpose}): [ ${code} ] - Hết hạn sau ${ttlMinutes} phút`,
+    );
     try {
       await this.transporter.sendMail({
         from: this.config.get('mail.from'),
@@ -48,8 +51,13 @@ export class MailService {
         html,
       });
     } catch (e) {
-      this.logger.error(`Không gửi được email tới ${to}`, e as Error);
-      throw e;
+      this.logger.error(`Không gửi được email tới ${to}: ${(e as Error).message}`);
+      if (this.config.get('env') === 'production') {
+        throw e;
+      }
+      this.logger.warn(
+        `[DEV MODE] Bỏ qua lỗi gửi mail SMTP. Bạn có thể sử dụng mã OTP trên: ${code}`,
+      );
     }
   }
 

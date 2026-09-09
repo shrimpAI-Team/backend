@@ -6,12 +6,14 @@ import {
   Length,
   MinLength,
   Matches,
+  MaxLength,
 } from 'class-validator';
 
 export class RegisterDto {
   @IsEmail() email!: string;
 
   @MinLength(8, { message: 'Mật khẩu tối thiểu 8 ký tự' })
+  @MaxLength(72, { message: 'Mật khẩu tối đa 72 ký tự' })
   @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
     message: 'Mật khẩu cần chữ hoa, chữ thường và số',
   })
