@@ -3,14 +3,14 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import configuration from './config/configuration';
-import { PrismaModule } from './prisma/prisma.module';
-import { MailModule } from './mail/mail.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
-import { RolesGuard } from './common/guards/roles.guard';
-import { DeviceMiddleware } from './common/middleware/device.middleware';
+import configuration from './routes/shared/config/configuration';
+import { PrismaModule } from './routes/shared/prisma/prisma.module';
+import { MailModule } from './routes/shared/mail/mail.module';
+import { AuthModule } from './routes/auth/auth.module';
+import { UsersModule } from './routes/users/users.module';
+import { JwtAuthGuard } from './routes/shared/guards/jwt-auth.guard';
+import { RolesGuard } from './routes/shared/guards/roles.guard';
+import { DeviceMiddleware } from './routes/shared/middleware/device.middleware';
 
 @Module({
   imports: [

@@ -10,10 +10,10 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { createHash, randomInt } from 'crypto';
 import * as bcrypt from 'bcrypt';
-import { PrismaService } from '../prisma/prisma.service';
-import { MailService } from '../mail/mail.service';
+import { PrismaService } from '../shared/prisma/prisma.service';
+import { MailService } from '../shared/mail/mail.service';
 import { SessionService } from './session.service';
-import { DeviceInfo } from '../common/decorators/device.decorator';
+import { DeviceInfo } from '../shared/decorators/device.decorator';
 import {
   ConfirmTotpDto,
   Disable2faDto,
@@ -24,7 +24,7 @@ import {
   VerifyEmailOtpDto,
 } from './dto/auth.dto';
 import { OtpPurpose, User } from 'src/generated/prisma/client';
-import { TwoFactorService } from 'src/auth/two-factor.service';
+import { TwoFactorService } from './two-factor.service';
 
 export interface OAuthProfile {
   provider: 'google' | 'github';

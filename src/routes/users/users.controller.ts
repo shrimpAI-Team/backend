@@ -1,12 +1,12 @@
 // src/users/users.controller.ts
 import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../shared/prisma/prisma.service';
 import { SessionService } from '../auth/session.service';
-import { Roles } from '../common/decorators/roles.decorator';
+import { Roles } from '../shared/decorators/roles.decorator';
 import {
   type AuthUser,
   CurrentUser,
-} from '../common/decorators/current-user.decorator';
+} from '../shared/decorators/current-user.decorator';
 import { Role } from 'src/generated/prisma/enums';
 
 @Controller('users')

@@ -2,8 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { randomBytes, createHash } from 'crypto';
-import { PrismaService } from '../prisma/prisma.service';
-import { DeviceInfo } from '../common/decorators/device.decorator';
+import { PrismaService } from '../shared/prisma/prisma.service';
+import { DeviceInfo } from '../shared/decorators/device.decorator';
 import { Session, User } from 'src/generated/prisma/client';
 
 export interface TokenPair {
