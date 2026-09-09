@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output          = "../src/generated/prisma"
+  moduleFormat  = "cjs"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OtpPurpose {
+  REGISTER
+  LOGIN_2FA
+  DISABLE_2FA
+  RESET_PASSWORD
+}
+
+enum TwoFactorMethod {
+  NONE
+  EMAIL_OTP
+  TOTP
+}
+
+model User {
+  id               String          @id @default(uuid())
+  email            String          @unique
+  password         String?
+  name             String?
+  avatarUrl        String?
+  role             Role            @default(USER)
+  emailVerifiedAt  DateTime?
+  isActive         Boolean         @default(true)
+
+  twoFactorEnabled Boolean         @default(false)
+  twoFactorMethod  TwoFactorMethod @default(NONE)
+  totpSecret       String?
+  totpPendingSecret String?
+
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  otpTokens        OtpToken[]
+  sessions         Session[]
+  oauthAccounts    OAuthAccount[]
+
+  @@index([email])
+}
+
+model OAuthAccount {
+  id                String   @id @default(uuid())
+  provider          String
+  providerAccountId String
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model OtpToken {
+  id         String     @id @default(uuid())
+  userId     String
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash   String
+  purpose    OtpPurpose
+  attempts   Int        @default(0)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime   @default(now())
+
+  @@index([userId, purpose, consumedAt])
+}
+
+model Session {
+  id               String    @id @default(uuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshTokenHash String
+  deviceId         String
+  deviceName       String?
+  userAgent        String?
+  ip               String?
+  createdAt        DateTime  @default(now())
+  lastUsedAt       DateTime  @default(now())
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  revokedReason    String?
+
+  @@index([userId, revokedAt])
+  @@index([deviceId])
+}
