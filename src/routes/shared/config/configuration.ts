@@ -8,6 +8,7 @@ export default () => ({
     accessTtl: process.env.JWT_ACCESS_TTL ?? '15m',
     challengeSecret: process.env.JWT_CHALLENGE_SECRET!,
     challengeTtl: process.env.JWT_CHALLENGE_TTL ?? '5m',
+    refreshTtlHours: Number(process.env.REFRESH_TTL_HOURS ?? 2),
     refreshTtlDays: Number(process.env.REFRESH_TTL_DAYS ?? 30),
   },
   otp: {

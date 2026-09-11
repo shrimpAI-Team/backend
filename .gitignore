@@ -54,5 +54,15 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
-
 /generated/prisma
+
+# Python & AI Engine
+venv/
+**/venv/
+ai-engine/venv/
+ai-engine/runs/
+ai-engine/models/*.pt
+!ai-engine/models/.gitkeep
+__pycache__/
+*.py[cod]
+*$py.class

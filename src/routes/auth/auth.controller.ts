@@ -45,12 +45,16 @@ export class AuthController {
   ) {}
 
   private setRefreshCookie(res: Response, token: string) {
+    const hours =
+      this.config.get<number>('jwt.refreshTtlHours') ??
+      (this.config.get<number>('jwt.refreshTtlDays') ?? 30) * 24;
+
     res.cookie(REFRESH_COOKIE, token, {
       httpOnly: true,
       secure: this.config.get('env') === 'production',
       sameSite: 'lax',
       path: '/auth',
-      maxAge: this.config.get<number>('jwt.refreshTtlDays')! * 86_400_000,
+      maxAge: hours * 3_600_000,
     });
   }
 
