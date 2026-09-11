@@ -9,6 +9,7 @@ import { MailModule } from './routes/shared/mail/mail.module';
 import { AuthModule } from './routes/auth/auth.module';
 import { UsersModule } from './routes/users/users.module';
 import { ShrimpAnalysisModule } from './routes/shrimp-analysis/shrimp-analysis.module';
+import { ChatModule } from './routes/chat/chat.module';
 import { JwtAuthGuard } from './routes/shared/guards/jwt-auth.guard';
 import { RolesGuard } from './routes/shared/guards/roles.guard';
 import { DeviceMiddleware } from './routes/shared/middleware/device.middleware';
@@ -22,6 +23,7 @@ import { DeviceMiddleware } from './routes/shared/middleware/device.middleware';
     AuthModule,
     UsersModule,
     ShrimpAnalysisModule,
+    ChatModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },
