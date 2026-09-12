@@ -48,7 +48,9 @@ export class SessionService {
 
   private async issue(user: User, device: DeviceInfo): Promise<TokenPair> {
     const refreshToken = randomBytes(64).toString('hex');
-    const days = this.config.get<number>('jwt.refreshTtlDays')!;
+    const hours =
+      this.config.get<number>('jwt.refreshTtlHours') ??
+      (this.config.get<number>('jwt.refreshTtlDays') ?? 30) * 24;
 
     const session = await this.prisma.session.create({
       data: {
@@ -58,7 +60,7 @@ export class SessionService {
         deviceName: device.name,
         userAgent: device.userAgent,
         ip: device.ip,
-        expiresAt: new Date(Date.now() + days * 86_400_000),
+        expiresAt: new Date(Date.now() + hours * 3_600_000),
       },
     });
 
