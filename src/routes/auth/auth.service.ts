@@ -27,7 +27,7 @@ import { OtpPurpose, User } from 'src/generated/prisma/client';
 import { TwoFactorService } from './two-factor.service';
 
 export interface OAuthProfile {
-  provider: 'google' | 'github';
+  provider: 'google' | 'facebook' | 'zalo';
   providerAccountId: string;
   email: string;
   name?: string;
@@ -52,7 +52,7 @@ export class AuthService {
     private readonly config: ConfigService,
     private readonly sessions: SessionService,
     private readonly twoFactor: TwoFactorService,
-  ) {}
+  ) { }
 
   // ═══════════════ HELPERS ═══════════════
   private hash(v: string) {
@@ -202,12 +202,12 @@ export class AuthService {
 
     const user = existing
       ? await this.prisma.user.update({
-          where: { id: existing.id },
-          data: { password: passwordHash, name: dto.name ?? existing.name },
-        })
+        where: { id: existing.id },
+        data: { password: passwordHash, name: dto.name ?? existing.name },
+      })
       : await this.prisma.user.create({
-          data: { email, password: passwordHash, name: dto.name },
-        });
+        data: { email, password: passwordHash, name: dto.name },
+      });
 
     await this.issueOtp(user, 'REGISTER');
     return {
@@ -317,9 +317,12 @@ export class AuthService {
   // ═══════════════ OAUTH2 ═══════════════
   /** Tìm hoặc tạo user từ profile OAuth, trả về one-time token cho frontend */
   async handleOAuthLogin(profile: OAuthProfile) {
-    const email = profile.email?.toLowerCase().trim();
-    if (!email)
-      throw new BadRequestException('Nhà cung cấp không trả về email');
+    const email = (
+      profile.email ||
+      `${profile.provider}_${profile.providerAccountId}@${profile.provider}.oauth.local`
+    )
+      .toLowerCase()
+      .trim();
 
     const linked = await this.prisma.oAuthAccount.findUnique({
       where: {

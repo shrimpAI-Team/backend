@@ -18,7 +18,11 @@ import { Throttle } from '@nestjs/throttler';
 import type { Request, Response } from 'express';
 import { AuthService, OAuthProfile } from './auth.service';
 import { Public } from '../shared/decorators/public.decorator';
-import { GoogleOAuthGuard, GithubOAuthGuard } from '../shared/guards/oauth.guard';
+import {
+  GoogleOAuthGuard,
+  FacebookOAuthGuard,
+  ZaloOAuthGuard,
+} from '../shared/guards/oauth.guard';
 import {
   type AuthUser,
   CurrentUser,
@@ -185,18 +189,33 @@ export class AuthController {
     return this.finishOAuth(req.user as OAuthProfile, res);
   }
 
-  // ───────── OAUTH2 GITHUB ─────────
+  // ───────── OAUTH2 FACEBOOK ─────────
   @Public()
-  @Get('github')
-  @UseGuards(GithubOAuthGuard)
-  githubAuth() {
+  @Get('facebook')
+  @UseGuards(FacebookOAuthGuard)
+  facebookAuth() {
     /* passport redirect */
   }
 
   @Public()
-  @Get('github/callback')
-  @UseGuards(GithubOAuthGuard)
-  async githubCallback(@Req() req: Request, @Res() res: Response) {
+  @Get('facebook/callback')
+  @UseGuards(FacebookOAuthGuard)
+  async facebookCallback(@Req() req: Request, @Res() res: Response) {
+    return this.finishOAuth(req.user as OAuthProfile, res);
+  }
+
+  // ───────── OAUTH2 ZALO ─────────
+  @Public()
+  @Get('zalo')
+  @UseGuards(ZaloOAuthGuard)
+  zaloAuth() {
+    /* passport redirect */
+  }
+
+  @Public()
+  @Get('zalo/callback')
+  @UseGuards(ZaloOAuthGuard)
+  async zaloCallback(@Req() req: Request, @Res() res: Response) {
     return this.finishOAuth(req.user as OAuthProfile, res);
   }
 

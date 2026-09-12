@@ -5,10 +5,12 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { SessionService } from './session.service';
-import { GithubStrategy } from './strategies/github.strategy';
+import { FacebookStrategy } from './strategies/facebook.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TwoFactorService } from './two-factor.service';
+import { ZaloStrategy } from './strategies/zalo.strategy';
+
 @Module({
   imports: [PassportModule, JwtModule.register({})],
   controllers: [AuthController],
@@ -18,7 +20,8 @@ import { TwoFactorService } from './two-factor.service';
     TwoFactorService,
     JwtStrategy,
     GoogleStrategy,
-    GithubStrategy,
+    FacebookStrategy,
+    ZaloStrategy,
   ],
   exports: [AuthService, SessionService],
 })

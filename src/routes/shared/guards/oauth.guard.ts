@@ -24,18 +24,38 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
 }
 
 @Injectable()
-export class GithubOAuthGuard extends AuthGuard('github') {
+export class FacebookOAuthGuard extends AuthGuard('facebook') {
   constructor(private readonly config: ConfigService) {
     super();
   }
 
   canActivate(context: ExecutionContext) {
-    const id = this.config.get<string>('oauth.github.clientID');
-    if (!id || id === 'dummy-github-client-id') {
+    const id = this.config.get<string>('oauth.facebook.clientID');
+    if (!id || id === 'dummy-facebook-client-id') {
       const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
       res.redirect(
-        `${front}/login?error=${encodeURIComponent('GitHub OAuth chưa được cấu hình (thiếu GITHUB_CLIENT_ID trong .env)')}`,
+        `${front}/login?error=${encodeURIComponent('Facebook OAuth chưa được cấu hình (thiếu FACEBOOK_APP_ID trong .env)')}`,
+      );
+      return false;
+    }
+    return super.canActivate(context);
+  }
+}
+
+@Injectable()
+export class ZaloOAuthGuard extends AuthGuard('zalo') {
+  constructor(private readonly config: ConfigService) {
+    super();
+  }
+
+  canActivate(context: ExecutionContext) {
+    const id = this.config.get<string>('oauth.zalo.clientID');
+    if (!id || id === 'dummy-zalo-client-id') {
+      const res = context.switchToHttp().getResponse<Response>();
+      const front = this.config.get<string>('frontendUrl');
+      res.redirect(
+        `${front}/login?error=${encodeURIComponent('Zalo OAuth chưa được cấu hình (thiếu ZALO_APP_ID trong .env)')}`,
       );
       return false;
     }
