@@ -359,6 +359,21 @@ export class AuthService {
           userId: user.id,
         },
       });
+    } else {
+      // Đồng bộ tên và ảnh đại diện mới nhất từ OAuth Provider nếu có thay đổi
+      const updateData: { avatarUrl?: string; name?: string } = {};
+      if (profile.avatarUrl && profile.avatarUrl !== user.avatarUrl) {
+        updateData.avatarUrl = profile.avatarUrl;
+      }
+      if (profile.name && profile.name !== user.name) {
+        updateData.name = profile.name;
+      }
+      if (Object.keys(updateData).length > 0) {
+        user = await this.prisma.user.update({
+          where: { id: user.id },
+          data: updateData,
+        });
+      }
     }
 
     if (!user.isActive)

@@ -1,9 +1,13 @@
 // src/main.ts
+import dns from 'node:dns';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+
+// Ưu tiên IPv4 trước IPv6 để tránh lỗi timeout (ETIMEDOUT) khi gọi API Facebook / Meta ở Việt Nam
+dns.setDefaultResultOrder('ipv4first');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
