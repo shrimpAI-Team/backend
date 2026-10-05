@@ -63,6 +63,7 @@ ai-engine/venv/
 ai-engine/runs/
 ai-engine/models/*.pt
 !ai-engine/models/.gitkeep
+!ai-engine/models/shrimp_model_best.pt
 __pycache__/
 *.py[cod]
 *$py.class

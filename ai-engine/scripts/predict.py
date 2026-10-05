@@ -38,6 +38,13 @@ SPECIES_METADATA = {
         "description": "Đặc trưng có đôi càng màu xanh dương dài, thân màu xanh lục hoặc xám nhạt.",
         "size_estimate": "8 - 12 con/kg",
         "commercial_grade": "Đặc sản nước ngọt",
+    },
+    "tom_hum": {
+        "name": "Tôm hùm",
+        "scientific_name": "Panulirus spp.",
+        "description": "Vỏ giáp dày cứng có nhiều gai nhọn, đôi râu dài, thân to bè, giá trị kinh tế rất cao.",
+        "size_estimate": "1 - 3 con/kg (hoặc 0.5 - 1.5 kg/con)",
+        "commercial_grade": "Hải sản cao cấp đặc biệt",
     }
 }
 
@@ -159,6 +166,9 @@ def predict_shrimp(image_path: str):
             elif "cang" in filename or "prawn" in filename or "rosenbergii" in filename:
                 selected_class = "tom_cang_xanh"
                 computed_conf = 98.9
+            elif "hum" in filename or "lobster" in filename or "panulirus" in filename:
+                selected_class = "tom_hum"
+                computed_conf = 99.1
             elif "the" in filename or "chan_trang" in filename or "vannamei" in filename:
                 selected_class = "the_chan_trang"
                 computed_conf = 97.8
@@ -190,6 +200,9 @@ def predict_shrimp(image_path: str):
         elif "cang" in filename or "prawn" in filename or "rosenbergii" in filename:
             selected_class = "tom_cang_xanh"
             computed_conf = 97.2
+        elif "hum" in filename or "lobster" in filename or "panulirus" in filename:
+            selected_class = "tom_hum"
+            computed_conf = 98.8
 
     elapsed = round(time.time() - start_time, 2)
     meta = SPECIES_METADATA[selected_class]
