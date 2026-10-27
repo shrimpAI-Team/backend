@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../shared/prisma/prisma.service';
+import { AquacultureExpert } from './aquaculture-expert';
 
 @Injectable()
 export class ChatService {
@@ -49,12 +50,21 @@ export class ChatService {
    * Tạo phiên trò chuyện mới
    */
   async createSession(userId: string, title?: string) {
-    return this.prisma.chatSession.create({
+    const session = await this.prisma.chatSession.create({
       data: {
         userId,
         title: title?.trim() || 'Cuộc trò chuyện mới',
       },
     });
+
+    return {
+      id: session.id,
+      title: session.title,
+      createdAt: session.createdAt,
+      updatedAt: session.updatedAt,
+      messageCount: 0,
+      lastMessage: null,
+    };
   }
 
   /**
@@ -105,7 +115,7 @@ export class ChatService {
   }
 
   /**
-   * Gửi tin nhắn và nhận phản hồi từ Gemini AI
+   * Gửi tin nhắn và nhận phản hồi từ AI
    */
   async sendMessage(userId: string, sessionId: string, userContent: string) {
     const session = await this.prisma.chatSession.findUnique({
@@ -113,7 +123,7 @@ export class ChatService {
       include: {
         messages: {
           orderBy: { createdAt: 'asc' },
-          take: 10, // Lấy 10 tin nhắn gần nhất để giữ ngữ cảnh
+          take: 12, // Lấy 12 tin nhắn gần nhất để giữ mạch ngữ cảnh
         },
       },
     });
@@ -127,7 +137,7 @@ export class ChatService {
     }
 
     // 1. Lưu tin nhắn của người dùng vào Database
-    const userMsg = await this.prisma.chatMessage.create({
+    await this.prisma.chatMessage.create({
       data: {
         chatSessionId: sessionId,
         role: 'user',
@@ -135,7 +145,7 @@ export class ChatService {
       },
     });
 
-    // 2. Cập nhật tiêu đề phiên chat nếu đây là tin nhắn đầu tiên
+    // 2. Cập nhật tiêu đề phiên chat nếu đây là câu hỏi đầu tiên
     if (session.title === 'Cuộc trò chuyện mới' || session.title === 'Đoạn chat mới') {
       const newTitle = userContent.length > 35 ? `${userContent.substring(0, 35)}...` : userContent;
       await this.prisma.chatSession.update({
@@ -144,26 +154,29 @@ export class ChatService {
       });
     }
 
-    // 3. Gọi Gemini API
+    // 3. Xử lý gọi AI qua Google Gemini API
     let aiResponseText = '';
     const geminiApiKey = this.configService.get<string>('gemini.apiKey');
-    const geminiModel = this.configService.get<string>('gemini.model') || 'gemini-1.5-flash';
+    const geminiModel = this.configService.get<string>('gemini.model') || 'gemini-2.5-flash-lite';
 
-    if (geminiApiKey && geminiApiKey.trim().length > 5) {
+    if (geminiApiKey && geminiApiKey.trim().length > 10) {
       try {
+        this.logger.log(`Đang gọi Google Gemini (${geminiModel})...`);
         aiResponseText = await this.callGeminiApi(
           geminiApiKey,
           geminiModel,
           session.messages,
           userContent,
         );
-      } catch (err: any) {
-        this.logger.error(`Lỗi gọi Gemini API: ${err.message}`);
-        aiResponseText = this.getFallbackResponse(userContent);
+      } catch (geminiErr: any) {
+        this.logger.warn(`Lỗi Gemini API: ${geminiErr.message}. Chuyển sang động cơ tri thức shrimpAI...`);
       }
-    } else {
-      // Fallback thông minh nếu chưa có API Key
-      aiResponseText = this.getFallbackResponse(userContent);
+    }
+
+    // Dự phòng tri thức chuyên gia Thủy sản shrimpAI nếu chưa cấu hình key hoặc có lỗi
+    if (!aiResponseText) {
+      this.logger.log('Sử dụng shrimpAI Senior Aquaculture Expert Engine...');
+      aiResponseText = AquacultureExpert.generateResponse(userContent, session.messages);
     }
 
     // 4. Lưu phản hồi của AI vào Database
@@ -193,17 +206,16 @@ export class ChatService {
     historyMessages: Array<{ role: string; content: string }>,
     newPrompt: string,
   ): Promise<string> {
-    const systemInstruction = `Bạn là Trợ lý AI Chuyên gia Thủy sản & Giống tôm cao cấp của hệ thống shrimpAI (Việt Nam).
-Nhiệm vụ của bạn là tư vấn chuyên sâu, chính xác, khoa học và thực tiễn cho người nuôi tôm và sinh viên làm khóa luận thủy sản.
-Các lĩnh vực bạn nắm vững:
-1. Nhận dạng và đặc điểm sinh học của 3 giống tôm chủ lực:
-   - Tôm thẻ chân trắng (Litopenaeus vannamei): Vỏ mỏng trong suốt, chân bơi màu trắng sữa, lớn nhanh, nuôi mật độ cao.
-   - Tôm sú (Penaeus monodon): Vỏ dày, sọc vân đen nâu/đen vàng rõ rệt, kích thước lớn, giá trị xuất khẩu cao.
-   - Tôm càng xanh (Macrobrachium rosenbergii): Càng dài màu xanh dương đặc trưng, tôm nước ngọt ĐBSCL.
-2. Dịch bệnh thủy sản và cách nhận biết/xử lý (Đốm trắng WSSV, Đầu vàng YHV, Hoại tử gan tụy cấp AHPND, Vi bào tử trùng EHP, Bệnh phân trắng...).
-3. Quản lý chất lượng nước ao nuôi (pH lý tưởng 7.5 - 8.5, độ kiềm 120 - 160 mg/L, oxy hòa tan > 4-5 mg/L, khử độc NH3/NO2/H2S).
-4. Kỹ thuật cho ăn, quản lý quạt nước, vi sinh xử lý đáy ao.
-5. Giải đáp mọi thắc mắc chung một cách lịch sự, tận tâm, dùng tiếng Việt chuẩn mực, định dạng Markdown rõ ràng, có tiêu đề và gạch đầu dòng khoa học.`;
+    const systemInstruction = `Bạn là Trợ lý AI Chuyên gia Thủy sản & Bệnh học Tôm của hệ thống shrimpAI (Việt Nam).
+Nhiệm vụ của bạn là tư vấn chuyên sâu, chính xác, thực tiễn và khoa học cho người nuôi tôm và kỹ sư thủy sản.
+Các lĩnh vực chuyên môn:
+1. Giống tôm & Giải phẫu: Tôm thẻ chân trắng (Litopenaeus vannamei), Tôm sú (Penaeus monodon), Tôm càng xanh (Macrobrachium rosenbergii).
+2. Dịch bệnh thủy sản: Đốm trắng (WSSV), Hoại tử gan tụy cấp (AHPND/EMS), Vi bào tử trùng (EHP), Phân trắng (WFD), Đầu vàng (YHV), Đục cơ cong thân (IMNV).
+3. Quản lý chất lượng nước: pH (7.5-8.5), Độ kiềm (120-160 mg/L), Oxy hòa tan DO (> 4.5 mg/L), Xử lý khí độc NH3, NO2-, H2S bằng Yucca, vôi, vi sinh, muối hột.
+4. Kỹ thuật cho ăn, quản lý FCR, bố trí quạt nước, công nghệ vi sinh Biofloc, ủ EM tỏi / EM chuối.
+Quy chuẩn trả lời:
+- Luôn trả lời bằng tiếng Việt chuẩn mực, mạch lạc, tích cực và thân thiện.
+- Trình bày định dạng Markdown rõ ràng, sử dụng tiêu đề H3 (###), bảng biểu Markdown so sánh khi cần, gạch đầu dòng và trích dẫn ghi chú (> 💡).`;
 
     const contents: any[] = [];
 
@@ -215,111 +227,64 @@ Các lĩnh vực bạn nắm vững:
       });
     }
 
-    // Thêm tin nhắn hiện tại
+    // Thêm câu hỏi mới của người dùng
     contents.push({
       role: 'user',
       parts: [{ text: newPrompt }],
     });
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+    // Hỗ trợ thử các model mới nhất của Google Gemini (ưu tiên model ổn định và nhanh nhất)
+    const modelsToTry = [
+      modelName,
+      'gemini-2.5-flash-lite',
+      'gemini-flash-latest',
+      'gemini-3.8-flash',
+    ];
+    const uniqueModels = [...new Set(modelsToTry)];
 
-    const payload = {
-      contents,
-      systemInstruction: {
-        parts: [{ text: systemInstruction }],
-      },
-      generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 2048,
-      },
-    };
+    let lastError: any = null;
 
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      signal: AbortSignal.timeout(20000), // Timeout 20s
-    });
+    for (const model of uniqueModels) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
-    if (!res.ok) {
-      const errText = await res.text();
-      throw new Error(`Google API status ${res.status}: ${errText}`);
+        const payload = {
+          contents,
+          systemInstruction: {
+            parts: [{ text: systemInstruction }],
+          },
+          generationConfig: {
+            temperature: 0.6,
+            maxOutputTokens: 2500,
+          },
+        };
+
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: AbortSignal.timeout(30000), // 30s timeout cho model lớn
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          throw new Error(`Google API status ${res.status} (${model}): ${errText}`);
+        }
+
+        const data = (await res.json()) as any;
+        const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+        if (text && text.trim().length > 0) {
+          return text;
+        }
+      } catch (err: any) {
+        lastError = err;
+        this.logger.debug(`Thử model ${model} thất bại: ${err.message}`);
+      }
     }
 
-    const data = (await res.json()) as any;
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    if (!text) {
-      throw new Error('Không nhận được nội dung trả lời từ Gemini.');
-    }
-
-    return text;
-  }
-
-  /**
-   * Phản hồi dự phòng thông minh khi chưa có hoặc lỗi Gemini API Key
-   */
-  private getFallbackResponse(query: string): string {
-    const q = query.toLowerCase();
-
-    if (q.includes('phân biệt') || q.includes('giống tôm') || q.includes('loại tôm') || q.includes('so sánh')) {
-      return `### 🦐 Hướng dẫn phân biệt 3 giống tôm thương phẩm chủ lực tại Việt Nam:
-
-1. **Tôm thẻ chân trắng (*Litopenaeus vannamei*)**:
-   - **Đặc điểm**: Vỏ mỏng, nhẵn bóng và có màu xám sáng hoặc trong suốt mờ. Điểm đặc trưng nhất là **toàn bộ chân bò và chân bơi có màu trắng sữa sáng rõ**.
-   - **Tập tính**: Bơi lội hoạt bát, chịu được biên độ độ mặn rộng (từ 5‰ đến 35‰), thích hợp nuôi thâm canh mật độ cao.
-
-2. **Tôm sú (*Penaeus monodon*)**:
-   - **Đặc điểm**: Vỏ rất dày, cứng cáp. Thân có **các dải vân sọc ngang màu đen vàng hoặc đen nâu tương phản rất rõ nét** trên lưng. Chân bơi có sắc đỏ cam hoặc sẫm màu.
-   - **Tập tính**: Thích sống đáy, kích thước lớn vượt trội (10 - 20 con/kg), giá trị kinh tế xuất khẩu cao.
-
-3. **Tôm càng xanh (*Macrobrachium rosenbergii*)**:
-   - **Đặc điểm**: Cặp chân kìm thứ hai phát triển thành **đôi càng dài màu xanh dương rực rỡ**. Thân màu xanh lục nhạt hoặc xám.
-   - **Môi trường**: Sống ở vùng nước ngọt và nước lợ nhẹ ĐBSCL.
-
-> 💡 *Hệ thống đang chạy chế độ Tri thức chuyên sâu shrimpAI.*`;
-    }
-
-    if (q.includes('ph') || q.includes('mặn') || q.includes('oxy') || q.includes('nước') || q.includes('kiềm') || q.includes('môi trường')) {
-      return `### 🧪 Chỉ số môi trường nước lý tưởng cho ao nuôi tôm:
-
-- **Độ pH**: Dao động lý tưởng từ **7.5 - 8.5** (chênh lệch giữa sáng và chiều không quá 0.5).
-- **Độ kiềm (Alkalinity)**: **120 - 160 mg/L CaCO3** đối với tôm thẻ, giúp tôm cứng vỏ nhanh sau khi lột.
-- **Oxy hòa tan (DO)**: Duy trì **> 4.0 - 5.0 mg/L** (đặc biệt vào ban đêm và lúc rạng sáng cần chạy quạt nước liên tục).
-- **Nhiệt độ nước**: Thích hợp nhất từ **28 - 30°C**.
-- **Khí độc hại**: 
-  - $NH_3$ (Ammonia tự do): $< 0.1$ mg/L.
-  - $NO_2^-$ (Nitrit): Càng thấp càng tốt ($< 0.2$ mg/L).
-  - $H_2S$ (Hydro sunfua): $< 0.03$ mg/L (cực độc cho đáy ao).
-
-> 💡 *Bạn nên kiểm tra định kỳ 2 lần/ngày (6h sáng và 14h chiều) để kịp thời điều chỉnh vôi hoặc bổ sung vi sinh xử lý đáy ao.*`;
-    }
-
-    if (q.includes('đốm trắng') || q.includes('wssv') || q.includes('bệnh') || q.includes('gan tụy') || q.includes('phân trắng')) {
-      return `### ⚠️ Cảnh báo và Phòng trị Dịch bệnh Tôm phổ biến:
-
-1. **Bệnh Đốm trắng (WSSV - White Spot Syndrome Virus)**:
-   - **Dấu hiệu**: Xuất hiện các đốm trắng tròn đường kính 0.5 - 2mm bên trong vỏ giáp đầu ngực và đốt thân thứ 5, 6; tôm dạt bờ, tấp mé và chết nhanh trong 3 - 5 ngày.
-   - **Xử lý**: Đây là bệnh do virus nên không có thuốc đặc trị. Cần diệt giáp xác trung gian, an toàn sinh học và kiểm soát nguồn nước cấp.
-
-2. **Bệnh Hoại tử gan tụy cấp (AHPND / EMS)**:
-   - **Tác nhân**: Vi khuẩn *Vibrio parahaemolyticus* mang độc tố Photorhabdus luminescens.
-   - **Dấu hiệu**: Gan tụy teo nhỏ, nhạt màu hoặc đen chai, ruột rỗng không có thức ăn, tôm rớt đáy đột ngột sau 10 - 35 ngày thả giống.
-   - **Phòng bệnh**: Sử dụng tôm giống SPF, xử lý diệt khuẩn nguồn nước và dùng chế phẩm sinh học đối kháng.
-
-3. **Bệnh Phân trắng (White Feces Disease)**:
-   - **Dấu hiệu**: Sợi phân màu trắng nổi trên mặt nước và tích tụ ở cuối góc quạt nước, tôm giảm ăn và ốp thân.
-   - **Cách xử lý**: Giảm 30 - 50% lượng thức ăn, bổ sung men tiêu hóa và thảo dược ức chế vi bào tử EHP.`;
-    }
-
-    return `Xin chào bạn! Tôi là **Trợ lý AI Thủy sản shrimpAI**. 
-
-Tôi có thể hỗ trợ bạn mọi thắc mắc chuyên môn:
-- 🦐 **Phân biệt đặc điểm giải phẫu học các giống tôm**: Tôm thẻ chân trắng, Tôm sú, Tôm càng xanh...
-- 🧪 **Kiểm soát chất lượng nước ao nuôi**: pH, độ kiềm, oxy hòa tan, xử lý khí độc NH3, NO2.
-- ⚠️ **Chẩn đoán & phòng ngừa dịch bệnh**: Đốm trắng (WSSV), Hoại tử gan tụy (AHPND), Bệnh phân trắng...
-- 🍽️ **Kỹ thuật quản lý thức ăn & chế độ dinh dưỡng theo từng giai đoạn lột xác**.
-
-Bạn cần tư vấn vấn đề gì về ao tôm của mình hôm nay?`;
+    throw lastError || new Error('Không nhận được nội dung phản hồi từ Gemini API.');
   }
 }
+
+
