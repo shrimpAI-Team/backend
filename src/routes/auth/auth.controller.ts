@@ -40,6 +40,7 @@ import {
 import { Device, type DeviceInfo } from '../shared/decorators/device.decorator';
 
 const REFRESH_COOKIE = 'refresh_token';
+const ADMIN_REFRESH_COOKIE = 'admin_refresh_token';
 
 @Controller('auth')
 export class AuthController {
@@ -48,12 +49,22 @@ export class AuthController {
     private readonly config: ConfigService,
   ) {}
 
-  private setRefreshCookie(res: Response, token: string) {
+  private getCookieName(reqOrClientType?: Request | string): string {
+    const type =
+      typeof reqOrClientType === 'string'
+        ? reqOrClientType
+        : (reqOrClientType?.headers?.['x-client-type'] as string);
+    return type === 'admin' ? ADMIN_REFRESH_COOKIE : REFRESH_COOKIE;
+  }
+
+  private setRefreshCookie(res: Response, token: string, clientType?: string) {
     const hours =
       this.config.get<number>('jwt.refreshTtlHours') ??
       (this.config.get<number>('jwt.refreshTtlDays') ?? 30) * 24;
 
-    res.cookie(REFRESH_COOKIE, token, {
+    const cookieName = this.getCookieName(clientType);
+
+    res.cookie(cookieName, token, {
       httpOnly: true,
       secure: this.config.get('env') === 'production',
       sameSite: 'lax',
@@ -62,14 +73,15 @@ export class AuthController {
     });
   }
 
-  private clearRefreshCookie(res: Response) {
-    res.clearCookie(REFRESH_COOKIE, { path: '/auth' });
+  private clearRefreshCookie(res: Response, clientType?: string) {
+    const cookieName = this.getCookieName(clientType);
+    res.clearCookie(cookieName, { path: '/auth' });
   }
 
-  /** Tách refreshToken khỏi body trả về, chỉ đặt vào cookie */
-  private respond(res: Response, result: any) {
+  /** Tách refreshToken khỏi body trả về, chỉ đặt vào cookie tương ứng */
+  private respond(res: Response, result: any, clientType?: string) {
     if (result?.refreshToken) {
-      this.setRefreshCookie(res, result.refreshToken);
+      this.setRefreshCookie(res, result.refreshToken, clientType);
       const { refreshToken, ...safe } = result;
       return safe;
     }
@@ -90,11 +102,14 @@ export class AuthController {
   async verifyEmail(
     @Body() dto: VerifyEmailOtpDto,
     @Device() device: DeviceInfo,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
+    const clientType = req.headers['x-client-type'] as string;
     return this.respond(
       res,
       await this.auth.verifyRegistrationOtp(dto, device),
+      clientType,
     );
   }
 
@@ -112,9 +127,15 @@ export class AuthController {
   async login(
     @Body() dto: LoginDto,
     @Device() device: DeviceInfo,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    return this.respond(res, await this.auth.login(dto, device));
+    const clientType = req.headers['x-client-type'] as string;
+    return this.respond(
+      res,
+      await this.auth.login(dto, device),
+      clientType,
+    );
   }
 
   @Public()
@@ -123,9 +144,15 @@ export class AuthController {
   async verify2fa(
     @Body() dto: Verify2faDto,
     @Device() device: DeviceInfo,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    return this.respond(res, await this.auth.verifyTwoFactor(dto, device));
+    const clientType = req.headers['x-client-type'] as string;
+    return this.respond(
+      res,
+      await this.auth.verifyTwoFactor(dto, device),
+      clientType,
+    );
   }
 
   @Public()
@@ -136,14 +163,26 @@ export class AuthController {
     @Device() device: DeviceInfo,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const token = req.cookies?.[REFRESH_COOKIE];
+    const clientType = req.headers['x-client-type'] as string;
+    const primaryCookie = this.getCookieName(clientType);
+    const token =
+      req.cookies?.[primaryCookie] ??
+      (clientType === 'admin'
+        ? req.cookies?.[REFRESH_COOKIE]
+        : req.cookies?.[ADMIN_REFRESH_COOKIE]) ??
+      (req.body as any)?.refreshToken;
+
     if (!token) {
       return { authenticated: false, accessToken: null };
     }
     try {
-      return this.respond(res, await this.auth.refresh(token, device));
+      return this.respond(
+        res,
+        await this.auth.refresh(token, device),
+        clientType,
+      );
     } catch (e) {
-      this.clearRefreshCookie(res);
+      this.clearRefreshCookie(res, clientType);
       throw e;
     }
   }
@@ -152,9 +191,11 @@ export class AuthController {
   @HttpCode(200)
   async logout(
     @CurrentUser() user: AuthUser,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    this.clearRefreshCookie(res);
+    const clientType = req.headers['x-client-type'] as string;
+    this.clearRefreshCookie(res, clientType);
     return this.auth.logout(user.sessionId);
   }
 
@@ -162,9 +203,11 @@ export class AuthController {
   @HttpCode(200)
   async logoutAll(
     @CurrentUser('id') userId: string,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    this.clearRefreshCookie(res);
+    const clientType = req.headers['x-client-type'] as string;
+    this.clearRefreshCookie(res, clientType);
     return this.auth.logoutAll(userId);
   }
 

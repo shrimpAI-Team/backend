@@ -20,11 +20,16 @@ export class DeviceMiddleware implements NestMiddleware {
         .digest('hex')
         .slice(0, 32);
 
+    const clientType = (req.headers['x-client-type'] as string) || '';
+    const rawName = (req.headers['x-device-name'] as string) || parseDeviceName(ua);
+    const name = clientType === 'admin' && !rawName.startsWith('Admin') ? `Admin • ${rawName}` : rawName;
+
     (req as any).device = {
       id,
-      name: (req.headers['x-device-name'] as string) || parseDeviceName(ua),
+      name,
       userAgent: ua,
       ip,
+      clientType,
     };
     next();
   }

@@ -26,20 +26,27 @@ export class SessionService {
   }
 
   /**
-   * Đăng nhập thiết bị mới:
-   * 1. Revoke toàn bộ session đang sống khác deviceId hiện tại
-   * 2. Tạo session mới + cặp token
+   * Đăng nhập:
+   * 1. Thu hồi toàn bộ session đang sống thuộc cùng portal (Client hoặc Admin)
+   *    với lý do 'NEW_DEVICE_LOGIN'.
+   * 2. Thiết bị đăng nhập trước sẽ bị out ngay lập tức và nhận cảnh báo:
+   *    "Tài khoản của bạn vừa đăng nhập trên thiết bị khác".
+   * 3. Phân tách Admin portal (Admin • ...) và User client để không đá lẫn nhau.
    */
   async createSessionForDevice(user: User, device: DeviceInfo) {
-    const revoked = await this.prisma.session.updateMany({
-      where: { userId: user.id, revokedAt: null, NOT: { deviceId: device.id } },
-      data: { revokedAt: new Date(), revokedReason: 'NEW_DEVICE_LOGIN' },
-    });
+    const isAdmin =
+      device.clientType === 'admin' || device.name?.startsWith('Admin');
+    const scopeFilter = isAdmin
+      ? { deviceName: { startsWith: 'Admin' } }
+      : { NOT: { deviceName: { startsWith: 'Admin' } } };
 
-    // Cùng thiết bị đăng nhập lại: thu hồi session cũ của chính nó
-    await this.prisma.session.updateMany({
-      where: { userId: user.id, revokedAt: null, deviceId: device.id },
-      data: { revokedAt: new Date(), revokedReason: 'RE_LOGIN_SAME_DEVICE' },
+    const revoked = await this.prisma.session.updateMany({
+      where: {
+        userId: user.id,
+        revokedAt: null,
+        ...scopeFilter,
+      },
+      data: { revokedAt: new Date(), revokedReason: 'NEW_DEVICE_LOGIN' },
     });
 
     const tokens = await this.issue(user, device);
@@ -85,7 +92,13 @@ export class SessionService {
     if (!session) throw new UnauthorizedException('Refresh token không hợp lệ');
 
     if (session.revokedAt) {
-      await this.revokeAll(session.userId, 'REFRESH_TOKEN_REUSE');
+      if (session.revokedReason === 'NEW_DEVICE_LOGIN') {
+        throw new UnauthorizedException('SESSION_REVOKED');
+      }
+      if (session.revokedReason === 'ROTATED') {
+        // Tái sử dụng token cũ ⇒ nghi ngờ bị tấn công ăn cắp token ⇒ khoá toàn bộ
+        await this.revokeAll(session.userId, 'REFRESH_TOKEN_REUSE');
+      }
       throw new UnauthorizedException(
         'Phiên đã bị thu hồi, vui lòng đăng nhập lại',
       );
@@ -94,7 +107,8 @@ export class SessionService {
       throw new UnauthorizedException('Phiên đã hết hạn');
     }
     if (session.deviceId !== device.id) {
-      await this.revokeAll(session.userId, 'DEVICE_MISMATCH');
+      // Chỉ thu hồi phiên của thiết bị có token lệch này, không xoá phiên của các thiết bị khác
+      await this.revokeSession(session.id, 'DEVICE_MISMATCH');
       throw new UnauthorizedException(
         'Thiết bị không khớp với phiên đăng nhập',
       );
@@ -151,9 +165,21 @@ export class SessionService {
       where: { id: sessionId },
       include: { user: true },
     });
-    if (!session || session.revokedAt || session.expiresAt < new Date())
-      return null;
-    if (!session.user.isActive) return null;
+    if (!session) {
+      throw new UnauthorizedException('SESSION_INVALID');
+    }
+    if (session.revokedAt) {
+      if (session.revokedReason === 'NEW_DEVICE_LOGIN') {
+        throw new UnauthorizedException('SESSION_REVOKED');
+      }
+      throw new UnauthorizedException('SESSION_EXPIRED');
+    }
+    if (session.expiresAt < new Date()) {
+      throw new UnauthorizedException('SESSION_EXPIRED');
+    }
+    if (!session.user.isActive) {
+      throw new UnauthorizedException('USER_INACTIVE');
+    }
     await this.prisma.session.update({
       where: { id: session.id },
       data: { lastUsedAt: new Date() },

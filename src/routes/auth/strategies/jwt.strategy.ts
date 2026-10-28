@@ -26,10 +26,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
   async validate(payload: JwtPayload) {
     const session = await this.sessions.validateActiveSession(payload.sid);
-    if (!session) {
-      // Thiết bị khác đã đăng nhập ⇒ token này chết
-      throw new UnauthorizedException('SESSION_REVOKED');
-    }
     return {
       id: session.user.id,
       email: session.user.email,

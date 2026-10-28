@@ -5,6 +5,7 @@ export interface DeviceInfo {
   name: string;
   userAgent?: string;
   ip?: string;
+  clientType?: string;
 }
 
 export const Device = createParamDecorator((_d, ctx: ExecutionContext) => {
