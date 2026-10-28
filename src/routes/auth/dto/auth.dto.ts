@@ -1,6 +1,7 @@
 import {
   IsEmail,
   IsEnum,
+  IsNotEmpty,
   IsOptional,
   IsString,
   Length,
@@ -10,8 +11,11 @@ import {
 } from 'class-validator';
 
 export class RegisterDto {
-  @IsEmail() email!: string;
+  @IsNotEmpty({ message: 'Email không được để trống' })
+  @IsEmail({}, { message: 'Email không đúng định dạng' })
+  email!: string;
 
+  @IsNotEmpty({ message: 'Mật khẩu không được để trống' })
   @MinLength(8, { message: 'Mật khẩu tối thiểu 8 ký tự' })
   @MaxLength(72, { message: 'Mật khẩu tối đa 72 ký tự' })
   @Matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, {
@@ -19,37 +23,59 @@ export class RegisterDto {
   })
   password!: string;
 
-  @IsOptional() @IsString() name?: string;
+  @IsOptional()
+  @IsString({ message: 'Họ tên phải là chuỗi ký tự' })
+  name?: string;
 }
 
 export class LoginDto {
-  @IsEmail() email!: string;
-  @IsString() password!: string;
+  @IsNotEmpty({ message: 'Email không được để trống' })
+  @IsEmail({}, { message: 'Email không đúng định dạng' })
+  email!: string;
+
+  @IsNotEmpty({ message: 'Mật khẩu không được để trống' })
+  @IsString({ message: 'Mật khẩu không hợp lệ' })
+  password!: string;
 }
 
 export class VerifyEmailOtpDto {
-  @IsEmail() email!: string;
-  @Length(6, 6) code!: string;
+  @IsNotEmpty({ message: 'Email không được để trống' })
+  @IsEmail({}, { message: 'Email không đúng định dạng' })
+  email!: string;
+
+  @Length(6, 6, { message: 'Mã OTP gồm 6 chữ số' })
+  code!: string;
 }
 
 export class ResendOtpDto {
-  @IsEmail() email!: string;
+  @IsNotEmpty({ message: 'Email không được để trống' })
+  @IsEmail({}, { message: 'Email không đúng định dạng' })
+  email!: string;
 }
 
 export class Verify2faDto {
-  @IsString() challengeToken!: string;
-  @Length(6, 6) code!: string;
+  @IsString({ message: 'Token xác thực không hợp lệ' })
+  challengeToken!: string;
+
+  @Length(6, 6, { message: 'Mã 2FA gồm 6 chữ số' })
+  code!: string;
 }
 
 export class Enable2faDto {
-  @IsEnum(['EMAIL_OTP', 'TOTP']) method!: 'EMAIL_OTP' | 'TOTP';
+  @IsEnum(['EMAIL_OTP', 'TOTP'], { message: 'Phương thức 2FA không hợp lệ' })
+  method!: 'EMAIL_OTP' | 'TOTP';
 }
 
 export class ConfirmTotpDto {
-  @Length(6, 6) code!: string;
+  @Length(6, 6, { message: 'Mã TOTP gồm 6 chữ số' })
+  code!: string;
 }
 
 export class Disable2faDto {
-  @IsString() password!: string;
-  @Length(6, 6) code!: string;
+  @IsNotEmpty({ message: 'Mật khẩu không được để trống' })
+  @IsString({ message: 'Mật khẩu không hợp lệ' })
+  password!: string;
+
+  @Length(6, 6, { message: 'Mã xác thực gồm 6 chữ số' })
+  code!: string;
 }
