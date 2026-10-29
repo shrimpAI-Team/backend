@@ -1,0 +1,32 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# YOLO & Training outputs
+runs/
+*.pt
+*.onnx
+!yolov8n-cls.pt
+!models/shrimp_model_best.pt
+!models/.gitkeep
+
+# Datasets (Images & Cache)
+datasets/train/*/*
+datasets/val/*/*
+datasets/*.cache
+datasets/**/*.cache
+datasets/**/*.jpg
+datasets/**/*.jpeg
+datasets/**/*.png
+datasets/**/*.webp
+datasets/**/*.bmp
+datasets/**/*.gif
+!datasets/**/.gitkeep
+
+# Python cache & logs
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+

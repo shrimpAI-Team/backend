@@ -64,6 +64,19 @@ ai-engine/runs/
 ai-engine/models/*.pt
 !ai-engine/models/.gitkeep
 !ai-engine/models/shrimp_model_best.pt
+
+# Datasets (Images & Cache)
+ai-engine/datasets/train/*/*
+ai-engine/datasets/val/*/*
+ai-engine/datasets/*.cache
+ai-engine/datasets/**/*.cache
+ai-engine/datasets/**/*.jpg
+ai-engine/datasets/**/*.jpeg
+ai-engine/datasets/**/*.png
+ai-engine/datasets/**/*.webp
+ai-engine/datasets/**/*.bmp
+ai-engine/datasets/**/*.gif
+!ai-engine/datasets/**/.gitkeep
 __pycache__/
 *.py[cod]
 *$py.class

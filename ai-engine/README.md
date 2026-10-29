@@ -20,6 +20,7 @@ backend/ai-engine/
 ├── models/                        # Chứa trọng số mô hình sau khi train
 │   └── shrimp_model_best.pt       # Model tốt nhất xuất ra từ quá trình huấn luyện
 ├── scripts/
+│   ├── crawl_shrimp.py            # Script tự động cào và mở rộng dataset ảnh các giống tôm
 │   ├── train.py                   # Script tự động huấn luyện YOLOv8 classification
 │   ├── predict.py                 # Script test nhận dạng trên 1 ảnh bất kỳ
 │   └── export_onnx.py             # Xuất sang định dạng ONNX
@@ -52,14 +53,28 @@ pip install -r requirements.txt
 
 ---
 
-### Bước 2: Chuẩn bị dữ liệu hình ảnh (Dataset)
-- Copy ảnh tôm tương ứng vào các thư mục:
-  - `datasets/train/the_chan_trang/`: khoảng 30 - 100 ảnh tôm thẻ chân trắng.
-  - `datasets/train/tom_su/`: khoảng 30 - 100 ảnh tôm sú.
-  - `datasets/train/tom_cang_xanh/`: khoảng 30 - 100 ảnh tôm càng xanh.
-- Đặt khoảng 10 - 20 ảnh mỗi loại vào thư mục `datasets/val/` để đánh giá độ chính xác.
+### Bước 2: Thu thập và chuẩn bị dữ liệu hình ảnh (Dataset)
 
-> **Mẹo**: Nếu chưa có đủ ảnh thật ngay, bạn có thể copy vài ảnh mẫu vào các thư mục trên để chạy thử luồng code trước.
+Bạn có thể cào tự động hàng trăm ảnh các giống tôm chỉ với 1 dòng lệnh bằng công cụ có sẵn:
+
+```bash
+# Xem danh sách các giống tôm hỗ trợ sẵn:
+python scripts/crawl_shrimp.py --list
+
+# Cào tự động 200 ảnh mới cho TẤT CẢ các giống tôm (mặc định 200 ảnh):
+python scripts/crawl_shrimp.py --species all
+
+# Chế độ thông minh: Chỉ cào bù cho đủ mốc 200 ảnh (nếu đã có 100 ảnh thì chỉ cào thêm 100 ảnh nữa):
+python scripts/crawl_shrimp.py --species all --target-total 200
+
+# Hoặc chỉ cào bù cho một số giống cụ thể:
+python scripts/crawl_shrimp.py --species tom_su,tom_cang_xanh --target-total 200
+```
+
+> **Cơ chế tự động của tool:**
+> - Tự động tải ảnh sinh học chuẩn từ **iNaturalist** và **Wikimedia Commons**.
+> - Tự động khử ảnh hỏng, lọc ảnh trùng lặp (MD5 hash).
+> - Tự động chia tỉ lệ **80% Train** vào `datasets/train/` và **20% Val** vào `datasets/val/`.
 
 ---
 
