@@ -402,7 +402,8 @@ export const ModelName = {
   OtpToken: 'OtpToken',
   Session: 'Session',
   ChatSession: 'ChatSession',
-  ChatMessage: 'ChatMessage'
+  ChatMessage: 'ChatMessage',
+  ShrimpAnalysis: 'ShrimpAnalysis'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "oAuthAccount" | "otpToken" | "session" | "chatSession" | "chatMessage"
+    modelProps: "user" | "oAuthAccount" | "otpToken" | "session" | "chatSession" | "chatMessage" | "shrimpAnalysis"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -866,6 +867,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ShrimpAnalysis: {
+      payload: Prisma.$ShrimpAnalysisPayload<ExtArgs>
+      fields: Prisma.ShrimpAnalysisFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ShrimpAnalysisFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ShrimpAnalysisFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        findFirst: {
+          args: Prisma.ShrimpAnalysisFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ShrimpAnalysisFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        findMany: {
+          args: Prisma.ShrimpAnalysisFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>[]
+        }
+        create: {
+          args: Prisma.ShrimpAnalysisCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        createMany: {
+          args: Prisma.ShrimpAnalysisCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ShrimpAnalysisCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>[]
+        }
+        delete: {
+          args: Prisma.ShrimpAnalysisDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        update: {
+          args: Prisma.ShrimpAnalysisUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        deleteMany: {
+          args: Prisma.ShrimpAnalysisDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ShrimpAnalysisUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ShrimpAnalysisUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>[]
+        }
+        upsert: {
+          args: Prisma.ShrimpAnalysisUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShrimpAnalysisPayload>
+        }
+        aggregate: {
+          args: Prisma.ShrimpAnalysisAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateShrimpAnalysis>
+        }
+        groupBy: {
+          args: Prisma.ShrimpAnalysisGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShrimpAnalysisGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ShrimpAnalysisCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ShrimpAnalysisCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -990,12 +1065,48 @@ export const ChatMessageScalarFieldEnum = {
 export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
 
 
+export const ShrimpAnalysisScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  imageUrl: 'imageUrl',
+  originalName: 'originalName',
+  species: 'species',
+  scientificName: 'scientificName',
+  confidence: 'confidence',
+  healthStatus: 'healthStatus',
+  sizeEstimate: 'sizeEstimate',
+  commercialGrade: 'commercialGrade',
+  description: 'description',
+  abnormalDetected: 'abnormalDetected',
+  alerts: 'alerts',
+  modelStatus: 'modelStatus',
+  processingTime: 'processingTime',
+  imageDimensions: 'imageDimensions',
+  sizeMetrics: 'sizeMetrics',
+  colorAnalysis: 'colorAnalysis',
+  uniformity: 'uniformity',
+  abnormalities: 'abnormalities',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShrimpAnalysisScalarFieldEnum = (typeof ShrimpAnalysisScalarFieldEnum)[keyof typeof ShrimpAnalysisScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1012,6 +1123,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1122,6 +1242,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 /**
@@ -1281,6 +1415,7 @@ export type GlobalOmitConfig = {
   session?: Prisma.SessionOmit
   chatSession?: Prisma.ChatSessionOmit
   chatMessage?: Prisma.ChatMessageOmit
+  shrimpAnalysis?: Prisma.ShrimpAnalysisOmit
 }
 
 /* Types for Logging */

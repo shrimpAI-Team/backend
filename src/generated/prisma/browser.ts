@@ -47,3 +47,8 @@ export type ChatSession = Prisma.ChatSessionModel
  * 
  */
 export type ChatMessage = Prisma.ChatMessageModel
+/**
+ * Model ShrimpAnalysis
+ * 
+ */
+export type ShrimpAnalysis = Prisma.ShrimpAnalysisModel

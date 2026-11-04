@@ -53,6 +53,7 @@ model User {
   sessions         Session[]
   oauthAccounts    OAuthAccount[]
   chatSessions     ChatSession[]
+  shrimpAnalyses   ShrimpAnalysis[]
 
   @@index([email])
 }
@@ -123,4 +124,33 @@ model ChatMessage {
   createdAt     DateTime    @default(now())
 
   @@index([chatSessionId, createdAt])
-}
+}
+
+model ShrimpAnalysis {
+  id               String    @id @default(uuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  imageUrl         String    @db.Text
+  originalName     String?
+  species          String
+  scientificName   String
+  confidence       Float
+  healthStatus     String?
+  sizeEstimate     String?
+  commercialGrade  String?
+  description      String?   @db.Text
+  abnormalDetected Boolean   @default(false)
+  alerts           String[]  @default([])
+  modelStatus      String?
+  processingTime   String?
+  imageDimensions  String?
+  sizeMetrics      Json?
+  colorAnalysis    Json?
+  uniformity       Json?
+  abnormalities    Json?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([userId, createdAt])
+  @@index([species])
+}

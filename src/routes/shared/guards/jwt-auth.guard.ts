@@ -9,12 +9,26 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     super();
   }
 
-  canActivate(context: ExecutionContext) {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
-    if (isPublic) return true;
-    return super.canActivate(context);
+
+    if (isPublic) {
+      // Nếu là public route nhưng client gửi Bearer token, vẫn giải mã để lấy req.user
+      const req = context.switchToHttp().getRequest();
+      const authHeader = req.headers?.authorization;
+      if (authHeader && typeof authHeader === 'string' && authHeader.startsWith('Bearer ')) {
+        try {
+          await (super.canActivate(context) as Promise<boolean>);
+        } catch {
+          // Bỏ qua lỗi token trên public route
+        }
+      }
+      return true;
+    }
+
+    return super.canActivate(context) as Promise<boolean>;
   }
 }
