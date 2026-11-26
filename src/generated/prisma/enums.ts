@@ -34,3 +34,13 @@ export const TwoFactorMethod = {
 } as const
 
 export type TwoFactorMethod = (typeof TwoFactorMethod)[keyof typeof TwoFactorMethod]
+
+
+export const PondJournalKind = {
+  WATER: 'WATER',
+  FEED: 'FEED',
+  CARE: 'CARE',
+  INCIDENT: 'INCIDENT'
+} as const
+
+export type PondJournalKind = (typeof PondJournalKind)[keyof typeof PondJournalKind]

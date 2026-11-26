@@ -1,0 +1,4642 @@
+{
+  "validation": {
+    "before_species": {
+      "samples": 241,
+      "correct": 160,
+      "macro_recall": 0.6493574134199134,
+      "per_class": {
+        "tep_kieng": {
+          "samples": 30,
+          "correct": 20
+        },
+        "the_chan_trang": {
+          "samples": 32,
+          "correct": 22
+        },
+        "tom_cang_xanh": {
+          "samples": 35,
+          "correct": 26
+        },
+        "tom_dat": {
+          "samples": 21,
+          "correct": 6
+        },
+        "tom_hum": {
+          "samples": 30,
+          "correct": 21
+        },
+        "tom_hum_dat": {
+          "samples": 30,
+          "correct": 24
+        },
+        "tom_su": {
+          "samples": 33,
+          "correct": 18
+        },
+        "tom_tit": {
+          "samples": 30,
+          "correct": 23
+        }
+      },
+      "false_tiger": 3,
+      "results": {
+        "species_uncertain": 32,
+        "tep_kieng": 21,
+        "presence_filtered": 39,
+        "the_chan_trang": 27,
+        "tom_su": 21,
+        "tom_cang_xanh": 26,
+        "tom_dat": 7,
+        "tom_hum": 21,
+        "tom_hum_dat": 24,
+        "tom_tit": 23
+      }
+    },
+    "before_tiger": {
+      "samples": 153,
+      "correct": 39,
+      "macro_recall": 0.2549019607843137,
+      "per_class": {
+        "tom_su": {
+          "samples": 153,
+          "correct": 39
+        }
+      },
+      "false_tiger": 0,
+      "results": {
+        "tom_su": 39,
+        "species_uncertain": 71,
+        "the_chan_trang": 32,
+        "tep_kieng": 10,
+        "tom_dat": 1
+      }
+    },
+    "after": {
+      "disease_weight": 2.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8882599472999573,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 149,
+        "macro_recall": 0.9738562091503268,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 149
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 149,
+          "tep_kieng": 2,
+          "the_chan_trang": 2
+        }
+      }
+    },
+    "guardrails_passed": true
+  },
+  "test": {
+    "before_species": {
+      "samples": 241,
+      "correct": 154,
+      "macro_recall": 0.6412202380952381,
+      "per_class": {
+        "tep_kieng": {
+          "samples": 30,
+          "correct": 19
+        },
+        "the_chan_trang": {
+          "samples": 32,
+          "correct": 20
+        },
+        "tom_cang_xanh": {
+          "samples": 35,
+          "correct": 17
+        },
+        "tom_dat": {
+          "samples": 21,
+          "correct": 13
+        },
+        "tom_hum": {
+          "samples": 30,
+          "correct": 19
+        },
+        "tom_hum_dat": {
+          "samples": 30,
+          "correct": 22
+        },
+        "tom_su": {
+          "samples": 33,
+          "correct": 22
+        },
+        "tom_tit": {
+          "samples": 30,
+          "correct": 22
+        }
+      },
+      "false_tiger": 2,
+      "results": {
+        "tep_kieng": 22,
+        "tom_hum": 20,
+        "presence_filtered": 26,
+        "species_uncertain": 49,
+        "tom_dat": 16,
+        "the_chan_trang": 23,
+        "tom_su": 24,
+        "tom_cang_xanh": 17,
+        "tom_hum_dat": 22,
+        "tom_tit": 22
+      }
+    },
+    "after_species": {
+      "samples": 241,
+      "correct": 160,
+      "macro_recall": 0.6621076839826839,
+      "per_class": {
+        "tep_kieng": {
+          "samples": 30,
+          "correct": 20
+        },
+        "the_chan_trang": {
+          "samples": 32,
+          "correct": 20
+        },
+        "tom_cang_xanh": {
+          "samples": 35,
+          "correct": 19
+        },
+        "tom_dat": {
+          "samples": 21,
+          "correct": 12
+        },
+        "tom_hum": {
+          "samples": 30,
+          "correct": 21
+        },
+        "tom_hum_dat": {
+          "samples": 30,
+          "correct": 21
+        },
+        "tom_su": {
+          "samples": 33,
+          "correct": 25
+        },
+        "tom_tit": {
+          "samples": 30,
+          "correct": 22
+        }
+      },
+      "false_tiger": 6,
+      "results": {
+        "tep_kieng": 22,
+        "tom_hum": 22,
+        "presence_filtered": 26,
+        "species_uncertain": 38,
+        "tom_dat": 15,
+        "the_chan_trang": 23,
+        "tom_su": 31,
+        "tom_cang_xanh": 20,
+        "tom_tit": 23,
+        "tom_hum_dat": 21
+      }
+    },
+    "before_pipeline": {
+      "reaches_v5": 24,
+      "correct_sign": 24,
+      "by_sign": {
+        "black_gill": {
+          "images": 4,
+          "reaches_v5": 1,
+          "correct_sign": 1
+        },
+        "no_visible_target_sign": {
+          "images": 53,
+          "reaches_v5": 7,
+          "correct_sign": 7
+        },
+        "white_spot_like": {
+          "images": 80,
+          "reaches_v5": 14,
+          "correct_sign": 14
+        },
+        "yellow_head_like": {
+          "images": 8,
+          "reaches_v5": 2,
+          "correct_sign": 2
+        }
+      }
+    },
+    "after_pipeline": {
+      "reaches_v5": 141,
+      "correct_sign": 140,
+      "by_sign": {
+        "black_gill": {
+          "images": 4,
+          "reaches_v5": 3,
+          "correct_sign": 2
+        },
+        "no_visible_target_sign": {
+          "images": 53,
+          "reaches_v5": 53,
+          "correct_sign": 53
+        },
+        "white_spot_like": {
+          "images": 80,
+          "reaches_v5": 78,
+          "correct_sign": 78
+        },
+        "yellow_head_like": {
+          "images": 8,
+          "reaches_v5": 7,
+          "correct_sign": 7
+        }
+      }
+    }
+  },
+  "requested_photo": {
+    "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+    "label": "white_spot_like",
+    "disease_v5": "white_spot_like",
+    "before": {
+      "candidate": "tom_cang_xanh",
+      "confidence": 0.3288859724998474,
+      "result": "species_uncertain"
+    },
+    "after": {
+      "candidate": "tom_su",
+      "confidence": 0.9995929598808289,
+      "result": "tom_su"
+    }
+  },
+  "species_manifest_sha256": "9b6f43032afb8213af6a2cce2a78ae7a64513a0340bb0bd5ef4e1eaa0965daa2",
+  "disease_manifest_sha256": "834f84a45c8cbcefea648db0f079e1d553980c44547977f30d8ee5ba4768a714",
+  "backbone_sha256": "44ce3d4cfb5b635c41a1e3321f49ca0fbf1240d8fb70d552647fad131582a074",
+  "feature_layer": 8,
+  "head_sha256": "b9ee44be831ca38645e979197f4fd2941702092f7d3b3fe37046d9cd77d0254e",
+  "acceptance_threshold": 0.8,
+  "training_counts": {
+    "tep_kieng": 140,
+    "the_chan_trang": 150,
+    "tom_cang_xanh": 162,
+    "tom_dat": 95,
+    "tom_hum": 141,
+    "tom_hum_dat": 140,
+    "tom_su": 156,
+    "tom_tit": 140,
+    "disease_photos": 703
+  },
+  "excluded_training": [],
+  "candidates": [
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8839804530143738,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 164,
+        "macro_recall": 0.6663825757575758,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 21
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 22,
+          "species_uncertain": 25,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 119,
+        "macro_recall": 0.7777777777777778,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 119
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 119,
+          "the_chan_trang": 27,
+          "tep_kieng": 5,
+          "tom_dat": 1,
+          "species_uncertain": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8839804530143738,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 164,
+        "macro_recall": 0.6663825757575758,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 21
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 22,
+          "species_uncertain": 25,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 129,
+        "macro_recall": 0.8431372549019608,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 129
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 129,
+          "the_chan_trang": 19,
+          "tep_kieng": 3,
+          "tom_dat": 1,
+          "species_uncertain": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8839804530143738,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 164,
+        "macro_recall": 0.6663825757575758,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 21
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 22,
+          "species_uncertain": 25,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 146,
+        "macro_recall": 0.954248366013072,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 146
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 146,
+          "the_chan_trang": 3,
+          "tep_kieng": 2,
+          "tom_dat": 1,
+          "species_uncertain": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9687703251838684,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 109,
+        "macro_recall": 0.7124183006535948,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 109
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 109,
+          "the_chan_trang": 28,
+          "species_uncertain": 9,
+          "tep_kieng": 6,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9687703251838684,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 118,
+        "macro_recall": 0.7712418300653595,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 118
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 118,
+          "species_uncertain": 9,
+          "the_chan_trang": 20,
+          "tep_kieng": 5,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9687703251838684,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 123,
+        "macro_recall": 0.803921568627451,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 123
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 123,
+          "species_uncertain": 9,
+          "the_chan_trang": 15,
+          "tep_kieng": 5,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.986833930015564,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 37,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 61,
+        "macro_recall": 0.39869281045751637,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 61
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 61,
+          "the_chan_trang": 26,
+          "species_uncertain": 58,
+          "tep_kieng": 8
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.986833930015564,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 37,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 61,
+        "macro_recall": 0.39869281045751637,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 61
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 61,
+          "the_chan_trang": 26,
+          "species_uncertain": 58,
+          "tep_kieng": 8
+        }
+      }
+    },
+    {
+      "disease_weight": 0.5,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.986833930015564,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 37,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 61,
+        "macro_recall": 0.39869281045751637,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 61
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 61,
+          "the_chan_trang": 26,
+          "species_uncertain": 58,
+          "tep_kieng": 8
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8853808641433716,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 121,
+        "macro_recall": 0.7908496732026143,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 121
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 121,
+          "the_chan_trang": 27,
+          "tep_kieng": 5
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8853808641433716,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 131,
+        "macro_recall": 0.8562091503267973,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 131
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 131,
+          "the_chan_trang": 19,
+          "tep_kieng": 3
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8853808641433716,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 148,
+        "macro_recall": 0.9673202614379085,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 148
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 148,
+          "the_chan_trang": 3,
+          "tep_kieng": 2
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9703077673912048,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 115,
+        "macro_recall": 0.7516339869281046,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 115
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 115,
+          "the_chan_trang": 29,
+          "species_uncertain": 2,
+          "tep_kieng": 6,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9703077673912048,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 124,
+        "macro_recall": 0.8104575163398693,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 124
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 124,
+          "species_uncertain": 2,
+          "the_chan_trang": 21,
+          "tep_kieng": 5,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9703077673912048,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 162,
+        "macro_recall": 0.6585464015151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 21
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 28,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 27,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 133,
+        "macro_recall": 0.869281045751634,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 133
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 133,
+          "species_uncertain": 2,
+          "the_chan_trang": 13,
+          "tep_kieng": 4,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9905184507369995,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 36,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 27,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 71,
+        "macro_recall": 0.46405228758169936,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 71
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 71,
+          "the_chan_trang": 28,
+          "species_uncertain": 45,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9905184507369995,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 36,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 27,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 72,
+        "macro_recall": 0.47058823529411764,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 72
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 72,
+          "the_chan_trang": 27,
+          "species_uncertain": 45,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 1.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9905184507369995,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 155,
+        "macro_recall": 0.6272591991341991,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 17
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 26
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 36,
+          "tep_kieng": 17,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 27,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 72,
+        "macro_recall": 0.47058823529411764,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 72
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 72,
+          "the_chan_trang": 27,
+          "species_uncertain": 45,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8882599472999573,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 121,
+        "macro_recall": 0.7908496732026143,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 121
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 121,
+          "the_chan_trang": 27,
+          "tep_kieng": 5
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8882599472999573,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 131,
+        "macro_recall": 0.8562091503267973,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 131
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 131,
+          "the_chan_trang": 19,
+          "tep_kieng": 3
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.001,
+      "promotion": {
+        "minimum_tiger_score": 0.8882599472999573,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 163,
+        "macro_recall": 0.6622159090909091,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 20
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 20
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 23
+          }
+        },
+        "false_tiger": 2,
+        "results": {
+          "tep_kieng": 21,
+          "species_uncertain": 26,
+          "presence_filtered": 39,
+          "tom_dat": 10,
+          "the_chan_trang": 26,
+          "tom_su": 22,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 23
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 149,
+        "macro_recall": 0.9738562091503268,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 149
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 149,
+          "tep_kieng": 2,
+          "the_chan_trang": 2
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9727687835693359,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 161,
+        "macro_recall": 0.6546401515151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 29,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 26,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 116,
+        "macro_recall": 0.7581699346405228,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 116
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 116,
+          "the_chan_trang": 28,
+          "species_uncertain": 2,
+          "tep_kieng": 6,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9727687835693359,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 161,
+        "macro_recall": 0.6546401515151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 29,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 26,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 125,
+        "macro_recall": 0.8169934640522876,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 125
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 125,
+          "species_uncertain": 2,
+          "the_chan_trang": 20,
+          "tep_kieng": 5,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.01,
+      "promotion": {
+        "minimum_tiger_score": 0.9727687835693359,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 161,
+        "macro_recall": 0.6546401515151515,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 19
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 28
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 7
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 21
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 24
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 29,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 26,
+          "tom_dat": 9,
+          "tom_su": 21,
+          "tom_cang_xanh": 29,
+          "tom_hum": 21,
+          "tom_hum_dat": 24,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 138,
+        "macro_recall": 0.9019607843137255,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 138
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 138,
+          "species_uncertain": 2,
+          "the_chan_trang": 8,
+          "tep_kieng": 4,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9927586913108826,
+        "maximum_original_score": 0.9
+      },
+      "species": {
+        "samples": 241,
+        "correct": 152,
+        "macro_recall": 0.6153544372294373,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 18
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 25
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 19
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 23
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 38,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 19,
+          "tom_hum_dat": 23,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 81,
+        "macro_recall": 0.5294117647058824,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 81
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 81,
+          "the_chan_trang": 27,
+          "species_uncertain": 36,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9927586913108826,
+        "maximum_original_score": 0.98
+      },
+      "species": {
+        "samples": 241,
+        "correct": 152,
+        "macro_recall": 0.6153544372294373,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 18
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 25
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 19
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 23
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 38,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 19,
+          "tom_hum_dat": 23,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 83,
+        "macro_recall": 0.5424836601307189,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 83
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 83,
+          "species_uncertain": 36,
+          "the_chan_trang": 25,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    },
+    {
+      "disease_weight": 2.0,
+      "penalty": 0.1,
+      "promotion": {
+        "minimum_tiger_score": 0.9927586913108826,
+        "maximum_original_score": 1.0
+      },
+      "species": {
+        "samples": 241,
+        "correct": 152,
+        "macro_recall": 0.6153544372294373,
+        "per_class": {
+          "tep_kieng": {
+            "samples": 30,
+            "correct": 18
+          },
+          "the_chan_trang": {
+            "samples": 32,
+            "correct": 20
+          },
+          "tom_cang_xanh": {
+            "samples": 35,
+            "correct": 25
+          },
+          "tom_dat": {
+            "samples": 21,
+            "correct": 5
+          },
+          "tom_hum": {
+            "samples": 30,
+            "correct": 19
+          },
+          "tom_hum_dat": {
+            "samples": 30,
+            "correct": 23
+          },
+          "tom_su": {
+            "samples": 33,
+            "correct": 18
+          },
+          "tom_tit": {
+            "samples": 30,
+            "correct": 24
+          }
+        },
+        "false_tiger": 3,
+        "results": {
+          "species_uncertain": 38,
+          "tep_kieng": 19,
+          "presence_filtered": 39,
+          "the_chan_trang": 25,
+          "tom_dat": 7,
+          "tom_su": 21,
+          "tom_cang_xanh": 26,
+          "tom_hum": 19,
+          "tom_hum_dat": 23,
+          "tom_tit": 24
+        }
+      },
+      "tiger": {
+        "samples": 153,
+        "correct": 84,
+        "macro_recall": 0.5490196078431373,
+        "per_class": {
+          "tom_su": {
+            "samples": 153,
+            "correct": 84
+          }
+        },
+        "false_tiger": 0,
+        "results": {
+          "tom_su": 84,
+          "species_uncertain": 36,
+          "the_chan_trang": 24,
+          "tep_kieng": 8,
+          "tom_dat": 1
+        }
+      }
+    }
+  ],
+  "test_tiger_predictions": [
+    {
+      "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+      "label": "black_gill",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6753399968147278,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998701810836792,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+      "label": "black_gill",
+      "disease_v5": "black_gill",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9984384179115295,
+        "result": "presence_filtered"
+      },
+      "after": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5153366923332214,
+        "result": "presence_filtered"
+      }
+    },
+    {
+      "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+      "label": "black_gill",
+      "disease_v5": "black_gill",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.35754841566085815,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996446371078491,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+      "label": "black_gill",
+      "disease_v5": "black_gill",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9543136954307556,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999818801879883,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.44904211163520813,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999747276306152,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5297683477401733,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9992671608924866,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.40229102969169617,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996932744979858,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.999994158744812,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999998807907104,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.5564427971839905,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9962558746337891,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9996460676193237,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9795727133750916,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7747350335121155,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9979971051216125,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9999774694442749,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999867677688599,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8515447378158569,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999583959579468,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.802834689617157,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998944997787476,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.6697190999984741,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996376037597656,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9975207448005676,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9982008934020996,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8719735741615295,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994717240333557,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.5690209865570068,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999441921710968,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9971831440925598,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9972562193870544,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9924461245536804,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999567270278931,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9937567710876465,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9916833639144897,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5451917052268982,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994851350784302,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8986667990684509,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9939526915550232,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.6970322132110596,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9985464215278625,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9701966047286987,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999701976776123,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9856798648834229,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998831748962402,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9607157707214355,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999339580535889,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7639343738555908,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999958872795105,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6868090033531189,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998911619186401,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8877681493759155,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998749494552612,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9999666213989258,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999996423721313,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9839594960212708,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9989719390869141,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.35223308205604553,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999840259552002,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8889492750167847,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999593496322632,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9835311770439148,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9985931515693665,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9761189222335815,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9984421133995056,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.4822446405887604,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999747276306152,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9991191029548645,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9980288147926331,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8752133846282959,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999985694885254,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.4775495231151581,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997398257255554,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.933880090713501,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999934196472168,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9960020184516907,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996864795684814,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.43941637873649597,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998151659965515,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9704143404960632,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9990525841712952,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9751999974250793,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9987139701843262,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.4765053987503052,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999583959579468,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8106396794319153,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998900890350342,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8853161931037903,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999704360961914,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.4643350839614868,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999264657497406,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.524075984954834,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997225403785706,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.88218092918396,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999573230743408,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.999761164188385,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999920129776001,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7018451690673828,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9993957281112671,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6787082552909851,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9069175124168396,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7661863565444946,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9934213757514954,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6917071342468262,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994945526123047,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+      "label": "no_visible_target_sign",
+      "disease_v5": "no_visible_target_sign",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7105304598808289,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999709129333496,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.4790228605270386,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9970669150352478,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8111333250999451,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999995231628418,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.6221272945404053,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999913215637207,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6637720465660095,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998131394386292,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9409735798835754,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9992430210113525,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6206777095794678,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996908903121948,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.6857988834381104,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999466598033905,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.9028491377830505,
+        "result": "tom_dat"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9991397857666016,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.5266658663749695,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9271746277809143,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6344864368438721,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6344864368438721,
+        "result": "species_uncertain"
+      }
+    },
+    {
+      "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7280513048171997,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998151659965515,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5853554606437683,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997629523277283,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9712112545967102,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999971389770508,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.7887515425682068,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999825954437256,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.9638435244560242,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9563962817192078,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7155379056930542,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999698400497437,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7855817079544067,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999055862426758,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.5322807431221008,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999504089355469,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.9220507144927979,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996824264526367,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.6580280661582947,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.994473397731781,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8016439080238342,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994944334030151,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.5950233340263367,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.998788058757782,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9811952114105225,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9972719550132751,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.38390156626701355,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999887228012085,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.39839670062065125,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999024868011475,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9673773646354675,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999836683273315,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9110851883888245,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999409914016724,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.44731125235557556,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997856020927429,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.721902072429657,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9989275336265564,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7554469108581543,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998656511306763,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.8979246020317078,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998981952667236,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.5964027643203735,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999828338623047,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.40491124987602234,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9974786639213562,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9040333032608032,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994328618049622,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.7177377343177795,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998414516448975,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6553225517272949,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998955726623535,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.5753986239433289,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999784529209137,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.5153432488441467,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9986438155174255,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.4230009615421295,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999254941940308,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9439199566841125,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999995231628418,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9800494909286499,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999990463256836,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5983389019966125,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9956953525543213,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.7375850081443787,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998962879180908,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6338198781013489,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9758626222610474,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.783866822719574,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9995718598365784,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9087240695953369,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999959468841553,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.9906156659126282,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9579941630363464,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7674828767776489,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9935176372528076,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.3900150656700134,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999198853969574,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.41687631607055664,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997135996818542,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.4769045412540436,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.99974125623703,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9638365507125854,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9992477893829346,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.6107454895973206,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9981321692466736,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.28172290325164795,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.995406985282898,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8496108651161194,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999749660491943,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.3471743166446686,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9991138577461243,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.4548104703426361,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9982625842094421,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.565462052822113,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999954700469971,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8040871620178223,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.99480140209198,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.5189819931983948,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999993085861206,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.41418132185935974,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999645948410034,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9860019683837891,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999982118606567,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_cang_xanh",
+        "confidence": 0.3288859724998474,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9995929598808289,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_cang_xanh",
+        "confidence": 0.3952096998691559,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9991186261177063,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9656959772109985,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999443292617798,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.8834648132324219,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_dat",
+        "confidence": 0.7029191851615906,
+        "result": "species_uncertain"
+      }
+    },
+    {
+      "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.9386392831802368,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997484087944031,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.43714380264282227,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998600482940674,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.5445892214775085,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9998195767402649,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8691536784172058,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999970197677612,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_dat",
+        "confidence": 0.6841721534729004,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9977695941925049,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/68613fab959159958109.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9774028658866882,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999951124191284,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.796271026134491,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9956579208374023,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.3496492803096771,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9996621608734131,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.6336347460746765,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999877214431763,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tep_kieng",
+        "confidence": 0.9926636219024658,
+        "result": "tep_kieng"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9917247295379639,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8413766622543335,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999837875366211,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "tom_hum_dat",
+        "confidence": 0.5598372220993042,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.99964439868927,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5556554198265076,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997270703315735,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+      "label": "white_spot_like",
+      "disease_v5": "white_spot_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.4690038859844208,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9995936751365662,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7636646032333374,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9994097948074341,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.8341948390007019,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.998672366142273,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.8814650774002075,
+        "result": "the_chan_trang"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.971216082572937,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.7523178458213806,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9997408986091614,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "tom_su",
+        "confidence": 0.9826176762580872,
+        "result": "tom_su"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9999780654907227,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.5729659199714661,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.9975302815437317,
+        "result": "tom_su"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "tom_cang_xanh",
+        "confidence": 0.5378755331039429,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_cang_xanh",
+        "confidence": 0.5378755331039429,
+        "result": "species_uncertain"
+      }
+    },
+    {
+      "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+      "label": "yellow_head_like",
+      "disease_v5": "yellow_head_like",
+      "before": {
+        "candidate": "the_chan_trang",
+        "confidence": 0.523780345916748,
+        "result": "species_uncertain"
+      },
+      "after": {
+        "candidate": "tom_su",
+        "confidence": 0.999294638633728,
+        "result": "tom_su"
+      }
+    }
+  ],
+  "deployed": false
+}

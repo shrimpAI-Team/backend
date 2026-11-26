@@ -26,7 +26,19 @@ datasets/**/*.gif
 
 # Python cache & logs
 __pycache__/
+datasets_curated_*/
+segmentation/annotation_batch_*/
+segmentation/datasets/
+segmentation/previews/
+segmentation/external/
+presence_data/
 *.py[cod]
 *$py.class
 *.log
 
+
+disease_data/
+
+models/**/train_features.npy
+models/**/val_features.npy
+models/**/old_test_features.npy

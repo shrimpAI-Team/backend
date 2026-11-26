@@ -23,7 +23,7 @@ import {
   Verify2faDto,
   VerifyEmailOtpDto,
 } from './dto/auth.dto';
-import { OtpPurpose, User } from 'src/generated/prisma/client';
+import { OtpPurpose, User } from '../../generated/prisma/client';
 import { TwoFactorService } from './two-factor.service';
 
 export interface OAuthProfile {

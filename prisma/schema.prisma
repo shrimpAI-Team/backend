@@ -54,6 +54,7 @@ model User {
   oauthAccounts    OAuthAccount[]
   chatSessions     ChatSession[]
   shrimpAnalyses   ShrimpAnalysis[]
+  ponds            Pond[]
 
   @@index([email])
 }
@@ -150,7 +151,60 @@ model ShrimpAnalysis {
   abnormalities    Json?
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
+  cultureCycles    CultureCycle[]
 
   @@index([userId, createdAt])
   @@index([species])
+}
+
+model Pond {
+  id        String         @id @default(uuid())
+  ownerId   String
+  owner     User           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name      String
+  createdAt DateTime       @default(now())
+  cycles    CultureCycle[]
+
+  @@index([ownerId, createdAt])
+}
+
+model CultureCycle {
+  id           String          @id @default(uuid())
+  pondId       String
+  pond         Pond            @relation(fields: [pondId], references: [id], onDelete: Cascade)
+  // The open cycle holds its pond ID here. Closed cycles release the unique slot.
+  activePondId String?         @unique
+  species      String
+  analysisId   String?
+  analysis     ShrimpAnalysis? @relation(fields: [analysisId], references: [id], onDelete: SetNull)
+  startedAt    DateTime        @default(now())
+  endedAt      DateTime?
+  journals     PondJournal[]
+
+  @@index([pondId, startedAt])
+  @@index([analysisId])
+}
+
+enum PondJournalKind {
+  WATER
+  FEED
+  CARE
+  INCIDENT
+}
+
+model PondJournal {
+  id           String          @id @default(uuid())
+  cycleId      String
+  cycle        CultureCycle    @relation(fields: [cycleId], references: [id], onDelete: Cascade)
+  kind         PondJournalKind
+  note         String?         @db.Text
+  ph           Float?
+  salinity     Float?
+  temperature  Float?
+  depth        Float?
+  feedKg       Float?
+  simulated    Boolean         @default(false)
+  recordedAt   DateTime        @default(now())
+
+  @@index([cycleId, recordedAt, id])
 }

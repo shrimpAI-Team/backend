@@ -1,6 +1,6 @@
 import { IsBoolean, IsEmail, IsEnum, IsInt, IsNotEmpty, IsOptional, IsString, Min, MinLength } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Role } from 'src/generated/prisma/enums';
+import { Role } from '../../../generated/prisma/enums';
 
 export class CreateUserDto {
   @IsEmail({}, { message: 'Email không đúng định dạng' })

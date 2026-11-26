@@ -1,0 +1,11 @@
+{
+  "threshold": 0.8,
+  "imgsz": 512,
+  "checkpoint_sha256": "86206b5e8400ad8722db8ae9ebd7b3844a58dd793e72ad09f52a8d98509efeea",
+  "status": "experimental",
+  "validated_groups": [
+    "tom_dat",
+    "tom_hum_dat"
+  ],
+  "limitation": "Small assistant-labelled test: 2 accepted of 9 positives; no claim of all-eight-group reliability."
+}

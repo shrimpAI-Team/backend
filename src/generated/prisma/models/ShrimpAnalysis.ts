@@ -333,6 +333,7 @@ export type ShrimpAnalysisWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"ShrimpAnalysis"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShrimpAnalysis"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  cultureCycles?: Prisma.CultureCycleListRelationFilter
 }
 
 export type ShrimpAnalysisOrderByWithRelationInput = {
@@ -359,6 +360,7 @@ export type ShrimpAnalysisOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  cultureCycles?: Prisma.CultureCycleOrderByRelationAggregateInput
 }
 
 export type ShrimpAnalysisWhereUniqueInput = Prisma.AtLeast<{
@@ -388,6 +390,7 @@ export type ShrimpAnalysisWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"ShrimpAnalysis"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShrimpAnalysis"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  cultureCycles?: Prisma.CultureCycleListRelationFilter
 }, "id">
 
 export type ShrimpAnalysisOrderByWithAggregationInput = {
@@ -471,6 +474,7 @@ export type ShrimpAnalysisCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutShrimpAnalysesInput
+  cultureCycles?: Prisma.CultureCycleCreateNestedManyWithoutAnalysisInput
 }
 
 export type ShrimpAnalysisUncheckedCreateInput = {
@@ -496,6 +500,7 @@ export type ShrimpAnalysisUncheckedCreateInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  cultureCycles?: Prisma.CultureCycleUncheckedCreateNestedManyWithoutAnalysisInput
 }
 
 export type ShrimpAnalysisUpdateInput = {
@@ -521,6 +526,7 @@ export type ShrimpAnalysisUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutShrimpAnalysesNestedInput
+  cultureCycles?: Prisma.CultureCycleUpdateManyWithoutAnalysisNestedInput
 }
 
 export type ShrimpAnalysisUncheckedUpdateInput = {
@@ -546,6 +552,7 @@ export type ShrimpAnalysisUncheckedUpdateInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultureCycles?: Prisma.CultureCycleUncheckedUpdateManyWithoutAnalysisNestedInput
 }
 
 export type ShrimpAnalysisCreateManyInput = {
@@ -713,6 +720,11 @@ export type ShrimpAnalysisSumOrderByAggregateInput = {
   confidence?: Prisma.SortOrder
 }
 
+export type ShrimpAnalysisNullableScalarRelationFilter = {
+  is?: Prisma.ShrimpAnalysisWhereInput | null
+  isNot?: Prisma.ShrimpAnalysisWhereInput | null
+}
+
 export type ShrimpAnalysisCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.ShrimpAnalysisCreateWithoutUserInput, Prisma.ShrimpAnalysisUncheckedCreateWithoutUserInput> | Prisma.ShrimpAnalysisCreateWithoutUserInput[] | Prisma.ShrimpAnalysisUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.ShrimpAnalysisCreateOrConnectWithoutUserInput | Prisma.ShrimpAnalysisCreateOrConnectWithoutUserInput[]
@@ -772,6 +784,22 @@ export type ShrimpAnalysisUpdatealertsInput = {
   push?: string | string[]
 }
 
+export type ShrimpAnalysisCreateNestedOneWithoutCultureCyclesInput = {
+  create?: Prisma.XOR<Prisma.ShrimpAnalysisCreateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedCreateWithoutCultureCyclesInput>
+  connectOrCreate?: Prisma.ShrimpAnalysisCreateOrConnectWithoutCultureCyclesInput
+  connect?: Prisma.ShrimpAnalysisWhereUniqueInput
+}
+
+export type ShrimpAnalysisUpdateOneWithoutCultureCyclesNestedInput = {
+  create?: Prisma.XOR<Prisma.ShrimpAnalysisCreateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedCreateWithoutCultureCyclesInput>
+  connectOrCreate?: Prisma.ShrimpAnalysisCreateOrConnectWithoutCultureCyclesInput
+  upsert?: Prisma.ShrimpAnalysisUpsertWithoutCultureCyclesInput
+  disconnect?: Prisma.ShrimpAnalysisWhereInput | boolean
+  delete?: Prisma.ShrimpAnalysisWhereInput | boolean
+  connect?: Prisma.ShrimpAnalysisWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShrimpAnalysisUpdateToOneWithWhereWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUpdateWithoutCultureCyclesInput>, Prisma.ShrimpAnalysisUncheckedUpdateWithoutCultureCyclesInput>
+}
+
 export type ShrimpAnalysisCreateWithoutUserInput = {
   id?: string
   imageUrl: string
@@ -794,6 +822,7 @@ export type ShrimpAnalysisCreateWithoutUserInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  cultureCycles?: Prisma.CultureCycleCreateNestedManyWithoutAnalysisInput
 }
 
 export type ShrimpAnalysisUncheckedCreateWithoutUserInput = {
@@ -818,6 +847,7 @@ export type ShrimpAnalysisUncheckedCreateWithoutUserInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  cultureCycles?: Prisma.CultureCycleUncheckedCreateNestedManyWithoutAnalysisInput
 }
 
 export type ShrimpAnalysisCreateOrConnectWithoutUserInput = {
@@ -874,6 +904,122 @@ export type ShrimpAnalysisScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"ShrimpAnalysis"> | Date | string
 }
 
+export type ShrimpAnalysisCreateWithoutCultureCyclesInput = {
+  id?: string
+  imageUrl: string
+  originalName?: string | null
+  species: string
+  scientificName: string
+  confidence: number
+  healthStatus?: string | null
+  sizeEstimate?: string | null
+  commercialGrade?: string | null
+  description?: string | null
+  abnormalDetected?: boolean
+  alerts?: Prisma.ShrimpAnalysisCreatealertsInput | string[]
+  modelStatus?: string | null
+  processingTime?: string | null
+  imageDimensions?: string | null
+  sizeMetrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  colorAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  uniformity?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutShrimpAnalysesInput
+}
+
+export type ShrimpAnalysisUncheckedCreateWithoutCultureCyclesInput = {
+  id?: string
+  userId: string
+  imageUrl: string
+  originalName?: string | null
+  species: string
+  scientificName: string
+  confidence: number
+  healthStatus?: string | null
+  sizeEstimate?: string | null
+  commercialGrade?: string | null
+  description?: string | null
+  abnormalDetected?: boolean
+  alerts?: Prisma.ShrimpAnalysisCreatealertsInput | string[]
+  modelStatus?: string | null
+  processingTime?: string | null
+  imageDimensions?: string | null
+  sizeMetrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  colorAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  uniformity?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShrimpAnalysisCreateOrConnectWithoutCultureCyclesInput = {
+  where: Prisma.ShrimpAnalysisWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShrimpAnalysisCreateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedCreateWithoutCultureCyclesInput>
+}
+
+export type ShrimpAnalysisUpsertWithoutCultureCyclesInput = {
+  update: Prisma.XOR<Prisma.ShrimpAnalysisUpdateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedUpdateWithoutCultureCyclesInput>
+  create: Prisma.XOR<Prisma.ShrimpAnalysisCreateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedCreateWithoutCultureCyclesInput>
+  where?: Prisma.ShrimpAnalysisWhereInput
+}
+
+export type ShrimpAnalysisUpdateToOneWithWhereWithoutCultureCyclesInput = {
+  where?: Prisma.ShrimpAnalysisWhereInput
+  data: Prisma.XOR<Prisma.ShrimpAnalysisUpdateWithoutCultureCyclesInput, Prisma.ShrimpAnalysisUncheckedUpdateWithoutCultureCyclesInput>
+}
+
+export type ShrimpAnalysisUpdateWithoutCultureCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  species?: Prisma.StringFieldUpdateOperationsInput | string
+  scientificName?: Prisma.StringFieldUpdateOperationsInput | string
+  confidence?: Prisma.FloatFieldUpdateOperationsInput | number
+  healthStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeEstimate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commercialGrade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnormalDetected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alerts?: Prisma.ShrimpAnalysisUpdatealertsInput | string[]
+  modelStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processingTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageDimensions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeMetrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  colorAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  uniformity?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutShrimpAnalysesNestedInput
+}
+
+export type ShrimpAnalysisUncheckedUpdateWithoutCultureCyclesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  originalName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  species?: Prisma.StringFieldUpdateOperationsInput | string
+  scientificName?: Prisma.StringFieldUpdateOperationsInput | string
+  confidence?: Prisma.FloatFieldUpdateOperationsInput | number
+  healthStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeEstimate?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  commercialGrade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  abnormalDetected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  alerts?: Prisma.ShrimpAnalysisUpdatealertsInput | string[]
+  modelStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  processingTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  imageDimensions?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeMetrics?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  colorAnalysis?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  uniformity?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ShrimpAnalysisCreateManyUserInput = {
   id?: string
   imageUrl: string
@@ -920,6 +1066,7 @@ export type ShrimpAnalysisUpdateWithoutUserInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultureCycles?: Prisma.CultureCycleUpdateManyWithoutAnalysisNestedInput
 }
 
 export type ShrimpAnalysisUncheckedUpdateWithoutUserInput = {
@@ -944,6 +1091,7 @@ export type ShrimpAnalysisUncheckedUpdateWithoutUserInput = {
   abnormalities?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultureCycles?: Prisma.CultureCycleUncheckedUpdateManyWithoutAnalysisNestedInput
 }
 
 export type ShrimpAnalysisUncheckedUpdateManyWithoutUserInput = {
@@ -971,6 +1119,35 @@ export type ShrimpAnalysisUncheckedUpdateManyWithoutUserInput = {
 }
 
 
+/**
+ * Count Type ShrimpAnalysisCountOutputType
+ */
+
+export type ShrimpAnalysisCountOutputType = {
+  cultureCycles: number
+}
+
+export type ShrimpAnalysisCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  cultureCycles?: boolean | ShrimpAnalysisCountOutputTypeCountCultureCyclesArgs
+}
+
+/**
+ * ShrimpAnalysisCountOutputType without action
+ */
+export type ShrimpAnalysisCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShrimpAnalysisCountOutputType
+   */
+  select?: Prisma.ShrimpAnalysisCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ShrimpAnalysisCountOutputType without action
+ */
+export type ShrimpAnalysisCountOutputTypeCountCultureCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CultureCycleWhereInput
+}
+
 
 export type ShrimpAnalysisSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -996,6 +1173,8 @@ export type ShrimpAnalysisSelect<ExtArgs extends runtime.Types.Extensions.Intern
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  cultureCycles?: boolean | Prisma.ShrimpAnalysis$cultureCyclesArgs<ExtArgs>
+  _count?: boolean | Prisma.ShrimpAnalysisCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shrimpAnalysis"]>
 
 export type ShrimpAnalysisSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1078,6 +1257,8 @@ export type ShrimpAnalysisSelectScalar = {
 export type ShrimpAnalysisOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "imageUrl" | "originalName" | "species" | "scientificName" | "confidence" | "healthStatus" | "sizeEstimate" | "commercialGrade" | "description" | "abnormalDetected" | "alerts" | "modelStatus" | "processingTime" | "imageDimensions" | "sizeMetrics" | "colorAnalysis" | "uniformity" | "abnormalities" | "createdAt" | "updatedAt", ExtArgs["result"]["shrimpAnalysis"]>
 export type ShrimpAnalysisInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  cultureCycles?: boolean | Prisma.ShrimpAnalysis$cultureCyclesArgs<ExtArgs>
+  _count?: boolean | Prisma.ShrimpAnalysisCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShrimpAnalysisIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1090,6 +1271,7 @@ export type $ShrimpAnalysisPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "ShrimpAnalysis"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    cultureCycles: Prisma.$CultureCyclePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1509,6 +1691,7 @@ readonly fields: ShrimpAnalysisFieldRefs;
 export interface Prisma__ShrimpAnalysisClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  cultureCycles<T extends Prisma.ShrimpAnalysis$cultureCyclesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShrimpAnalysis$cultureCyclesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CultureCyclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1958,6 +2141,30 @@ export type ShrimpAnalysisDeleteManyArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many ShrimpAnalyses to delete.
    */
   limit?: number
+}
+
+/**
+ * ShrimpAnalysis.cultureCycles
+ */
+export type ShrimpAnalysis$cultureCyclesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CultureCycle
+   */
+  select?: Prisma.CultureCycleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CultureCycle
+   */
+  omit?: Prisma.CultureCycleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CultureCycleInclude<ExtArgs> | null
+  where?: Prisma.CultureCycleWhereInput
+  orderBy?: Prisma.CultureCycleOrderByWithRelationInput | Prisma.CultureCycleOrderByWithRelationInput[]
+  cursor?: Prisma.CultureCycleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CultureCycleScalarFieldEnum | Prisma.CultureCycleScalarFieldEnum[]
 }
 
 /**

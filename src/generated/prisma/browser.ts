@@ -52,3 +52,18 @@ export type ChatMessage = Prisma.ChatMessageModel
  * 
  */
 export type ShrimpAnalysis = Prisma.ShrimpAnalysisModel
+/**
+ * Model Pond
+ * 
+ */
+export type Pond = Prisma.PondModel
+/**
+ * Model CultureCycle
+ * 
+ */
+export type CultureCycle = Prisma.CultureCycleModel
+/**
+ * Model PondJournal
+ * 
+ */
+export type PondJournal = Prisma.PondJournalModel

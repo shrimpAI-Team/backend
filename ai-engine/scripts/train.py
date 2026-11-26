@@ -15,7 +15,8 @@ def train_shrimp_classifier(
     img_size: int = 224,
     batch_size: int = 16,
     base_model: str = "yolov8n-cls.pt",
-    output_dir: str = None
+    output_dir: str = None,
+    device: str = None,
 ):
     try:
         from ultralytics import YOLO
@@ -30,6 +31,11 @@ def train_shrimp_classifier(
         data_dir = str(root_dir / "datasets")
     if not output_dir:
         output_dir = str(root_dir / "models")
+    data_dir = str(Path(data_dir).resolve())
+    output_dir = str(Path(output_dir).resolve())
+    target_weights = Path(output_dir) / "shrimp_model_best.pt"
+    if Path(base_model).resolve() == target_weights:
+        raise ValueError("The training output must not overwrite the starting checkpoint.")
 
     os.makedirs(output_dir, exist_ok=True)
 
@@ -59,6 +65,8 @@ def train_shrimp_classifier(
         epochs=epochs,
         imgsz=img_size,
         batch=batch_size,
+        device=device,
+        workers=0,
         project=str(Path(output_dir) / "runs"),
         name="shrimp_training",
         exist_ok=True,
@@ -66,9 +74,7 @@ def train_shrimp_classifier(
     )
 
     # Tìm và sao chép model tốt nhất vào thư mục models/
-    best_weights = Path(output_dir) / "runs" / "shrimp_training" / "weights" / "best.pt"
-    target_weights = Path(output_dir) / "shrimp_model_best.pt"
-
+    best_weights = Path(model.trainer.best)
     if best_weights.exists():
         shutil.copy(str(best_weights), str(target_weights))
         print("=" * 60)
@@ -76,7 +82,7 @@ def train_shrimp_classifier(
         print(f"💾 Trọng số tốt nhất đã được lưu tại: {target_weights}")
         print("=" * 60)
     else:
-        print(f"⚠️ Đã hoàn thành huấn luyện, kiểm tra kết quả tại: {output_dir}/runs")
+        raise FileNotFoundError(f"Không tìm thấy checkpoint tốt nhất: {best_weights}; kết quả tại {model.trainer.save_dir}")
 
 if __name__ == "__main__":
     # Nhận tham số từ dòng lệnh (nếu có)
@@ -85,6 +91,16 @@ if __name__ == "__main__":
     parser.add_argument("--epochs", type=int, default=30, help="Số epochs huấn luyện")
     parser.add_argument("--batch", type=int, default=16, help="Kích thước batch")
     parser.add_argument("--imgsz", type=int, default=224, help="Kích thước ảnh đầu vào")
+    parser.add_argument("--data", type=str, default=None, help="Dataset đã kiểm tra, có train/val/test")
+    parser.add_argument("--output", type=str, default=None, help="Thư mục kết quả riêng cho lần train")
+    parser.add_argument("--base-model", default="yolov8n-cls.pt")
+    parser.add_argument("--device", default=None)
     args = parser.parse_args()
+    if args.base_model != "yolov8n-cls.pt" and not args.output:
+        parser.error("--base-model requires a separate --output directory")
 
-    train_shrimp_classifier(epochs=args.epochs, batch_size=args.batch, img_size=args.imgsz)
+    train_shrimp_classifier(
+        data_dir=args.data, output_dir=args.output, epochs=args.epochs,
+        batch_size=args.batch, img_size=args.imgsz, base_model=args.base_model,
+        device=args.device,
+    )

@@ -259,6 +259,7 @@ export type UserWhereInput = {
   oauthAccounts?: Prisma.OAuthAccountListRelationFilter
   chatSessions?: Prisma.ChatSessionListRelationFilter
   shrimpAnalyses?: Prisma.ShrimpAnalysisListRelationFilter
+  ponds?: Prisma.PondListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -281,6 +282,7 @@ export type UserOrderByWithRelationInput = {
   oauthAccounts?: Prisma.OAuthAccountOrderByRelationAggregateInput
   chatSessions?: Prisma.ChatSessionOrderByRelationAggregateInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisOrderByRelationAggregateInput
+  ponds?: Prisma.PondOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -306,6 +308,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   oauthAccounts?: Prisma.OAuthAccountListRelationFilter
   chatSessions?: Prisma.ChatSessionListRelationFilter
   shrimpAnalyses?: Prisma.ShrimpAnalysisListRelationFilter
+  ponds?: Prisma.PondListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -368,6 +371,7 @@ export type UserCreateInput = {
   oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -390,6 +394,7 @@ export type UserUncheckedCreateInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUpdateInput = {
@@ -412,6 +417,7 @@ export type UserUpdateInput = {
   oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -434,6 +440,7 @@ export type UserUncheckedUpdateInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -641,6 +648,20 @@ export type UserUpdateOneRequiredWithoutShrimpAnalysesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutShrimpAnalysesInput, Prisma.UserUpdateWithoutShrimpAnalysesInput>, Prisma.UserUncheckedUpdateWithoutShrimpAnalysesInput>
 }
 
+export type UserCreateNestedOneWithoutPondsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPondsInput, Prisma.UserUncheckedCreateWithoutPondsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPondsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPondsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPondsInput, Prisma.UserUncheckedCreateWithoutPondsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPondsInput
+  upsert?: Prisma.UserUpsertWithoutPondsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPondsInput, Prisma.UserUpdateWithoutPondsInput>, Prisma.UserUncheckedUpdateWithoutPondsInput>
+}
+
 export type UserCreateWithoutOauthAccountsInput = {
   id?: string
   email: string
@@ -660,6 +681,7 @@ export type UserCreateWithoutOauthAccountsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutOauthAccountsInput = {
@@ -681,6 +703,7 @@ export type UserUncheckedCreateWithoutOauthAccountsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutOauthAccountsInput = {
@@ -718,6 +741,7 @@ export type UserUpdateWithoutOauthAccountsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOauthAccountsInput = {
@@ -739,6 +763,7 @@ export type UserUncheckedUpdateWithoutOauthAccountsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutOtpTokensInput = {
@@ -760,6 +785,7 @@ export type UserCreateWithoutOtpTokensInput = {
   oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutOtpTokensInput = {
@@ -781,6 +807,7 @@ export type UserUncheckedCreateWithoutOtpTokensInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutOtpTokensInput = {
@@ -818,6 +845,7 @@ export type UserUpdateWithoutOtpTokensInput = {
   oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOtpTokensInput = {
@@ -839,6 +867,7 @@ export type UserUncheckedUpdateWithoutOtpTokensInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -860,6 +889,7 @@ export type UserCreateWithoutSessionsInput = {
   oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -881,6 +911,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -918,6 +949,7 @@ export type UserUpdateWithoutSessionsInput = {
   oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -939,6 +971,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutChatSessionsInput = {
@@ -960,6 +993,7 @@ export type UserCreateWithoutChatSessionsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutChatSessionsInput = {
@@ -981,6 +1015,7 @@ export type UserUncheckedCreateWithoutChatSessionsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutChatSessionsInput = {
@@ -1018,6 +1053,7 @@ export type UserUpdateWithoutChatSessionsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChatSessionsInput = {
@@ -1039,6 +1075,7 @@ export type UserUncheckedUpdateWithoutChatSessionsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateWithoutShrimpAnalysesInput = {
@@ -1060,6 +1097,7 @@ export type UserCreateWithoutShrimpAnalysesInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutShrimpAnalysesInput = {
@@ -1081,6 +1119,7 @@ export type UserUncheckedCreateWithoutShrimpAnalysesInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
   chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  ponds?: Prisma.PondUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutShrimpAnalysesInput = {
@@ -1118,6 +1157,7 @@ export type UserUpdateWithoutShrimpAnalysesInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShrimpAnalysesInput = {
@@ -1139,6 +1179,111 @@ export type UserUncheckedUpdateWithoutShrimpAnalysesInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
   chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  ponds?: Prisma.PondUncheckedUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserCreateWithoutPondsInput = {
+  id?: string
+  email: string
+  password?: string | null
+  name?: string | null
+  avatarUrl?: string | null
+  role?: $Enums.Role
+  emailVerifiedAt?: Date | string | null
+  isActive?: boolean
+  twoFactorEnabled?: boolean
+  twoFactorMethod?: $Enums.TwoFactorMethod
+  totpSecret?: string | null
+  totpPendingSecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  otpTokens?: Prisma.OtpTokenCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  oauthAccounts?: Prisma.OAuthAccountCreateNestedManyWithoutUserInput
+  chatSessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  shrimpAnalyses?: Prisma.ShrimpAnalysisCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPondsInput = {
+  id?: string
+  email: string
+  password?: string | null
+  name?: string | null
+  avatarUrl?: string | null
+  role?: $Enums.Role
+  emailVerifiedAt?: Date | string | null
+  isActive?: boolean
+  twoFactorEnabled?: boolean
+  twoFactorMethod?: $Enums.TwoFactorMethod
+  totpSecret?: string | null
+  totpPendingSecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  otpTokens?: Prisma.OtpTokenUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  oauthAccounts?: Prisma.OAuthAccountUncheckedCreateNestedManyWithoutUserInput
+  chatSessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPondsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPondsInput, Prisma.UserUncheckedCreateWithoutPondsInput>
+}
+
+export type UserUpsertWithoutPondsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPondsInput, Prisma.UserUncheckedUpdateWithoutPondsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPondsInput, Prisma.UserUncheckedCreateWithoutPondsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPondsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPondsInput, Prisma.UserUncheckedUpdateWithoutPondsInput>
+}
+
+export type UserUpdateWithoutPondsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorMethod?: Prisma.EnumTwoFactorMethodFieldUpdateOperationsInput | $Enums.TwoFactorMethod
+  totpSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totpPendingSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  otpTokens?: Prisma.OtpTokenUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  oauthAccounts?: Prisma.OAuthAccountUpdateManyWithoutUserNestedInput
+  chatSessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  shrimpAnalyses?: Prisma.ShrimpAnalysisUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPondsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  emailVerifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  twoFactorMethod?: Prisma.EnumTwoFactorMethodFieldUpdateOperationsInput | $Enums.TwoFactorMethod
+  totpSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  totpPendingSecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  otpTokens?: Prisma.OtpTokenUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  oauthAccounts?: Prisma.OAuthAccountUncheckedUpdateManyWithoutUserNestedInput
+  chatSessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  shrimpAnalyses?: Prisma.ShrimpAnalysisUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1152,6 +1297,7 @@ export type UserCountOutputType = {
   oauthAccounts: number
   chatSessions: number
   shrimpAnalyses: number
+  ponds: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1160,6 +1306,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   oauthAccounts?: boolean | UserCountOutputTypeCountOauthAccountsArgs
   chatSessions?: boolean | UserCountOutputTypeCountChatSessionsArgs
   shrimpAnalyses?: boolean | UserCountOutputTypeCountShrimpAnalysesArgs
+  ponds?: boolean | UserCountOutputTypeCountPondsArgs
 }
 
 /**
@@ -1207,6 +1354,13 @@ export type UserCountOutputTypeCountShrimpAnalysesArgs<ExtArgs extends runtime.T
   where?: Prisma.ShrimpAnalysisWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPondsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PondWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1228,6 +1382,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   oauthAccounts?: boolean | Prisma.User$oauthAccountsArgs<ExtArgs>
   chatSessions?: boolean | Prisma.User$chatSessionsArgs<ExtArgs>
   shrimpAnalyses?: boolean | Prisma.User$shrimpAnalysesArgs<ExtArgs>
+  ponds?: boolean | Prisma.User$pondsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1289,6 +1444,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   oauthAccounts?: boolean | Prisma.User$oauthAccountsArgs<ExtArgs>
   chatSessions?: boolean | Prisma.User$chatSessionsArgs<ExtArgs>
   shrimpAnalyses?: boolean | Prisma.User$shrimpAnalysesArgs<ExtArgs>
+  ponds?: boolean | Prisma.User$pondsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1302,6 +1458,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     oauthAccounts: Prisma.$OAuthAccountPayload<ExtArgs>[]
     chatSessions: Prisma.$ChatSessionPayload<ExtArgs>[]
     shrimpAnalyses: Prisma.$ShrimpAnalysisPayload<ExtArgs>[]
+    ponds: Prisma.$PondPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1717,6 +1874,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   oauthAccounts<T extends Prisma.User$oauthAccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$oauthAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OAuthAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chatSessions<T extends Prisma.User$chatSessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   shrimpAnalyses<T extends Prisma.User$shrimpAnalysesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shrimpAnalysesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShrimpAnalysisPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ponds<T extends Prisma.User$pondsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$pondsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PondPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2270,6 +2428,30 @@ export type User$shrimpAnalysesArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.ShrimpAnalysisScalarFieldEnum | Prisma.ShrimpAnalysisScalarFieldEnum[]
+}
+
+/**
+ * User.ponds
+ */
+export type User$pondsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Pond
+   */
+  select?: Prisma.PondSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Pond
+   */
+  omit?: Prisma.PondOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PondInclude<ExtArgs> | null
+  where?: Prisma.PondWhereInput
+  orderBy?: Prisma.PondOrderByWithRelationInput | Prisma.PondOrderByWithRelationInput[]
+  cursor?: Prisma.PondWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PondScalarFieldEnum | Prisma.PondScalarFieldEnum[]
 }
 
 /**

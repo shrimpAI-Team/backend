@@ -1,19 +1,26 @@
 #!/usr/bin/env python3
-"""
-shrimpAI - Kịch bản dự đoán / nhận dạng & phân tích toàn diện giống tôm
-Tích hợp:
-1. Nhận dạng giống loài tôm (AI YOLOv8 Classification)
-2. Đo lường kích thước & khối lượng thực tế (Computer Vision Morphometrics)
-3. Phân tích sắc tố & màu sắc vỏ tôm (HSV & CIELAB Color Space)
-4. Đánh giá mức độ đồng đều của mẻ tôm (Batch Uniformity & Sizing)
-5. Phát hiện dấu hiệu bất thường & bệnh lý bên ngoài (WSSV đốm trắng, đen mang, đục cơ)
-"""
+"""Identify shrimp groups and assess supported visual signs."""
 
 import sys
 import os
 import json
 import time
+import hashlib
+import math
+import threading
+from functools import lru_cache
 from pathlib import Path
+try:
+    from .presence_gate import assess_presence
+    from .species_adaptation import apply_adapter
+    from .tiger_signs_v5 import MODEL_VERSION as TIGER_SIGNS_VERSION, classify_images
+except ImportError:
+    from presence_gate import assess_presence
+    from species_adaptation import apply_adapter
+    from tiger_signs_v5 import MODEL_VERSION as TIGER_SIGNS_VERSION, classify_images
+
+# Serving requests must not trigger package installation or network retries.
+os.environ.setdefault('YOLO_AUTOINSTALL', 'false')
 
 # Đảm bảo in tiếng Việt chuẩn trên console Windows
 if sys.platform == "win32":
@@ -23,195 +30,221 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-# Thêm đường dẫn scripts vào sys.path để import analyzer
-scripts_dir = Path(__file__).resolve().parent
-if str(scripts_dir) not in sys.path:
-    sys.path.insert(0, str(scripts_dir))
-
-try:
-    from shrimp_cv_analyzer import analyze_comprehensive_shrimp
-except Exception:
-    try:
-        from scripts.shrimp_cv_analyzer import analyze_comprehensive_shrimp
-    except Exception:
-        analyze_comprehensive_shrimp = None
-
-# Danh mục đầy đủ 8 giống tôm sinh học
+# Eight visual/commercial groups, not eight exact biological species.
 SPECIES_METADATA = {
     "the_chan_trang": {
         "name": "Tôm thẻ chân trắng",
         "scientific_name": "Litopenaeus vannamei",
         "description": "Vỏ mỏng, trong suốt, chân bơi màu trắng hoặc hơi vàng nhạt.",
-        "size_estimate": "30 - 45 con/kg",
         "commercial_grade": "Loại 1 (Đạt chuẩn thương phẩm)",
     },
     "tom_su": {
         "name": "Tôm sú",
         "scientific_name": "Penaeus monodon",
         "description": "Vỏ dày, có các sọc vân đen vàng hoặc đen nâu đặc trưng trên lưng.",
-        "size_estimate": "15 - 25 con/kg",
         "commercial_grade": "Loại 1 (Xuất khẩu)",
     },
     "tom_cang_xanh": {
         "name": "Tôm càng xanh",
         "scientific_name": "Macrobrachium rosenbergii",
         "description": "Đặc trưng có đôi càng màu xanh dương dài, thân màu xanh lục hoặc xám nhạt.",
-        "size_estimate": "10 - 15 con/kg",
         "commercial_grade": "Đặc sản nước ngọt",
     },
     "tom_hum": {
         "name": "Tôm hùm",
-        "scientific_name": "Panulirus ornatus",
+        "scientific_name": "Panulirus spp.",
         "description": "Vỏ giáp dày cứng có nhiều gai nhọn, đôi râu dài, thân to bè, giá trị kinh tế rất cao.",
-        "size_estimate": "1 - 3 con/kg (hoặc 0.5 - 1.5 kg/con)",
         "commercial_grade": "Hải sản cao cấp đặc biệt",
     },
     "tom_tit": {
         "name": "Tôm tít (Bề bề)",
-        "scientific_name": "Odontodactylus scyllarus",
+        "scientific_name": "Stomatopoda (nhóm tôm tít)",
         "description": "Thân dài dẹp lưng bụng, đôi càng gấp như bọ ngựa, thịt ngọt thơm đậm đà.",
-        "size_estimate": "15 - 25 con/kg",
         "commercial_grade": "Hải sản tươi sống loại 1",
     },
     "tom_dat": {
         "name": "Tôm đất",
-        "scientific_name": "Metapenaeus ensis",
+        "scientific_name": "Metapenaeus spp.",
         "description": "Vỏ mỏng màu nâu nhạt hoặc hồng đất, sống tự nhiên ở đầm phá, thịt giòn ngọt.",
-        "size_estimate": "60 - 80 con/kg",
         "commercial_grade": "Tôm tự nhiên sinh thái",
     },
     "tom_hum_dat": {
         "name": "Tôm hùm đất (Crawfish)",
-        "scientific_name": "Procambarus clarkii",
+        "scientific_name": "Procambarus / Cherax spp.",
         "description": "Vỏ đỏ cam sẫm, hai càng to bè chắc khỏe, sống vùng nước ngọt.",
-        "size_estimate": "25 - 35 con/kg",
         "commercial_grade": "Thương phẩm ẩm thực",
     },
     "tep_kieng": {
         "name": "Tép cảnh (Cherry Shrimp)",
         "scientific_name": "Neocaridina davidi",
         "description": "Kích thước nhỏ nhắn, màu đỏ tươi rực rỡ, nuôi làm cảnh thủy sinh.",
-        "size_estimate": "Cỡ thủy sinh (2 - 3 cm)",
         "commercial_grade": "Sinh vật cảnh thủy sinh",
     }
 }
 
 
+INFERENCE_LOCK = threading.Lock()
+ANALYSIS_CONTRACT_VERSION = 6
+TIGER_VISUAL_SIGNS = {
+    'black_gill': 'Bệnh đen mang (dự đoán qua ảnh)',
+    'white_spot_like': 'Bệnh đốm trắng (dự đoán qua ảnh)',
+    'yellow_head_like': 'Bệnh đầu vàng (dự đoán qua ảnh)',
+    'no_visible_target_sign': 'Chưa thấy dấu hiệu mục tiêu qua ảnh',
+}
+
+
+def get_model_path():
+    root = Path(__file__).resolve().parent.parent
+    configured = Path(os.environ.get('SHRIMP_MODEL_PATH', 'models/shrimp_model_best.pt'))
+    return (configured if configured.is_absolute() else root / configured).resolve()
+
+
+def get_confidence_threshold():
+    threshold = float(os.environ.get('SHRIMP_CONFIDENCE_THRESHOLD', '80'))
+    if not math.isfinite(threshold) or not 1 <= threshold <= 100:
+        raise ValueError('SHRIMP_CONFIDENCE_THRESHOLD must be between 1 and 100')
+    return threshold
+
+
+@lru_cache(maxsize=1)
+def _load_model(path, modified_ns, size):
+    from ultralytics import YOLO
+    model = YOLO(path)
+    if model.task != 'classify' or set(model.names.values()) != set(SPECIES_METADATA):
+        raise ValueError('Checkpoint does not match the eight supported classification groups')
+    version = hashlib.sha256(Path(path).read_bytes()).hexdigest()[:12]
+    return model, version
+
+
+def load_model():
+    path = get_model_path()
+    stat = path.stat()
+    return _load_model(str(path), stat.st_mtime_ns, stat.st_size)
+
+
+def classify_result(selected_class, confidence, threshold):
+    if selected_class not in SPECIES_METADATA or not math.isfinite(confidence) or not 0 <= confidence <= 100:
+        raise ValueError('Invalid classification result')
+    meta = SPECIES_METADATA[selected_class]
+    uncertain = confidence < threshold
+    return {
+        'identification_status': 'uncertain' if uncertain else 'identified',
+        'classification_threshold': threshold,
+        'species': 'Chưa xác định' if uncertain else meta['name'],
+        'scientific_name': 'Chưa xác định' if uncertain else meta['scientific_name'],
+        'class_id': None if uncertain else selected_class,
+        'candidate_species': meta['name'] if uncertain else None,
+        'candidate_scientific_name': meta['scientific_name'] if uncertain else None,
+        'confidence': round(confidence, 1),
+        'description': (
+            f"Chưa đủ độ tin cậy để kết luận. Gợi ý: {meta['name']} ({confidence:.1f}%, ngưỡng {threshold:g}%). Hãy chụp lại ảnh rõ hơn."
+            if uncertain else meta['description']
+        ),
+    }
+
+
 def predict_shrimp(image_path: str):
-    root_dir = Path(__file__).resolve().parent.parent
-    model_path = root_dir / "models" / "shrimp_model_best.pt"
-
-    if not os.path.exists(image_path):
-        return {
-            "success": False,
-            "error": f"Không tìm thấy file ảnh tại: {image_path}"
-        }
-
     start_time = time.time()
-    dimensions_str = "1024 x 768 px"
-    selected_class = "the_chan_trang"
-    computed_conf = 96.8
-    model_status = "VISION_AI_ACTIVE"
+    if not get_model_path().is_file():
+        return {"success": False, "error": "Chưa có mô hình phân loại tôm."}
+    try:
+        from PIL import Image
+        from PIL import ImageOps
+        with Image.open(image_path) as image:
+            image.load()
+            width, height = image.size
+            rgb = ImageOps.exif_transpose(image).convert('RGB')
+        threshold = get_confidence_threshold()
+        model, version = load_model()
+        adapter_version = None
+        with INFERENCE_LOCK:
+            presence = assess_presence(model, rgb, version, include_feature=True)
+            if presence['status'] == 'shrimp':
+                # Explicitly reset embed: Ultralytics predictor retains overrides.
+                result = model.predict(rgb, imgsz=224, embed=None, verbose=False)[0]
+                selected_class = result.names[result.probs.top1]
+                confidence = float(result.probs.top1conf) * 100
+                if 'feature' in presence:
+                    try:
+                        original = result.probs.data.detach().cpu().numpy()
+                        names = tuple(result.names[index] for index in range(len(original)))
+                        scores, adapter_version = apply_adapter(presence['feature'], original, version, names, threshold / 100)
+                        if adapter_version:
+                            selected = int(scores.argmax())
+                            selected_class = names[selected]
+                            confidence = float(scores[selected]) * 100
+                    except (OSError, KeyError, ValueError, RuntimeError) as exc:
+                        print(f'Species adapter unavailable: {exc}', file=sys.stderr)
+                classification = classify_result(selected_class, confidence, threshold)
+            else:
+                confidence = 0
+                rejected = presence['status'] == 'no_shrimp'
+                classification = dict(
+                    identification_status='no_shrimp' if rejected else 'uncertain',
+                    classification_threshold=threshold,
+                    species='Không phát hiện tôm' if rejected else 'Chưa xác định',
+                    scientific_name='Không áp dụng' if rejected else 'Chưa xác định',
+                    class_id=None, candidate_species=None, candidate_scientific_name=None,
+                    confidence=0,
+                    description='Không phát hiện tôm trong ảnh. Vui lòng tải ảnh có tôm.' if rejected else
+                    'Chưa xác định ảnh có tôm hay không. Vui lòng chọn ảnh có tôm nhìn rõ.',
+                )
+    except Exception as exc:
+        print(f"Species inference failed: {exc}", file=sys.stderr)
+        return {"success": False, "error": "Không thể phân tích ảnh bằng mô hình AI. Vui lòng thử lại."}
 
-    # Bước 1: Nhận diện loài bằng YOLOv8 Classification
-    if model_path.exists():
+    try:
+        from .shell_color import observe_shell_color, unavailable
+    except ImportError:
+        from shell_color import observe_shell_color, unavailable
+    color = observe_shell_color(rgb) if presence['status'] == 'shrimp' else unavailable('Chưa xác nhận ảnh có tôm.')
+    abnormalities = {
+        'assessed': False,
+        'abnormal_detected': False,
+        'health_summary': 'Chưa đánh giá',
+        'alerts': [],
+        'details': ['Hiện chỉ hỗ trợ phân tích dấu hiệu qua ảnh khi nhận diện được tôm sú.'],
+    }
+    if classification['class_id'] == 'tom_su':
         try:
-            from ultralytics import YOLO
-            model = YOLO(str(model_path))
-            results = model.predict(image_path, verbose=False)
-
-            top1_index = results[0].probs.top1
-            computed_conf = round(float(results[0].probs.top1conf) * 100, 1)
-            selected_class = results[0].names[top1_index]
-            model_status = "YOLO_TRAINED"
-        except Exception:
-            pass
-
-    # Bước 2: Phân tích sâu các tiêu chí Xử lý ảnh (Kích thước, Màu sắc, Độ đồng đều, Bệnh lý)
-    cv_data = None
-    if analyze_comprehensive_shrimp is not None:
-        try:
-            cv_data = analyze_comprehensive_shrimp(image_path, selected_class)
-            dimensions_str = cv_data["dimensions_str"]
-        except Exception as e:
-            pass
-
-    meta = SPECIES_METADATA.get(selected_class, {
-        "name": selected_class,
-        "scientific_name": "Penaeus sp.",
-        "description": "Đặc trưng hình thái đang được cập nhật.",
-        "size_estimate": "30 - 45 con/kg",
-        "commercial_grade": "Loại 1"
-    })
-
-    elapsed = round(time.time() - start_time, 2)
-
-    # Đóng gói kết quả phân tích đa tiêu chí
-    if cv_data:
-        size_metrics = cv_data["size_metrics"]
-        # Bỏ danh sách lengths_px_list để JSON nhẹ
-        if "lengths_px_list" in size_metrics:
-            del size_metrics["lengths_px_list"]
-
-        color_info = cv_data["color_info"]
-        uniformity_info = cv_data["uniformity_info"]
-        disease_info = cv_data["disease_info"]
-
-        size_str = f"{size_metrics['count_per_kg_estimate']} (~{size_metrics['estimated_length_cm']}, {size_metrics['estimated_weight_g']})"
-        final_grade = cv_data["final_grade"]
-        abnormal = disease_info["abnormal_detected"]
-        alerts = disease_info["alerts"]
-        full_desc = f"{meta['description']} | Màu sắc: {color_info['dominant_color']} | Đánh giá: {uniformity_info['rating']}."
-    else:
-        # Fallback chuẩn
-        size_str = meta["size_estimate"]
-        final_grade = meta["commercial_grade"]
-        abnormal = False
-        alerts = []
-        full_desc = meta["description"]
-        size_metrics = {
-            "pixel_length": 320.0,
-            "estimated_length_cm": "13.5 cm",
-            "estimated_weight_g": "22.5 g/con",
-            "size_category": "Size Tiêu chuẩn",
-            "count_per_kg_estimate": meta["size_estimate"]
-        }
-        color_info = {
-            "dominant_color": "Màu sắc tự nhiên theo loài",
-            "shell_transparency": "Độ trong suốt bình thường",
-            "glossiness": "Sáng bóng đạt chuẩn"
-        }
-        uniformity_info = {
-            "shrimp_count": 1,
-            "uniformity_rate": "95.0%",
-            "rating": "Mẫu đơn chiếc đại diện"
-        }
-        disease_info = {
-            "abnormal_detected": False,
-            "health_summary": "Khỏe mạnh bình thường",
-            "details": ["✓ Không phát hiện dấu hiệu bệnh lý thị giác bên ngoài."]
-        }
+            sign, = classify_images([rgb])
+            summary = TIGER_VISUAL_SIGNS[sign]
+            detected = sign != 'no_visible_target_sign'
+            abnormalities = {
+                'assessed': True, 'visual_sign': sign, 'model_version': TIGER_SIGNS_VERSION,
+                'abnormal_detected': detected, 'health_summary': summary, 'alerts': [summary] if detected else [],
+                'details': ['Kết quả thử nghiệm qua ảnh tôm sú, cần kiểm tra thêm để xác nhận bệnh.'],
+            }
+        except Exception as exc:
+            print(f'Tiger-shrimp sign inference failed: {exc}', file=sys.stderr)
+            abnormalities['details'] = ['Mô hình dấu hiệu tôm sú hiện chưa sẵn sàng.']
 
     return {
+        **classification,
+        "analysis_contract_version": ANALYSIS_CONTRACT_VERSION,
+        "color_analysis": color,
         "success": True,
-        "model_status": model_status,
-        "species": meta["name"],
-        "scientific_name": meta["scientific_name"],
-        "class_id": selected_class,
-        "confidence": computed_conf,
-        "size_estimate": size_str,
-        "commercial_grade": final_grade,
-        "description": full_desc,
-        "processing_time": f"{elapsed} giây",
-        "image_dimensions": dimensions_str,
-        "abnormal_detected": abnormal,
-        "alerts": alerts,
-
-        # Dữ liệu phân tích chi tiết tiêu chí 2:
-        "size_metrics": size_metrics,
-        "color_analysis": color_info,
-        "uniformity": uniformity_info,
-        "abnormalities": disease_info
+        "model_status": "YOLO_SPECIES_WITH_PRESENCE_GATE",
+        "model_version": version,
+        "species_adapter_version": adapter_version,
+        "image_content_status": presence['status'],
+        "presence_score": presence['score'],
+        "presence_gate_version": presence['version'],
+        "processing_time": f"{time.time() - start_time:.2f} giây",
+        "image_dimensions": f"{width} x {height} px",
+        "health_status": "Chưa đánh giá",
+        "commercial_grade": "Chưa đánh giá",
+        "abnormal_detected": abnormalities['abnormal_detected'],
+        "alerts": abnormalities['alerts'],
+        "abnormalities": abnormalities,
+        "angle_guidance": {
+            "needs_reshoot": presence['status'] == 'shrimp' and classification['identification_status'] == 'uncertain',
+            "confidence": round(confidence, 1),
+            "threshold": threshold,
+            "warning": classification['description'] if presence['status'] != 'shrimp' else
+                ("Chưa đủ độ tin cậy để kết luận loại tôm; hãy thử ảnh rõ hơn." if confidence < threshold else "Độ tin cậy chỉ áp dụng cho phân loại loại tôm; chưa đánh giá góc chụp."),
+            "instructions": [],
+        },
     }
 
 

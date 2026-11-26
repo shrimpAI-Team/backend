@@ -10,6 +10,11 @@ export interface SizeMetricsDto {
 }
 
 export interface ColorAnalysisDto {
+  bodyPolygon?: number[][];
+  method?: string;
+  assessed?: boolean;
+  status?: string;
+  dominantHex?: string;
   dominantColor: string;
   shellTransparency: string;
   glossiness?: string;
@@ -24,6 +29,7 @@ export interface UniformityDto {
 }
 
 export interface AbnormalitiesDto {
+  assessed?: boolean;
   abnormalDetected: boolean;
   healthSummary: string;
   alerts: string[];
@@ -31,9 +37,28 @@ export interface AbnormalitiesDto {
   whiteSpotsDetected?: boolean;
   blackGillsDetected?: boolean;
   muscleOpacityDetected?: boolean;
+  milkyDiseaseDetected?: boolean;
+}
+
+export interface AngleInstructionDto {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+export interface AngleGuidanceDto {
+  needsReshoot: boolean;
+  confidence: number;
+  threshold: number;
+  warning: string;
+  instructions: AngleInstructionDto[];
 }
 
 export class ShrimpResultDto {
+  imageContentStatus?: 'shrimp' | 'no_shrimp' | 'uncertain' | 'unverified';
+  identificationStatus?: 'identified' | 'uncertain' | 'no_shrimp';
+  candidateSpecies?: string;
+  classificationThreshold?: number;
   id?: string;
   imageUrl?: string;
   healthStatus?: string;
@@ -55,6 +80,7 @@ export class ShrimpResultDto {
   colorAnalysis?: ColorAnalysisDto;
   uniformity?: UniformityDto;
   abnormalities?: AbnormalitiesDto;
+  angleGuidance?: AngleGuidanceDto;
 }
 
 export class ShrimpHistoryFilterDto {

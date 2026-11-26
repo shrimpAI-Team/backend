@@ -1,0 +1,6704 @@
+{
+  "status": "research_only_not_deployed",
+  "species": "tom_su",
+  "classes": {
+    "0": "black_gill",
+    "1": "white_spot_like",
+    "2": "yellow_head_like",
+    "3": "no_visible_target_sign"
+  },
+  "counts": {
+    "train": {
+      "black_gill": 27,
+      "white_spot_like": 333,
+      "yellow_head_like": 34,
+      "no_visible_target_sign": 309
+    },
+    "val": {
+      "black_gill": 8,
+      "white_spot_like": 76,
+      "yellow_head_like": 8,
+      "no_visible_target_sign": 61
+    },
+    "test": {
+      "black_gill": 4,
+      "white_spot_like": 80,
+      "yellow_head_like": 8,
+      "no_visible_target_sign": 53
+    }
+  },
+  "source_manifest_sha256": "834f84a45c8cbcefea648db0f079e1d553980c44547977f30d8ee5ba4768a714",
+  "feature_checkpoint": "yolov8n-cls.pt",
+  "feature_checkpoint_sha256": "11fa19f2aea79bc960d680a13f82f22105982b325eb9e17a4a5e1a9f8245980a",
+  "feature_layer": 8,
+  "preprocessing": "exif_rgb_letterbox_224_gray114_then_embed",
+  "feature_pooling": {
+    "rotations": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "operation": "concat_mean_max"
+  },
+  "limitation": "Previously used test with source labels and unverified individual independence.",
+  "head_type": "weighted_rbf_kernel_ridge",
+  "head_sha256": "63ebf49f31b93cc2d3323db7082fa3df5f41455f955425e6e56d5cca01a07ff9",
+  "feature_cache_sha256": {
+    "train_features.npy": "90307095dd5b0cd36eacb403009d698f97b9838a67a8f3a6db28d15adbb9aa1d",
+    "val_features.npy": "26809020f8d49b84b113a4fc1d9ce4c975ee4d63c93df235713a9164587f421c",
+    "old_test_features.npy": "9c4c8f6c83197b95a47bbb5f8d16c29330e7f415c7067d5ffe916c56840808c4"
+  },
+  "feature_cache_source": "models\\tiger_signs_v4",
+  "selection": {
+    "gamma": 0.125,
+    "balance": 1.0,
+    "penalty": 0.1,
+    "black_gill_margin": 0.1219718548855031,
+    "false_alerts": 1,
+    "metrics": {
+      "images": 153,
+      "top1": 0.9607843137254902,
+      "macro_recall": 0.8676121656600517,
+      "per_class": {
+        "black_gill": {
+          "support": 8,
+          "precision": 0.8,
+          "recall": 0.5
+        },
+        "white_spot_like": {
+          "support": 76,
+          "precision": 0.9615384615384616,
+          "recall": 0.9868421052631579
+        },
+        "yellow_head_like": {
+          "support": 8,
+          "precision": 0.8,
+          "recall": 1.0
+        },
+        "no_visible_target_sign": {
+          "support": 61,
+          "precision": 1.0,
+          "recall": 0.9836065573770492
+        }
+      },
+      "confusion_matrix": [
+        [
+          4,
+          2,
+          2,
+          0
+        ],
+        [
+          1,
+          75,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          8,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          60
+        ]
+      ],
+      "class_order": [
+        "black_gill",
+        "white_spot_like",
+        "yellow_head_like",
+        "no_visible_target_sign"
+      ]
+    }
+  },
+  "validation_candidates": [
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": -0.014392363138505004,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.954248366013072,
+        "macro_recall": 0.8363621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": 0.0,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.954248366013072,
+        "macro_recall": 0.8363621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": 0.35766819510541836,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.954248366013072,
+        "macro_recall": 0.8084016393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.25
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9382716049382716,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            4,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.08806137413253268,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.954248366013072,
+        "macro_recall": 0.8363621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.5139293298356655,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7459016393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0,
+            "recall": 0.0
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9156626506024096,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": -0.039123857689649266,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.8051121656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.7777777777777778,
+            "recall": 0.875
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9836065573770492,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.0,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.8051121656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.7777777777777778,
+            "recall": 0.875
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9836065573770492,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.3622278359096347,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7146516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0,
+            "recall": 0.0
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9156626506024096,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.7777777777777778,
+            "recall": 0.875
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9836065573770492,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": 0.009121856161655728,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.954248366013072,
+        "macro_recall": 0.8363621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": 0.4290872215284196,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.7771516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.125
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.926829268292683,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            5,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.1219718548855031,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9607843137254902,
+        "macro_recall": 0.8676121656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 0.5
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9615384615384616,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            2,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.6938813433460922,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7459016393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0,
+            "recall": 0.0
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9156626506024096,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.0837821831316724,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.8330726919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9487179487179487,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.7272727272727273,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            74,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.125,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.6333276447584677,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9281045751633987,
+        "macro_recall": 0.7393226919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0,
+            "recall": 0.0
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9135802469135802,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.6666666666666666,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 1.0,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6,
+            2,
+            0
+          ],
+          [
+            0,
+            74,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": 0.024623268652558927,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": 0.16690039110382626,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.7771516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.95,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.033110763800409115,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.26742743028212534,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.7771516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.95,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.07590228335651045,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.3938464803307825,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7146516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.125
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.926829268292683,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            1,
+            5,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": 0.026577900459463955,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": 0.1783918380334768,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.7771516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.95,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.04856442532953098,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.3326717249571416,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9477124183006536,
+        "macro_recall": 0.7771516393442623,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.95,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.12124864165656468,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7705726919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9487179487179487,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            74,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 0.5,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.573830122908743,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9215686274509803,
+        "macro_recall": 0.6801121656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0,
+            "recall": 0.0
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9146341463414634,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            0,
+            6,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": -0.012484720961438212,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": -0.003858243949195761,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 0.01,
+      "black_gill_margin": 0.0,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.0019685045566670833,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 0.1,
+      "black_gill_margin": 0.00336951604444502,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.009630482818444641,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7705726919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.961038961038961,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            74,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 0.5,
+      "penalty": 1.0,
+      "black_gill_margin": 0.07157773537306639,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9615384615384616,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": -0.012474070322175278,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.967741935483871,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": -0.002717800833257372,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 0.01,
+      "black_gill_margin": 0.0,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.007070209254400994,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7705726919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9487179487179487,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            74,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 0.1,
+      "black_gill_margin": 0.014223107044108119,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9493670886075949,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.02324310357884729,
+      "false_alerts": 1,
+      "metrics": {
+        "images": 153,
+        "top1": 0.934640522875817,
+        "macro_recall": 0.7705726919758413,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 0.75,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.961038961038961,
+            "recall": 0.9736842105263158
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            1,
+            74,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    },
+    {
+      "gamma": 2.0,
+      "balance": 1.0,
+      "penalty": 1.0,
+      "black_gill_margin": 0.13731192798134423,
+      "false_alerts": 0,
+      "metrics": {
+        "images": 153,
+        "top1": 0.9411764705882353,
+        "macro_recall": 0.7738621656600517,
+        "per_class": {
+          "black_gill": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.375
+          },
+          "white_spot_like": {
+            "support": 76,
+            "precision": 0.9615384615384616,
+            "recall": 0.9868421052631579
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.75
+          },
+          "no_visible_target_sign": {
+            "support": 61,
+            "precision": 0.9523809523809523,
+            "recall": 0.9836065573770492
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            3,
+            2,
+            0
+          ],
+          [
+            0,
+            75,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            6,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            60
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      }
+    }
+  ],
+  "validation_false_alert_cap": 1,
+  "old_test_regression": {
+    "tiger_signs_v1": {
+      "metrics": {
+        "images": 145,
+        "top1": 0.9793103448275862,
+        "macro_recall": 0.871875,
+        "per_class": {
+          "black_gill": {
+            "support": 4,
+            "precision": 0.6666666666666666,
+            "recall": 0.5
+          },
+          "white_spot_like": {
+            "support": 80,
+            "precision": 0.9753086419753086,
+            "recall": 0.9875
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 53,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            79,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      },
+      "predictions": [
+        {
+          "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+          "actual": "black_gill",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+          "actual": "black_gill",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/68613fab959159958109.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        }
+      ]
+    },
+    "tiger_signs_v2": {
+      "metrics": {
+        "images": 145,
+        "top1": 0.9862068965517241,
+        "macro_recall": 0.965625,
+        "per_class": {
+          "black_gill": {
+            "support": 4,
+            "precision": 0.6666666666666666,
+            "recall": 1.0
+          },
+          "white_spot_like": {
+            "support": 80,
+            "precision": 1.0,
+            "recall": 0.9875
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 0.875
+          },
+          "no_visible_target_sign": {
+            "support": 53,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            79,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            7,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      },
+      "predictions": [
+        {
+          "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/68613fab959159958109.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+          "actual": "white_spot_like",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "black_gill"
+        }
+      ]
+    },
+    "tiger_signs_v3": {
+      "metrics": {
+        "images": 145,
+        "top1": 0.9862068965517241,
+        "macro_recall": 0.875,
+        "per_class": {
+          "black_gill": {
+            "support": 4,
+            "precision": 1.0,
+            "recall": 0.5
+          },
+          "white_spot_like": {
+            "support": 80,
+            "precision": 0.9876543209876543,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8888888888888888,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 53,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            80,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      },
+      "predictions": [
+        {
+          "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+          "actual": "black_gill",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+          "actual": "black_gill",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/68613fab959159958109.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        }
+      ]
+    },
+    "tiger_signs_v4": {
+      "metrics": {
+        "images": 145,
+        "top1": 0.9862068965517241,
+        "macro_recall": 0.875,
+        "per_class": {
+          "black_gill": {
+            "support": 4,
+            "precision": 1.0,
+            "recall": 0.5
+          },
+          "white_spot_like": {
+            "support": 80,
+            "precision": 0.9876543209876543,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 0.8888888888888888,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 53,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            80,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      },
+      "predictions": [
+        {
+          "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+          "actual": "black_gill",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+          "actual": "black_gill",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/68613fab959159958109.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        }
+      ]
+    },
+    "kernel_head": {
+      "metrics": {
+        "images": 145,
+        "top1": 0.993103448275862,
+        "macro_recall": 0.9375,
+        "per_class": {
+          "black_gill": {
+            "support": 4,
+            "precision": 1.0,
+            "recall": 0.75
+          },
+          "white_spot_like": {
+            "support": 80,
+            "precision": 0.9876543209876543,
+            "recall": 1.0
+          },
+          "yellow_head_like": {
+            "support": 8,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "no_visible_target_sign": {
+            "support": 53,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            3,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            80,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            8,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            53
+          ]
+        ],
+        "class_order": [
+          "black_gill",
+          "white_spot_like",
+          "yellow_head_like",
+          "no_visible_target_sign"
+        ]
+      },
+      "predictions": [
+        {
+          "path": "test/black_gill/177f62584ec85cf7fe60.jpg",
+          "actual": "black_gill",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/black_gill/55773f7ffe6f4877fd2a.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/988cfa36b4e30adc29ae.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/black_gill/7cff4d50d01ce0c2c944.jpg",
+          "actual": "black_gill",
+          "predicted": "black_gill"
+        },
+        {
+          "path": "test/no_visible_target_sign/0e433b557462a322f111.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/48c5143a583a1ec2519f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/e379a5303fd6428c176d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/5625b7119d45a0ae7818.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/00e2c9984fdd609f46f1.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/107cd70a1fb460f5dc57.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/135210abd86bcb51506c.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/19b3427587869f4fbc6d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0c9ecac18d18e6067424.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/6b3091e296d15b9f0439.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2ff0d3f4dc0167ed3285.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/39af2c720a1c32ec48d0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/269e97478f5a2208e627.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/258983c4636f3069a4a6.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a09098a3d0320855dfa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/71791002f6771dca2ded.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/479274d57428b1690c68.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/51064ac838a2420a0a80.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/c1be5ccc068ca72ea17e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ecc7f6e7c16df0973f53.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/33cba7fcd78d438d5300.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7acccceeeaeb8ecf6bf8.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d5f6bb77d423f812e93a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d7246df3314ab4e1791d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b9cc727223bbf2fc249f.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/881bed389e52a4fa8c28.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/89eda534a228b2e3f90a.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/01037d3ae22c121d2284.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ead718c04c25519ea69d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/665ef379b27a6a0cf83d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/756f005b9879142edebb.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0462c798e78517333567.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/b7316ff94cd79ed525ff.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d6df2f2662c3d7b8e2fd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2a3a346794fde5361453.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/737cfb87c32576e58fc0.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/98b377087d7bfd92156b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ab4d90aa5891120e443d.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2643e4fcdf275d5d5a36.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/10655f3d2e7f81d43c52.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fbf21ea1811acdc503f4.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/eba44bd7de41ddf68c97.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/2838e0df1369429136ba.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/fa173c5a8694236a1bfd.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/ff676350f31680e7c875.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/256d235a08fa57d474aa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/0bff539840edcad401fa.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/1ec06bb1df82ac5ddae7.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/86f1f22e6a38673dbb2b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/d0634dbd7386a7fdee1e.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/7c6354fb9c460b553113.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/90412c22f600858f3fe5.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/no_visible_target_sign/aad7b7e0183b1980330b.jpg",
+          "actual": "no_visible_target_sign",
+          "predicted": "no_visible_target_sign"
+        },
+        {
+          "path": "test/white_spot_like/70aa8a695663e38377d7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0730a003a1df390a7ce3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/159d85905ce8dd6d5b47.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1343d1c214e3b2310b1e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3d1e1526d1acd0d34cc3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ccfee59844326be2829.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/21db4704072ef8389dbe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e0446107d386f82275e9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/568a98385a88e12f4a3d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/34a8f1d21d2db575ccef.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/8ee2947d792e479131bd.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/84b073534a04228d8b8a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/7b3fbc29afbd84bc8a9a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2fcd9cece569af973cfe.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f5f1e515e92693f8cb8d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/776b284b5bb861f1dd9d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/832261bfb543d135dcae.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0729d084be80e2040e1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f2c7e791fa11c71acd4e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d5f7b065df7d3d6a665a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e3bcd2c1793269dcb7d9.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1b0eead5378501bb9da.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a1d4376c0b839cb9fdd0.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/33b80f02870bfc8990b7.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d3443717953e40d0fe65.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5a7ba5ec94d41482ea08.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fbcfe88dadb0c765a5af.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e10fe1ea685897ad548.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/70715aafc3d46b17bb2a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/987dbfc9605522e16403.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b01222362642b5c31296.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d85edaa19e8f149b4e28.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c5bcaa0a61f9a2acc28f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5284bbdf3c8b6030a381.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/feded0bcba460dd17483.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/f407fdce6d9fc2dd3f51.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/bb65154203bba26aeaeb.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/fa3e613b48f7ad9fb3b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9098aaaf726557bd37a3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e1742513d5f561d1ca84.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/dca9c487fd0d9da3c11c.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d96d013b7c73fc4a3732.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/a0ed8bd6013cc255a78e.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/37a51a70e0dd5989ae4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b8ed2a5cd9fb63e901b5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0e14bd37b5e775054150.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e405e89bc67d5c8142ba.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3594cd072b2d0de86ab3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/040a890a0651fdcd652a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ebf56f5e8ff588e79524.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/eef242fad77365ed3482.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/cba69a9badff37107a48.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2557f5ec3d8ffae469b6.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5597d2a63b7717673750.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3e3e5d9c315c67f5c260.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/0a7c69a4b7ad0e0db88f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2d6b6bc59ea002926992.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9058858486290f1405c3.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/338585e2120f2dfe1d64.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/b5130ad5e0a5f3dfcc67.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/241485aa08d58af5790f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/2777133e9a656b8f4f4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/d0966036b39fa9c141f5.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1dcf6de155c28f7d004d.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5fe697d1b88089b71e57.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/13d4c33769061863b814.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/e4afbd30d94737b44e69.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5e0969877275f0b12e7f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/9c38d9994af798683327.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/4433a731df7f3a1faecc.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5c5ce070a1347fd4b02b.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/68613fab959159958109.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/88191664b1b1a3beccad.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/3f91b9f970ed3c30392f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/5265595088d0346bfa88.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/c6dcee411c46cb4c1aea.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/87f0346abd2e4e0272b8.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/6c72d7db08fac8a61e4a.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/1baf8b99fe5a7b3e44b1.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/white_spot_like/ff7fb8c7f1c70d704e4f.jpg",
+          "actual": "white_spot_like",
+          "predicted": "white_spot_like"
+        },
+        {
+          "path": "test/yellow_head_like/5d9eedda2f2a4d21e24c.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/6ff8618e208431873555.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/649ddd3cbc0133eb0247.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/de75a3af3a6ea527895a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/8284650d6043f7203a8a.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/69112602c4eafb012cac.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/cd406b38f4d6278df2a1.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        },
+        {
+          "path": "test/yellow_head_like/5c3572fe5a79b2a34bfe.jpg",
+          "actual": "yellow_head_like",
+          "predicted": "yellow_head_like"
+        }
+      ]
+    }
+  }
+}

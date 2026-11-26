@@ -1,0 +1,25 @@
+{
+  "feature_model_sha256": "44ce3d4cfb5b635c41a1e3321f49ca0fbf1240d8fb70d552647fad131582a074",
+  "feature_layer": 8,
+  "feature_dimension": 256,
+  "regularization": 0.01,
+  "lower_threshold": 0.05,
+  "upper_threshold": 0.95,
+  "artifact_sha256": "2552bc6fd2af1a3da91c1c4ca3cf84929dbf438e2b919b6e5712969ce1634fb3",
+  "status": "initial_internal_gate",
+  "validation": {
+    "positive_images": 241,
+    "negative_images": 20,
+    "shrimp_rejected": 1,
+    "shrimp_accepted": 202,
+    "non_shrimp_rejected": 17,
+    "non_shrimp_accepted": 0,
+    "uncertain": 41,
+    "binary_balanced_accuracy": 0.9667012448132779
+  },
+  "limitations": [
+    "Negatives are a small COCO128 subset; not representative of all non-shrimp images.",
+    "Legacy capture/source IDs unavailable; perceptual grouping only.",
+    "Scores are not calibrated probabilities."
+  ]
+}

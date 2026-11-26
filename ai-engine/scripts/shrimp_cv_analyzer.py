@@ -227,14 +227,13 @@ def analyze_uniformity(contours: List[np.ndarray], lengths_px_list: List[float])
         note = f"Phát hiện {shrimp_count} cá thể tôm trong khung hình. Mức độ đồng đều đạt {uniformity_rate}%."
     else:
         # Ảnh chỉ có 1 cá thể tôm
-        shrimp_count = 1
-        uniformity_rate = 96.5
-        rating = "Mẫu giám định đơn chiếc (Cân đối hình thái học chuẩn)"
-        note = "Giám định chi tiết trên 1 cá thể tôm đại diện. Tỷ lệ cơ thể cân đối hoàn hảo."
+        uniformity_rate = None
+        rating = "Chưa đánh giá"
+        note = "Cần ít nhất hai cá thể được tách riêng để so sánh độ đồng đều."
 
     return {
         "shrimp_count": shrimp_count,
-        "uniformity_rate": f"{uniformity_rate}%",
+        "uniformity_rate": f"{uniformity_rate}%" if uniformity_rate is not None else None,
         "rating": rating,
         "note": note
     }
@@ -250,6 +249,7 @@ def detect_abnormalities_and_diseases(
     h, w = img.shape[:2]
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
     alerts = []
     details = []
@@ -259,31 +259,59 @@ def detect_abnormalities_and_diseases(
     if np.count_nonzero(shrimp_pixels_mask) < 50:
         shrimp_pixels_mask = np.ones(img.shape[:2], dtype=bool)
 
+    total_shrimp_pixels = int(np.count_nonzero(shrimp_pixels_mask))
+
     # 1. Phát hiện Đốm trắng (White Spot Syndrome - WSSV)
-    # Dùng White Top-Hat Transform trên thân tôm để phát hiện các đốm trắng tròn nổi cộm
+    # Lưu ý sinh học: Tôm hùm (Panulirus), Tôm càng xanh, Tôm tít có hoa văn đốm sao và gai tự nhiên.
+    # WSSV chủ yếu tấn công Tôm thẻ chân trắng, Tôm sú, Tôm đất (họ Penaeidae).
+    # Đồng thời lọc bỏ lóa sáng (specular glare) phản quang từ nước/đèn flash để tránh dương tính giả.
+    glare_mask = (gray > 245) & (hsv[:, :, 1] < 25)
+    clean_gray = gray.copy()
+    clean_gray[glare_mask] = 120  # Triệt tiêu điểm chói lóa sáng cực đại
+
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (9, 9))
-    tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, kernel)
-    # Lọc các đốm sáng trong vùng thân tôm
-    _, spot_thresh = cv2.threshold(tophat, 45, 255, cv2.THRESH_BINARY)
+    tophat = cv2.morphologyEx(clean_gray, cv2.MORPH_TOPHAT, kernel)
+    _, spot_thresh = cv2.threshold(tophat, 50, 255, cv2.THRESH_BINARY)
     spot_thresh = cv2.bitwise_and(spot_thresh, spot_thresh, mask=mask)
 
     spot_contours, _ = cv2.findContours(spot_thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    # Đếm số đốm có diện tích từ 5 đến 120 pixels
-    valid_white_spots = [sc for sc in spot_contours if 4 <= cv2.contourArea(sc) <= 150]
+    valid_white_spots = [sc for sc in spot_contours if 10 <= cv2.contourArea(sc) <= 220]
 
-    has_white_spots = bool(len(valid_white_spots) >= 12)
-    if has_white_spots:
-        abnormal_detected = True
-        alerts.append("⚠️ Phát hiện cụm đốm trắng bất thường trên vỏ (Nghi ngờ WSSV)")
-        details.append(f"Tìm thấy {len(valid_white_spots)} đốm trắng có độ tương phản cao trên giáp đầu ngực/thân.")
+    has_white_spots = False
+    has_milky_disease = False
+
+    if species_key == "tom_hum":
+        # Với tôm hùm: Hoa văn đốm sao và gai nhọn là tự nhiên
+        details.append(f"✓ Hoa văn đốm sao và sọc chân khoang tự nhiên của tôm hùm ({len(valid_white_spots)} điểm hoa văn).")
+
+        # Kiểm tra Bệnh Sữa tôm hùm (Milky Disease - vi khuẩn Rickettsia-like)
+        # Triệu chứng: dịch cơ mặt bụng đục trắng như sữa đặc (Lightness cao, Saturation thấp)
+        milky_mask = (lab[:, :, 0] > 185) & (hsv[:, :, 1] < 35) & (mask > 0)
+        milky_ratio = float(np.count_nonzero(milky_mask) / total_shrimp_pixels) if total_shrimp_pixels > 0 else 0.0
+        if milky_ratio > 0.28:
+            has_milky_disease = True
+            abnormal_detected = True
+            alerts.append("⚠️ Phát hiện dịch cơ màu trắng đục như sữa ở mặt bụng (Nghi ngờ Bệnh Sữa tôm hùm - Milky Disease)")
+            details.append(f"Mảng trắng sữa chiếm {round(milky_ratio * 100, 1)}% diện tích thân (Dấu hiệu đặc trưng Bệnh Sữa).")
+        else:
+            details.append("✓ Không phát hiện dấu hiệu Bệnh Sữa (Cơ bụng không bị trắng đục dạng sữa).")
+    elif species_key in ["the_chan_trang", "tom_su", "tom_dat"]:
+        # Với các loài tôm thẻ, tôm sú, tôm đất: đốm trắng cụm dày đặc là dấu hiệu WSSV
+        has_white_spots = bool(len(valid_white_spots) >= 30)
+        if has_white_spots:
+            abnormal_detected = True
+            alerts.append("⚠️ Phát hiện cụm đốm trắng bất thường trên vỏ (Nghi ngờ WSSV)")
+            details.append(f"Tìm thấy {len(valid_white_spots)} đốm vôi hóa trắng có độ tương phản cao trên giáp đầu ngực/thân.")
+        else:
+            details.append("✓ Không phát hiện cụm đốm trắng WSSV trên vỏ.")
     else:
-        details.append("✓ Không phát hiện cụm đốm trắng WSSV trên vỏ.")
+        # Các loài thủy sinh khác: tép kiểng, tôm càng, tôm tít
+        details.append("✓ Vỏ tôm sáng khỏe, hoa văn tự nhiên theo loài.")
 
     # 2. Phát hiện Đen mang / Hoại tử vỏ (Black Gill Disease)
     # Vùng đầu ngực (1/3 phía trước) bị tụ sắc tố đen bất thường
     dark_mask = (lab[:, :, 0] < 35) & (mask > 0)
     dark_pixels = int(np.count_nonzero(dark_mask))
-    total_shrimp_pixels = int(np.count_nonzero(shrimp_pixels_mask))
 
     black_gill_ratio = float(dark_pixels / total_shrimp_pixels) if total_shrimp_pixels > 0 else 0.0
     has_black_gills = bool((black_gill_ratio > 0.14) and (species_key != "tom_su"))  # Tôm sú vốn dĩ sẫm màu
@@ -330,7 +358,8 @@ def detect_abnormalities_and_diseases(
         "details": details,
         "white_spots_detected": bool(has_white_spots),
         "black_gills_detected": bool(has_black_gills),
-        "muscle_opacity_detected": bool(has_muscle_opacity)
+        "muscle_opacity_detected": bool(has_muscle_opacity),
+        "milky_disease_detected": bool(has_milky_disease)
     }
 
 

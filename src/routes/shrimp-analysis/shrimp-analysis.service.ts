@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as os from 'os';
@@ -64,10 +64,8 @@ export class ShrimpAnalysisService {
   /**
    * Phân tích hình ảnh tôm theo đa tiêu chí:
    * 1. Giống loài (YOLOv8 AI Classification)
-   * 2. Kích thước & Khối lượng (Morphometrics)
-   * 3. Sắc tố & Màu sắc vỏ (Color Profile)
-   * 4. Mức độ đồng đều (Uniformity)
-   * 5. Dấu hiệu bất thường & Bệnh lý (WSSV, đen mang, đục cơ)
+   * 2. Sắc tố & Màu sắc vỏ (Color Profile)
+   * 3. Dấu hiệu bất thường & Bệnh lý (WSSV, đen mang, đục cơ)
    */
   async analyze(file: UploadedFileParam, userId?: string): Promise<ShrimpResultDto> {
     // Lưu ảnh người dùng đã gửi vào hệ thống lưu trữ
@@ -84,13 +82,15 @@ export class ShrimpAnalysisService {
       const response = await fetch(`${this.pythonApiUrl}/predict`, {
         method: 'POST',
         body: formData,
-        signal: AbortSignal.timeout(4000),
+        signal: AbortSignal.timeout(15000),
       });
 
       if (response.ok) {
         const data = (await response.json()) as any;
-        if (data && data.success) {
+        if (data && data.success && data.analysis_contract_version >= 6 && ['shrimp', 'no_shrimp', 'uncertain'].includes(data.image_content_status)) {
           rawResult = this.mapToResultDto(data, 'FASTAPI_ONLINE (Port 8000)');
+        } else if (data?.success) {
+          this.logger.warn('Python AI server đang chạy phiên bản cũ. Chuyển sang script phân tích hiện tại.');
         }
       }
     } catch {
@@ -114,7 +114,7 @@ export class ShrimpAnalysisService {
             fs.unlinkSync(tempPath);
           }
 
-          if (resultJson && resultJson.success) {
+          if (resultJson && resultJson.success && ['shrimp', 'no_shrimp', 'uncertain'].includes(resultJson.image_content_status)) {
             rawResult = this.mapToResultDto(resultJson, 'VISION_AI_ACTIVE');
           }
         } catch (scriptError: any) {
@@ -126,9 +126,16 @@ export class ShrimpAnalysisService {
       }
     }
 
-    // 3. Fallback phân tích chuyên sâu thông minh (Domain Knowledge Engine)
     if (!rawResult) {
-      rawResult = this.generateFallbackResult(file);
+      // Failed inference must not produce or persist a fabricated analysis.
+      try { fs.unlinkSync(path.join(this.uploadsDir, savedFilename)); } catch {}
+      throw new ServiceUnavailableException('Không thể phân tích ảnh bằng mô hình AI. Vui lòng kiểm tra dịch vụ AI và thử lại.');
+    }
+
+    // Rejected/unverified inputs are not shrimp analysis history.
+    if (rawResult.imageContentStatus !== 'shrimp') {
+      try { fs.unlinkSync(path.join(this.uploadsDir, savedFilename)); } catch {}
+      return rawResult;
     }
 
     rawResult.imageUrl = relativeUrl;
@@ -147,8 +154,7 @@ export class ShrimpAnalysisService {
             healthStatus:
               rawResult.healthStatus ||
               rawResult.abnormalities?.healthSummary ||
-              (rawResult.abnormalDetected ? 'Cần lưu ý' : 'Tốt (Khỏe mạnh)'),
-            sizeEstimate: rawResult.sizeEstimate,
+              'Chưa đánh giá',
             commercialGrade: rawResult.commercialGrade,
             description: rawResult.description,
             abnormalDetected: rawResult.abnormalDetected,
@@ -156,9 +162,7 @@ export class ShrimpAnalysisService {
             modelStatus: rawResult.modelStatus,
             processingTime: rawResult.processingTime,
             imageDimensions: rawResult.imageDimensions,
-            sizeMetrics: (rawResult.sizeMetrics as any) ?? undefined,
             colorAnalysis: (rawResult.colorAnalysis as any) ?? undefined,
-            uniformity: (rawResult.uniformity as any) ?? undefined,
             abnormalities: (rawResult.abnormalities as any) ?? undefined,
           },
         });
@@ -189,6 +193,7 @@ export class ShrimpAnalysisService {
 
     if (filter.status === 'healthy') {
       where.abnormalDetected = false;
+      where.healthStatus = { not: 'Chưa đánh giá' };
     } else if (filter.status === 'warning') {
       where.abnormalDetected = true;
     }
@@ -214,13 +219,13 @@ export class ShrimpAnalysisService {
       this.prisma.shrimpAnalysis.count({ where }),
       this.prisma.shrimpAnalysis.findMany({
         where: { userId },
-        select: { species: true, abnormalDetected: true, confidence: true },
+        select: { species: true, abnormalDetected: true, confidence: true, healthStatus: true },
       }),
     ]);
 
     // Tính toán số liệu thống kê tổng quát của user
     const totalCount = allUserItems.length;
-    const healthyCount = allUserItems.filter((i) => !i.abnormalDetected).length;
+    const healthyCount = allUserItems.filter((i) => !i.abnormalDetected && !!i.healthStatus && i.healthStatus !== 'Chưa đánh giá').length;
     const warningCount = allUserItems.filter((i) => i.abnormalDetected).length;
     const avgConfidence = totalCount > 0
       ? Number((allUserItems.reduce((acc, curr) => acc + curr.confidence, 0) / totalCount).toFixed(1))
@@ -313,130 +318,86 @@ export class ShrimpAnalysisService {
     return { success: true, count: res.count, message: 'Đã xóa toàn bộ lịch sử thành công.' };
   }
 
-  private generateFallbackResult(file: UploadedFileParam): ShrimpResultDto {
-    const filename = (file.originalname || '').toLowerCase();
-    let species = 'Tôm thẻ chân trắng';
-    let scientificName = 'Litopenaeus vannamei';
-    let sizeEstimate = '30 - 40 con/kg (~14.2 cm, 22.5 g/con)';
-    let confidence = 97.4;
-    let dominantColor = 'Trắng trong suốt ánh xám nhạt (Vỏ mỏng, tươi)';
-    let sizeCategory = 'Size Tiêu chuẩn (Thương phẩm)';
-
-    if (filename.includes('su') || filename.includes('tiger') || filename.includes('monodon')) {
-      species = 'Tôm sú';
-      scientificName = 'Penaeus monodon';
-      sizeEstimate = '15 - 20 con/kg (~18.5 cm, 52.0 g/con)';
-      confidence = 98.6;
-      dominantColor = 'Vỏ dày, sọc vân ngang đen và vàng sẫm rõ nét';
-      sizeCategory = 'Size Lớn (Xuất khẩu cấp đông IQF)';
-    } else if (filename.includes('cang') || filename.includes('prawn') || filename.includes('rosenbergii')) {
-      species = 'Tôm càng xanh';
-      scientificName = 'Macrobrachium rosenbergii';
-      sizeEstimate = '10 - 15 con/kg (~17.0 cm, 72.0 g/con)';
-      confidence = 98.9;
-      dominantColor = 'Xanh lam bóng đặc trưng, thân xám lục';
-      sizeCategory = 'Size Đặc biệt (Đặc sản nước ngọt)';
+  private mapToResultDto(data: any, defaultStatus: string): ShrimpResultDto {
+    const confidence = Number(data.confidence);
+    if (!Number.isFinite(confidence) || confidence < 0 || confidence > 100 ||
+        typeof data.species !== 'string' || !data.species.trim()) {
+      throw new Error('Kết quả phân loại AI không hợp lệ');
     }
-
+    const configuredThreshold = Number(data.classification_threshold ?? 80);
+    const threshold = Number.isFinite(configuredThreshold) && configuredThreshold >= 1 && configuredThreshold <= 100
+      ? configuredThreshold : 80;
+    const imageContentStatus = ['shrimp', 'no_shrimp', 'uncertain'].includes(data.image_content_status)
+      ? data.image_content_status : 'unverified';
+    const rejected = imageContentStatus === 'no_shrimp';
+    const uncertain = imageContentStatus !== 'shrimp' || data.identification_status === 'uncertain' || data.species === 'Chưa xác định' || confidence < threshold;
+    const candidateSpecies = uncertain && imageContentStatus === 'shrimp'
+      ? (data.candidate_species || (data.species !== 'Chưa xác định' ? data.species : undefined)) : undefined;
+    const description = rejected ? 'Không phát hiện tôm trong ảnh. Vui lòng tải ảnh có tôm.'
+      : imageContentStatus !== 'shrimp' ? 'Chưa xác định ảnh có tôm hay không. Vui lòng chọn ảnh có tôm nhìn rõ.'
+      : uncertain ? `Chưa đủ độ tin cậy để kết luận.${candidateSpecies ? ` Gợi ý: ${candidateSpecies} (${confidence}%, ngưỡng ${threshold}%).` : ''} Hãy chụp lại ảnh rõ hơn.` : data.description;
+    const sign = data.abnormalities;
+    const assessed = !uncertain && data.class_id === 'tom_su' && sign?.assessed === true &&
+      sign.model_version === 'tiger_signs_v5' &&
+      ['black_gill', 'white_spot_like', 'yellow_head_like', 'no_visible_target_sign'].includes(sign.visual_sign) &&
+      typeof sign.health_summary === 'string' && sign.health_summary.trim().length > 0;
+    const abnormalDetected = assessed && sign.visual_sign !== 'no_visible_target_sign';
+    const alerts = abnormalDetected ? [sign.health_summary] : [];
+    const signDetails = Array.isArray(sign?.details)
+      ? sign.details.filter((detail: unknown): detail is string => typeof detail === 'string') : [];
     return {
       success: true,
-      species,
-      scientificName,
+      identificationStatus: rejected ? 'no_shrimp' : uncertain ? 'uncertain' : 'identified',
+      imageContentStatus,
+      candidateSpecies,
+      classificationThreshold: threshold,
+      species: rejected ? 'Không phát hiện tôm' : uncertain ? 'Chưa xác định' : data.species,
+      scientificName: rejected ? 'Không áp dụng' : uncertain ? 'Chưa xác định' : (data.scientific_name || data.scientificName || 'Chưa xác định'),
       confidence,
-      sizeEstimate,
-      commercialGrade: 'Loại 1 (Đạt chuẩn thương phẩm)',
-      description: `Mô hình AI Vision phân tích chính xác dựa trên hình thái và phân bổ sắc tố đặc trưng của ${species}.`,
-      healthStatus: 'Tốt (Vỏ sáng bóng, mang sạch, phụ bộ nguyên vẹn)',
-      abnormalDetected: false,
-      alerts: [],
-      modelStatus: 'VISION_AI_PRODUCTION',
-      processingTime: '0.28 giây',
-      imageDimensions: '1280 x 720 px',
+      description,
+      commercialGrade: 'Chưa đánh giá',
+      healthStatus: 'Chưa đánh giá',
+      abnormalDetected,
+      alerts,
+      modelStatus: [data.model_status || defaultStatus, data.model_version, data.species_adapter_version].filter(Boolean).join(':'),
+      processingTime: data.processing_time || data.processingTime,
+      imageDimensions: data.image_dimensions || data.imageDimensions,
       analyzedAt: new Date().toISOString(),
-
-      sizeMetrics: {
-        pixelLength: 320,
-        estimatedLengthCm: '14.5 cm',
-        estimatedWeightGram: '23.0 g/con',
-        sizeCategory,
-        countPerKgEstimate: sizeEstimate.split(' (')[0],
-      },
       colorAnalysis: {
-        dominantColor,
-        shellTransparency: 'Độ trong suốt cao (>90%)',
-        glossiness: 'Sáng bóng, vỏ chắc khỏe',
-        description: 'Vỏ tôm sáng bóng, không có đốm đen hoặc vết trầy xước.',
-      },
-      uniformity: {
-        shrimpCount: 1,
-        uniformityRate: '96.5%',
-        rating: 'Mẫu chuẩn hình thái đại diện',
-        note: 'Cân đối hình thái học và phụ bộ.',
+        assessed: imageContentStatus === 'shrimp' && data.color_analysis?.assessed === true &&
+          data.color_analysis?.status === 'observed_experimental' && typeof data.color_analysis?.dominant_color === 'string',
+        bodyPolygon: imageContentStatus === 'shrimp' && Array.isArray(data.color_analysis?.body_polygon) &&
+          data.color_analysis.body_polygon.length >= 3 && data.color_analysis.body_polygon.length <= 1000 &&
+          data.color_analysis.body_polygon.every((p: any) => Array.isArray(p) && p.length === 2 && p.every((v: any) => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 1))
+          ? data.color_analysis.body_polygon : undefined,
+        method: typeof data.color_analysis?.method === 'string' ? data.color_analysis.method : undefined,
+        status: 'unassessed',
+        dominantColor: 'Chưa đánh giá',
+        shellTransparency: 'Chưa đánh giá',
+        description: typeof data.color_analysis?.description === 'string' ? data.color_analysis.description : 'Chưa phân tích màu vùng thân.',
+        ...(imageContentStatus === 'shrimp' && data.color_analysis?.assessed === true &&
+          data.color_analysis?.status === 'observed_experimental' && typeof data.color_analysis?.dominant_color === 'string' ? {
+            status: 'observed_experimental',
+            dominantColor: data.color_analysis.dominant_color,
+            dominantHex: /^#[0-9a-f]{6}$/i.test(data.color_analysis.dominant_hex ?? '') ? data.color_analysis.dominant_hex : undefined,
+          } : {}),
       },
       abnormalities: {
-        abnormalDetected: false,
-        healthSummary: 'Khỏe mạnh hoàn toàn (Vỏ sáng bóng, mang sạch, phụ bộ nguyên vẹn)',
-        alerts: [],
-        details: [
-          '✓ Không phát hiện cụm đốm trắng WSSV trên giáp đầu ngực.',
-          '✓ Mang tôm sạch, không phát hiện đốm đen hoại tử melanin.',
-          '✓ Cơ thịt trong suốt, nhìn rõ chỉ ruột tự nhiên.',
-        ],
-        whiteSpotsDetected: false,
-        blackGillsDetected: false,
-        muscleOpacityDetected: false,
+        assessed,
+        abnormalDetected,
+        healthSummary: assessed ? sign.health_summary : 'Chưa đánh giá',
+        alerts,
+        details: (assessed || !uncertain && data.class_id === 'tom_su' && sign?.assessed === false) && signDetails.length
+          ? signDetails : ['Hiện chỉ hỗ trợ phân tích dấu hiệu qua ảnh khi nhận diện được tôm sú.'],
       },
-    };
-  }
-
-  private mapToResultDto(data: any, defaultStatus: string): ShrimpResultDto {
-    return {
-      success: true,
-      species: data.species,
-      scientificName: data.scientific_name || data.scientificName || 'Penaeus sp.',
-      confidence: data.confidence,
-      sizeEstimate: data.size_estimate || data.sizeEstimate,
-      commercialGrade: data.commercial_grade || data.commercialGrade || 'Loại 1',
-      description: data.description,
-      healthStatus: data.abnormalities?.health_summary || (data.abnormal_detected ? 'Cần lưu ý' : 'Tốt (Khỏe mạnh)'),
-      abnormalDetected: data.abnormal_detected ?? data.abnormalDetected ?? false,
-      alerts: data.alerts ?? [],
-      modelStatus: data.model_status || data.modelStatus || defaultStatus,
-      processingTime: data.processing_time || data.processingTime || '0.25 giây',
-      imageDimensions: data.image_dimensions || data.imageDimensions || '1280 x 720 px',
-      analyzedAt: new Date().toISOString(),
-
-      sizeMetrics: data.size_metrics ? {
-        pixelLength: data.size_metrics.pixel_length,
-        estimatedLengthCm: data.size_metrics.estimated_length_cm,
-        estimatedWeightGram: data.size_metrics.estimated_weight_g,
-        sizeCategory: data.size_metrics.size_category,
-        countPerKgEstimate: data.size_metrics.count_per_kg_estimate,
-      } : undefined,
-
-      colorAnalysis: data.color_analysis ? {
-        dominantColor: data.color_analysis.dominant_color,
-        shellTransparency: data.color_analysis.shell_transparency,
-        glossiness: data.color_analysis.glossiness,
-        description: data.color_analysis.description,
-      } : undefined,
-
-      uniformity: data.uniformity ? {
-        shrimpCount: data.uniformity.shrimp_count,
-        uniformityRate: data.uniformity.uniformity_rate,
-        rating: data.uniformity.rating,
-        note: data.uniformity.note,
-      } : undefined,
-
-      abnormalities: data.abnormalities ? {
-        abnormalDetected: data.abnormalities.abnormal_detected ?? false,
-        healthSummary: data.abnormalities.health_summary || 'Bình thường',
-        alerts: data.abnormalities.alerts ?? [],
-        details: data.abnormalities.details ?? [],
-        whiteSpotsDetected: data.abnormalities.white_spots_detected ?? false,
-        blackGillsDetected: data.abnormalities.black_gills_detected ?? false,
-        muscleOpacityDetected: data.abnormalities.muscle_opacity_detected ?? false,
-      } : undefined,
+      angleGuidance: {
+        needsReshoot: imageContentStatus === 'shrimp' && uncertain,
+        confidence,
+        threshold,
+        warning: imageContentStatus !== 'shrimp' ? description : uncertain ? 'Chưa đủ độ tin cậy để kết luận loại tôm; hãy thử ảnh rõ hơn.'
+          : 'Độ tin cậy chỉ áp dụng cho phân loại loại tôm; chưa đánh giá góc chụp.',
+        instructions: [],
+      },
     };
   }
 
@@ -476,7 +437,11 @@ export class ShrimpAnalysisService {
 
   private runPythonScript(pythonBin: string, scriptPath: string, imagePath: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      const pyProcess = spawn(pythonBin, [scriptPath, imagePath]);
+      const pyProcess = spawn(pythonBin, [scriptPath, imagePath], { windowsHide: true });
+      const timeout = setTimeout(() => {
+        pyProcess.kill();
+        reject(new Error('Quá thời gian chờ mô hình AI (60 giây)'));
+      }, 60000);
       let output = '';
       let error = '';
 
@@ -489,6 +454,7 @@ export class ShrimpAnalysisService {
       });
 
       pyProcess.on('close', (code) => {
+        clearTimeout(timeout);
         if (code === 0) {
           try {
             resolve(JSON.parse(output.trim()));
@@ -501,6 +467,7 @@ export class ShrimpAnalysisService {
       });
 
       pyProcess.on('error', (err) => {
+        clearTimeout(timeout);
         reject(err);
       });
     });

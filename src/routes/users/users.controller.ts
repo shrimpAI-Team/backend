@@ -7,7 +7,7 @@ import {
   type AuthUser,
   CurrentUser,
 } from '../shared/decorators/current-user.decorator';
-import { Role } from 'src/generated/prisma/enums';
+import { Role } from '../../generated/prisma/enums';
 
 @Controller('users')
 export class UsersController {

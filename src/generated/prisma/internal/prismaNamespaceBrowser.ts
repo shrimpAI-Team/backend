@@ -57,7 +57,10 @@ export const ModelName = {
   Session: 'Session',
   ChatSession: 'ChatSession',
   ChatMessage: 'ChatMessage',
-  ShrimpAnalysis: 'ShrimpAnalysis'
+  ShrimpAnalysis: 'ShrimpAnalysis',
+  Pond: 'Pond',
+  CultureCycle: 'CultureCycle',
+  PondJournal: 'PondJournal'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -187,6 +190,46 @@ export const ShrimpAnalysisScalarFieldEnum = {
 } as const
 
 export type ShrimpAnalysisScalarFieldEnum = (typeof ShrimpAnalysisScalarFieldEnum)[keyof typeof ShrimpAnalysisScalarFieldEnum]
+
+
+export const PondScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type PondScalarFieldEnum = (typeof PondScalarFieldEnum)[keyof typeof PondScalarFieldEnum]
+
+
+export const CultureCycleScalarFieldEnum = {
+  id: 'id',
+  pondId: 'pondId',
+  activePondId: 'activePondId',
+  species: 'species',
+  analysisId: 'analysisId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt'
+} as const
+
+export type CultureCycleScalarFieldEnum = (typeof CultureCycleScalarFieldEnum)[keyof typeof CultureCycleScalarFieldEnum]
+
+
+export const PondJournalScalarFieldEnum = {
+  id: 'id',
+  cycleId: 'cycleId',
+  kind: 'kind',
+  note: 'note',
+  ph: 'ph',
+  salinity: 'salinity',
+  temperature: 'temperature',
+  depth: 'depth',
+  feedKg: 'feedKg',
+  simulated: 'simulated',
+  recordedAt: 'recordedAt'
+} as const
+
+export type PondJournalScalarFieldEnum = (typeof PondJournalScalarFieldEnum)[keyof typeof PondJournalScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -21,6 +21,7 @@ if sys.platform == "win32":
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
 import hashlib
+import json
 import argparse
 from pathlib import Path
 from io import BytesIO
@@ -88,7 +89,7 @@ def get_inaturalist_image_urls(taxon_name: str, max_count: int = 200) -> list:
             params = {
                 "taxon_name": taxon_name,
                 "photos": "true",
-                "quality_grade": "research,needs_id",
+                "quality_grade": "research",
                 "per_page": per_page,
                 "page": page
             }
@@ -179,6 +180,10 @@ def download_and_save_image(url: str, output_path: Path, seen_hashes: set, min_s
             img = img.convert("RGB")
 
         img.save(output_path, "JPEG", quality=92)
+        output_path.with_suffix(output_path.suffix + '.source.json').write_text(
+            json.dumps({"source_url": url, "file_sha256": hashlib.sha256(output_path.read_bytes()).hexdigest()}, indent=2),
+            encoding='utf-8',
+        )
         return True
     except Exception:
         return False

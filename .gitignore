@@ -67,6 +67,13 @@ ai-engine/models/*.pt
 
 # Datasets (Images & Cache)
 ai-engine/datasets/train/*/*
+ai-engine/datasets_curated_*/
+/ai-engine/datasets_species_*/
+ai-engine/segmentation/annotation_batch_*/
+ai-engine/segmentation/datasets/
+ai-engine/segmentation/previews/
+ai-engine/segmentation/external/
+ai-engine/presence_data/
 ai-engine/datasets/val/*/*
 ai-engine/datasets/*.cache
 ai-engine/datasets/**/*.cache
@@ -80,3 +87,5 @@ ai-engine/datasets/**/*.gif
 __pycache__/
 *.py[cod]
 *$py.class
+
+ai-engine/disease_data/

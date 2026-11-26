@@ -13,7 +13,7 @@ import { PrismaService } from '../shared/prisma/prisma.service';
 import { SessionService } from '../auth/session.service';
 import { ShrimpAnalysisService, UploadedFileParam } from '../shrimp-analysis/shrimp-analysis.service';
 import { CreateUserDto, UserQueryDto } from './dto/admin.dto';
-import { Role } from 'src/generated/prisma/enums';
+import { Role } from '../../generated/prisma/enums';
 
 const BCRYPT_SALT_ROUNDS = 12;
 

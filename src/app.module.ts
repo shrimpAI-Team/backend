@@ -11,6 +11,7 @@ import { UsersModule } from './routes/users/users.module';
 import { ShrimpAnalysisModule } from './routes/shrimp-analysis/shrimp-analysis.module';
 import { ChatModule } from './routes/chat/chat.module';
 import { AdminModule } from './routes/admin/admin.module';
+import { PondsModule } from './routes/ponds/ponds.module';
 import { JwtAuthGuard } from './routes/shared/guards/jwt-auth.guard';
 import { RolesGuard } from './routes/shared/guards/roles.guard';
 import { DeviceMiddleware } from './routes/shared/middleware/device.middleware';
@@ -26,6 +27,7 @@ import { DeviceMiddleware } from './routes/shared/middleware/device.middleware';
     ShrimpAnalysisModule,
     ChatModule,
     AdminModule,
+    PondsModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },

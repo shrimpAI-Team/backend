@@ -10,7 +10,10 @@ import tempfile
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from scripts.predict import predict_shrimp, SPECIES_METADATA
+from scripts.predict import (
+    ANALYSIS_CONTRACT_VERSION, SPECIES_METADATA, get_confidence_threshold, get_model_path, load_model, predict_shrimp,
+)
+from scripts.presence_gate import load_gate
 
 app = FastAPI(
     title="shrimpAI Vision Engine",
@@ -29,11 +32,22 @@ app.add_middleware(
 
 @app.get("/health")
 def health_check():
-    model_path = Path(__file__).parent / "models" / "shrimp_model_best.pt"
+    try:
+        _, version = load_model()
+        _, gate_metadata = load_gate(version)
+        threshold = get_confidence_threshold()
+    except Exception as exc:
+        raise HTTPException(status_code=503, detail="Mô hình AI chưa sẵn sàng.") from exc
     return {
         "status": "online",
         "service": "shrimpAI Vision Engine",
-        "has_trained_model": model_path.exists()
+        "has_trained_model": True,
+        "model_file": get_model_path().name,
+        "model_version": version,
+        "confidence_threshold": threshold,
+        "capabilities": ["species_classification", "initial_shrimp_presence_filter"],
+        "presence_gate_version": gate_metadata['artifact_sha256'][:12],
+        "analysis_contract_version": ANALYSIS_CONTRACT_VERSION,
     }
 
 @app.get("/species")
@@ -46,19 +60,21 @@ def get_supported_species():
     }
 
 @app.post("/predict")
-async def predict_endpoint(file: UploadFile = File(...)):
+def predict_endpoint(file: UploadFile = File(...)):
     """API nhận file ảnh và trả về kết quả định danh giống tôm"""
-    if not file.content_type.startswith("image/"):
+    if file.content_type not in {"image/jpeg", "image/png", "image/webp"}:
         raise HTTPException(status_code=400, detail="File gửi lên phải là định dạng hình ảnh (JPG, PNG, WEBP).")
 
     # Lưu tạm file để phân tích
-    suffix = Path(file.filename).suffix or ".jpg"
+    suffix = Path(file.filename or '').suffix or ".jpg"
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temp_file:
         shutil.copyfileobj(file.file, temp_file)
         temp_path = temp_file.name
 
     try:
         result = predict_shrimp(temp_path)
+        if not result.get('success'):
+            raise HTTPException(status_code=503, detail=result.get('error', 'Không thể phân tích ảnh.'))
         return result
     finally:
         # Xóa file tạm sau khi dự đoán

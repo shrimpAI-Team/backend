@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { randomBytes, createHash } from 'crypto';
 import { PrismaService } from '../shared/prisma/prisma.service';
 import { DeviceInfo } from '../shared/decorators/device.decorator';
-import { Session, User } from 'src/generated/prisma/client';
+import { Session, User } from '../../generated/prisma/client';
 
 export interface TokenPair {
   accessToken: string;

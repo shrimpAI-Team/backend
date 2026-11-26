@@ -403,7 +403,10 @@ export const ModelName = {
   Session: 'Session',
   ChatSession: 'ChatSession',
   ChatMessage: 'ChatMessage',
-  ShrimpAnalysis: 'ShrimpAnalysis'
+  ShrimpAnalysis: 'ShrimpAnalysis',
+  Pond: 'Pond',
+  CultureCycle: 'CultureCycle',
+  PondJournal: 'PondJournal'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -419,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "oAuthAccount" | "otpToken" | "session" | "chatSession" | "chatMessage" | "shrimpAnalysis"
+    modelProps: "user" | "oAuthAccount" | "otpToken" | "session" | "chatSession" | "chatMessage" | "shrimpAnalysis" | "pond" | "cultureCycle" | "pondJournal"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -941,6 +944,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Pond: {
+      payload: Prisma.$PondPayload<ExtArgs>
+      fields: Prisma.PondFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PondFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PondFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        findFirst: {
+          args: Prisma.PondFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PondFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        findMany: {
+          args: Prisma.PondFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>[]
+        }
+        create: {
+          args: Prisma.PondCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        createMany: {
+          args: Prisma.PondCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PondCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>[]
+        }
+        delete: {
+          args: Prisma.PondDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        update: {
+          args: Prisma.PondUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        deleteMany: {
+          args: Prisma.PondDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PondUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PondUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>[]
+        }
+        upsert: {
+          args: Prisma.PondUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondPayload>
+        }
+        aggregate: {
+          args: Prisma.PondAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePond>
+        }
+        groupBy: {
+          args: Prisma.PondGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PondGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PondCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PondCountAggregateOutputType> | number
+        }
+      }
+    }
+    CultureCycle: {
+      payload: Prisma.$CultureCyclePayload<ExtArgs>
+      fields: Prisma.CultureCycleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CultureCycleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CultureCycleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        findFirst: {
+          args: Prisma.CultureCycleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CultureCycleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        findMany: {
+          args: Prisma.CultureCycleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>[]
+        }
+        create: {
+          args: Prisma.CultureCycleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        createMany: {
+          args: Prisma.CultureCycleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CultureCycleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>[]
+        }
+        delete: {
+          args: Prisma.CultureCycleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        update: {
+          args: Prisma.CultureCycleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        deleteMany: {
+          args: Prisma.CultureCycleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CultureCycleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CultureCycleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>[]
+        }
+        upsert: {
+          args: Prisma.CultureCycleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CultureCyclePayload>
+        }
+        aggregate: {
+          args: Prisma.CultureCycleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCultureCycle>
+        }
+        groupBy: {
+          args: Prisma.CultureCycleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CultureCycleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CultureCycleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CultureCycleCountAggregateOutputType> | number
+        }
+      }
+    }
+    PondJournal: {
+      payload: Prisma.$PondJournalPayload<ExtArgs>
+      fields: Prisma.PondJournalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PondJournalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PondJournalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        findFirst: {
+          args: Prisma.PondJournalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PondJournalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        findMany: {
+          args: Prisma.PondJournalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>[]
+        }
+        create: {
+          args: Prisma.PondJournalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        createMany: {
+          args: Prisma.PondJournalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PondJournalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>[]
+        }
+        delete: {
+          args: Prisma.PondJournalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        update: {
+          args: Prisma.PondJournalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        deleteMany: {
+          args: Prisma.PondJournalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PondJournalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PondJournalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>[]
+        }
+        upsert: {
+          args: Prisma.PondJournalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PondJournalPayload>
+        }
+        aggregate: {
+          args: Prisma.PondJournalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePondJournal>
+        }
+        groupBy: {
+          args: Prisma.PondJournalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PondJournalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PondJournalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PondJournalCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1091,6 +1316,46 @@ export const ShrimpAnalysisScalarFieldEnum = {
 } as const
 
 export type ShrimpAnalysisScalarFieldEnum = (typeof ShrimpAnalysisScalarFieldEnum)[keyof typeof ShrimpAnalysisScalarFieldEnum]
+
+
+export const PondScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type PondScalarFieldEnum = (typeof PondScalarFieldEnum)[keyof typeof PondScalarFieldEnum]
+
+
+export const CultureCycleScalarFieldEnum = {
+  id: 'id',
+  pondId: 'pondId',
+  activePondId: 'activePondId',
+  species: 'species',
+  analysisId: 'analysisId',
+  startedAt: 'startedAt',
+  endedAt: 'endedAt'
+} as const
+
+export type CultureCycleScalarFieldEnum = (typeof CultureCycleScalarFieldEnum)[keyof typeof CultureCycleScalarFieldEnum]
+
+
+export const PondJournalScalarFieldEnum = {
+  id: 'id',
+  cycleId: 'cycleId',
+  kind: 'kind',
+  note: 'note',
+  ph: 'ph',
+  salinity: 'salinity',
+  temperature: 'temperature',
+  depth: 'depth',
+  feedKg: 'feedKg',
+  simulated: 'simulated',
+  recordedAt: 'recordedAt'
+} as const
+
+export type PondJournalScalarFieldEnum = (typeof PondJournalScalarFieldEnum)[keyof typeof PondJournalScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1258,6 +1523,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
+
+/**
+ * Reference to a field of type 'PondJournalKind'
+ */
+export type EnumPondJournalKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PondJournalKind'>
+    
+
+
+/**
+ * Reference to a field of type 'PondJournalKind[]'
+ */
+export type ListEnumPondJournalKindFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PondJournalKind[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1416,6 +1695,9 @@ export type GlobalOmitConfig = {
   chatSession?: Prisma.ChatSessionOmit
   chatMessage?: Prisma.ChatMessageOmit
   shrimpAnalysis?: Prisma.ShrimpAnalysisOmit
+  pond?: Prisma.PondOmit
+  cultureCycle?: Prisma.CultureCycleOmit
+  pondJournal?: Prisma.PondJournalOmit
 }
 
 /* Types for Logging */

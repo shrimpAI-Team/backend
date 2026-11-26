@@ -1,5 +1,10 @@
 # 🦐 shrimpAI - AI Vision & Training Engine
 
+> **Segmentation (phần 4):** Xem [SEGMENTATION_GUIDE.md](SEGMENTATION_GUIDE.md).
+> Đã có checkpoint segmentation thử nghiệm và nhãn mask cho cả 8 nhóm; chưa bật đếm trong ứng dụng.
+> Nhãn 8 nhóm và quy trình hiện tại: [SEGMENTATION_EIGHT_GROUPS.md](SEGMENTATION_EIGHT_GROUPS.md).
+> Luồng nhận diện loại tôm hiện tại xem [INFERENCE_OPERATIONS.md](INFERENCE_OPERATIONS.md).
+
 Thư mục này chứa toàn bộ mã nguồn phục vụ **thu thập dữ liệu, huấn luyện (Train AI)** và **phục vụ dự đoán (Inference)** các giống tôm cho dự án shrimpAI.
 
 ---
@@ -101,10 +106,15 @@ Kết quả trả về định dạng JSON:
   "species": "Tôm thẻ chân trắng",
   "scientific_name": "Litopenaeus vannamei",
   "confidence": 97.4,
-  "size_estimate": "25 - 35 con/kg",
-  "commercial_grade": "Loại 1 (Đạt chuẩn thương phẩm)"
+  "size_estimate": "Chưa đánh giá",
+  "commercial_grade": "Chưa đánh giá"
 }
 ```
+
+Ví dụ trên chỉ minh họa phân loại giống. Model phân loại không đo kích thước,
+khối lượng hay cấp thương phẩm; các trường chưa có mô hình/hiệu chuẩn sẽ giữ
+`Chưa đánh giá`. Checkpoint segmentation thử nghiệm được lưu riêng và chưa tự
+tham gia endpoint `/predict`.
 
 ---
 
