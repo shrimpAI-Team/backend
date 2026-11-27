@@ -1,10 +1,12 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
+import { ExecutionContext, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthGuard } from '@nestjs/passport';
 import type { Response } from 'express';
 
 @Injectable()
 export class GoogleOAuthGuard extends AuthGuard('google') {
+  private readonly logger = new Logger(GoogleOAuthGuard.name);
+
   constructor(private readonly config: ConfigService) {
     super();
   }
@@ -21,10 +23,24 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
     }
     return super.canActivate(context);
   }
+
+  handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
+    if (err || !user) {
+      const res = context.switchToHttp().getResponse<Response>();
+      const front = this.config.get<string>('frontendUrl');
+      const rawMsg = err?.message || info?.message || 'Đăng nhập Google thất bại';
+      this.logger.error(`[Google OAuth Error] ${rawMsg}`, err?.stack || err);
+      res.redirect(`${front}/login?error=${encodeURIComponent(`Google: ${rawMsg}`)}`);
+      return null;
+    }
+    return user;
+  }
 }
 
 @Injectable()
 export class FacebookOAuthGuard extends AuthGuard('facebook') {
+  private readonly logger = new Logger(FacebookOAuthGuard.name);
+
   constructor(private readonly config: ConfigService) {
     super();
   }
@@ -40,6 +56,18 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
       return false;
     }
     return super.canActivate(context);
+  }
+
+  handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
+    if (err || !user) {
+      const res = context.switchToHttp().getResponse<Response>();
+      const front = this.config.get<string>('frontendUrl');
+      const rawMsg = err?.message || info?.message || 'Đăng nhập Facebook thất bại';
+      this.logger.error(`[Facebook OAuth Error] ${rawMsg}`, err?.stack || err);
+      res.redirect(`${front}/login?error=${encodeURIComponent(`Facebook: ${rawMsg}`)}`);
+      return null;
+    }
+    return user;
   }
 }
 

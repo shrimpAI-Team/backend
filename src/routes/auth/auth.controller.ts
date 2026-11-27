@@ -240,6 +240,7 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleOAuthGuard)
   async googleCallback(@Req() req: Request, @Res() res: Response) {
+    if (!req.user) return;
     return this.finishOAuth(req.user as OAuthProfile, res);
   }
 
@@ -255,6 +256,7 @@ export class AuthController {
   @Get('facebook/callback')
   @UseGuards(FacebookOAuthGuard)
   async facebookCallback(@Req() req: Request, @Res() res: Response) {
+    if (!req.user) return;
     return this.finishOAuth(req.user as OAuthProfile, res);
   }
 
@@ -270,6 +272,7 @@ export class AuthController {
   @Get('zalo/callback')
   @UseGuards(ZaloOAuthGuard)
   async zaloCallback(@Req() req: Request, @Res() res: Response) {
+    if (!req.user) return;
     return this.finishOAuth(req.user as OAuthProfile, res);
   }
 
