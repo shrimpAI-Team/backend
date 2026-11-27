@@ -74,11 +74,18 @@ function extractOAuthErrorMessage(err: any, info: any, defaultMsg: string): stri
 }
 
 // ───────── GOOGLE OAUTH GUARD ─────────
-// Giữ nguyên thiết kế ban đầu hoạt động 100% ổn định
 @Injectable()
 export class GoogleOAuthGuard extends AuthGuard('google') {
   constructor(private readonly config: ConfigService) {
-    super();
+    super({
+      prompt: 'select_account',
+    });
+  }
+
+  getAuthenticateOptions(context: ExecutionContext) {
+    return {
+      prompt: 'select_account',
+    };
   }
 
   canActivate(context: ExecutionContext) {
