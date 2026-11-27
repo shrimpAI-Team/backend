@@ -210,26 +210,3 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
     return user;
   }
 }
-
-// ───────── ZALO OAUTH GUARD ─────────
-@Injectable()
-export class ZaloOAuthGuard extends AuthGuard('zalo') {
-  constructor(private readonly config: ConfigService) {
-    super();
-  }
-
-  canActivate(context: ExecutionContext) {
-    const id = this.config.get<string>('oauth.zalo.clientID');
-    const res = context.switchToHttp().getResponse<Response>();
-    if (!id || id === 'dummy-zalo-client-id') {
-      const front = this.config.get<string>('frontendUrl');
-      if (!res.headersSent) {
-        res.redirect(
-          `${front}/login?error=${encodeURIComponent('Zalo OAuth chưa được cấu hình (thiếu ZALO_APP_ID trong .env)')}`,
-        );
-      }
-      return false;
-    }
-    return super.canActivate(context);
-  }
-}

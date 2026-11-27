@@ -9,7 +9,6 @@ import { FacebookStrategy } from './strategies/facebook.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TwoFactorService } from './two-factor.service';
-import { ZaloStrategy } from './strategies/zalo.strategy';
 
 @Module({
   imports: [PassportModule, JwtModule.register({})],
@@ -21,7 +20,6 @@ import { ZaloStrategy } from './strategies/zalo.strategy';
     JwtStrategy,
     GoogleStrategy,
     FacebookStrategy,
-    ZaloStrategy,
   ],
   exports: [AuthService, SessionService],
 })

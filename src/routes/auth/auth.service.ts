@@ -27,7 +27,7 @@ import { OtpPurpose, User } from '../../generated/prisma/client';
 import { TwoFactorService } from './two-factor.service';
 
 export interface OAuthProfile {
-  provider: 'google' | 'facebook' | 'zalo';
+  provider: 'google' | 'facebook';
   providerAccountId: string;
   email: string;
   name?: string;

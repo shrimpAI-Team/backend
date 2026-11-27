@@ -33,11 +33,6 @@ export default () => ({
       clientSecret: process.env.FACEBOOK_APP_SECRET || process.env.FACEBOOK_CLIENT_SECRET || 'dummy-facebook-client-secret',
       callbackURL: process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:4000/auth/facebook/callback',
     },
-    zalo: {
-      clientID: process.env.ZALO_APP_ID || process.env.ZALO_CLIENT_ID || 'dummy-zalo-client-id',
-      clientSecret: process.env.ZALO_APP_SECRET || process.env.ZALO_SECRET_KEY || process.env.ZALO_CLIENT_SECRET || 'dummy-zalo-client-secret',
-      callbackURL: process.env.ZALO_CALLBACK_URL || 'http://localhost:4000/auth/zalo/callback',
-    },
   },
   totpIssuer: process.env.TOTP_ISSUER ?? 'AuthDemo',
   gemini: {

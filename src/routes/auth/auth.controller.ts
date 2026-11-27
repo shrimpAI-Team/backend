@@ -21,7 +21,6 @@ import { Public } from '../shared/decorators/public.decorator';
 import {
   GoogleOAuthGuard,
   FacebookOAuthGuard,
-  ZaloOAuthGuard,
   completeOAuthCode,
   failOAuthCode,
 } from '../shared/guards/oauth.guard';
@@ -259,23 +258,6 @@ export class AuthController {
   @Get('facebook/callback')
   @UseGuards(FacebookOAuthGuard)
   async facebookCallback(@Req() req: Request, @Res() res: Response) {
-    if (res.headersSent || !req.user) return;
-    const code = req.query?.code as string | undefined;
-    return this.finishOAuth(req.user as OAuthProfile, res, code);
-  }
-
-  // ───────── OAUTH2 ZALO ─────────
-  @Public()
-  @Get('zalo')
-  @UseGuards(ZaloOAuthGuard)
-  zaloAuth() {
-    /* passport redirect */
-  }
-
-  @Public()
-  @Get('zalo/callback')
-  @UseGuards(ZaloOAuthGuard)
-  async zaloCallback(@Req() req: Request, @Res() res: Response) {
     if (res.headersSent || !req.user) return;
     const code = req.query?.code as string | undefined;
     return this.finishOAuth(req.user as OAuthProfile, res, code);
