@@ -57,6 +57,22 @@ export function failOAuthCode(code: string, errorUrl: string) {
   }
 }
 
+function extractOAuthErrorMessage(err: any, info: any, defaultMsg: string): string {
+  const data = err?.oauthError?.data || err?.response?.data || err?.data;
+  if (data) {
+    try {
+      const parsed = typeof data === 'string' ? JSON.parse(data) : data;
+      if (parsed?.error?.message) {
+        return parsed.error.message;
+      }
+    } catch {}
+    if (typeof data === 'string' && data.length < 200) {
+      return data;
+    }
+  }
+  return err?.message || info?.message || (typeof err === 'string' ? err : defaultMsg);
+}
+
 @Injectable()
 export class GoogleOAuthGuard extends AuthGuard('google') {
   private readonly logger = new Logger(GoogleOAuthGuard.name);
@@ -117,7 +133,7 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
     } catch (err: any) {
       if (!res.headersSent) {
         const front = this.config.get<string>('frontendUrl');
-        const rawMsg = err?.message || 'Đăng nhập Google thất bại';
+        const rawMsg = extractOAuthErrorMessage(err, null, 'Đăng nhập Google thất bại');
         const errorUrl = `${front}/login?error=${encodeURIComponent(`Google: ${rawMsg}`)}`;
         if (code) {
           failOAuthCode(code, errorUrl);
@@ -135,7 +151,7 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
     if (err || !user) {
       const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
-      const rawMsg = err?.message || info?.message || 'Đăng nhập Google thất bại';
+      const rawMsg = extractOAuthErrorMessage(err, info, 'Đăng nhập Google thất bại');
       this.logger.error(`[Google OAuth Error] ${rawMsg}`, err?.stack || err);
       const errorUrl = `${front}/login?error=${encodeURIComponent(`Google: ${rawMsg}`)}`;
       if (code) {
@@ -213,7 +229,7 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
     } catch (err: any) {
       if (!res.headersSent) {
         const front = this.config.get<string>('frontendUrl');
-        const rawMsg = err?.message || 'Đăng nhập Facebook thất bại';
+        const rawMsg = extractOAuthErrorMessage(err, null, 'Đăng nhập Facebook thất bại');
         this.logger.error(`[Facebook OAuth Exception] ${rawMsg}`, err?.stack || err);
         const errorUrl = `${front}/login?error=${encodeURIComponent(`Facebook: ${rawMsg}`)}`;
         if (code) {
@@ -232,7 +248,7 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
     if (err || !user) {
       const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
-      const rawMsg = err?.message || info?.message || 'Đăng nhập Facebook thất bại';
+      const rawMsg = extractOAuthErrorMessage(err, info, 'Đăng nhập Facebook thất bại');
       this.logger.error(`[Facebook OAuth Error] ${rawMsg}`, err?.stack || err);
       const errorUrl = `${front}/login?error=${encodeURIComponent(`Facebook: ${rawMsg}`)}`;
       if (code) {
