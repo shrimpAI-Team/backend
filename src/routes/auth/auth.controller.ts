@@ -64,10 +64,12 @@ export class AuthController {
 
     const cookieName = this.getCookieName(clientType);
 
+    const isProd = this.config.get('env') === 'production';
+
     res.cookie(cookieName, token, {
       httpOnly: true,
-      secure: this.config.get('env') === 'production',
-      sameSite: 'lax',
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
       path: '/auth',
       maxAge: hours * 3_600_000,
     });
@@ -75,7 +77,12 @@ export class AuthController {
 
   private clearRefreshCookie(res: Response, clientType?: string) {
     const cookieName = this.getCookieName(clientType);
-    res.clearCookie(cookieName, { path: '/auth' });
+    const isProd = this.config.get('env') === 'production';
+    res.clearCookie(cookieName, {
+      path: '/auth',
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
+    });
   }
 
   /** Tách refreshToken khỏi body trả về, chỉ đặt vào cookie tương ứng */
