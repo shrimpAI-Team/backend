@@ -67,30 +67,37 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const id = this.config.get<string>('oauth.google.clientID');
+    const res = context.switchToHttp().getResponse<Response>();
+
     if (!id || id === 'dummy-google-client-id') {
-      const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
-      res.redirect(
-        `${front}/login?error=${encodeURIComponent('Google OAuth chưa được cấu hình (thiếu GOOGLE_CLIENT_ID trong .env)')}`,
-      );
-      return false;
+      if (!res.headersSent) {
+        res.redirect(
+          `${front}/login?error=${encodeURIComponent('Google OAuth chưa được cấu hình (thiếu GOOGLE_CLIENT_ID trong .env)')}`,
+        );
+      }
+      return true;
     }
 
     const req = context.switchToHttp().getRequest<Request>();
-    const res = context.switchToHttp().getResponse<Response>();
     const code = req.query?.code as string | undefined;
 
     if (code && typeof code === 'string') {
       const existing = oauthCodeCache.get(code);
       if (existing) {
         if (existing.redirectUrl) {
-          res.redirect(existing.redirectUrl);
-          return false;
+          if (!res.headersSent) {
+            res.redirect(existing.redirectUrl);
+          }
+          return true;
         }
+
         try {
           const redirectUrl = await existing.promise;
-          res.redirect(redirectUrl);
-          return false;
+          if (!res.headersSent) {
+            res.redirect(redirectUrl);
+          }
+          return true;
         } catch {}
       }
 
@@ -105,7 +112,20 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
       });
     }
 
-    return super.canActivate(context) as Promise<boolean>;
+    try {
+      return (await super.canActivate(context)) as boolean;
+    } catch (err: any) {
+      if (!res.headersSent) {
+        const front = this.config.get<string>('frontendUrl');
+        const rawMsg = err?.message || 'Đăng nhập Google thất bại';
+        const errorUrl = `${front}/login?error=${encodeURIComponent(`Google: ${rawMsg}`)}`;
+        if (code) {
+          failOAuthCode(code, errorUrl);
+        }
+        res.redirect(errorUrl);
+      }
+      return true;
+    }
   }
 
   handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
@@ -121,7 +141,9 @@ export class GoogleOAuthGuard extends AuthGuard('google') {
       if (code) {
         failOAuthCode(code, errorUrl);
       }
-      res.redirect(errorUrl);
+      if (!res.headersSent) {
+        res.redirect(errorUrl);
+      }
       return null;
     }
     return user;
@@ -138,17 +160,19 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const id = this.config.get<string>('oauth.facebook.clientID');
+    const res = context.switchToHttp().getResponse<Response>();
+
     if (!id || id === 'dummy-facebook-client-id') {
-      const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
-      res.redirect(
-        `${front}/login?error=${encodeURIComponent('Facebook OAuth chưa được cấu hình (thiếu FACEBOOK_APP_ID trong .env)')}`,
-      );
-      return false;
+      if (!res.headersSent) {
+        res.redirect(
+          `${front}/login?error=${encodeURIComponent('Facebook OAuth chưa được cấu hình (thiếu FACEBOOK_APP_ID trong .env)')}`,
+        );
+      }
+      return true;
     }
 
     const req = context.switchToHttp().getRequest<Request>();
-    const res = context.switchToHttp().getResponse<Response>();
     const code = req.query?.code as string | undefined;
 
     // Chống race condition khi browser / prefetch gửi trùng mã authorization code
@@ -157,15 +181,19 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
       if (existing) {
         if (existing.redirectUrl) {
           this.logger.log(`[Facebook OAuth] Tái sử dụng redirect cho mã code '${code.slice(0, 10)}...'`);
-          res.redirect(existing.redirectUrl);
-          return false;
+          if (!res.headersSent) {
+            res.redirect(existing.redirectUrl);
+          }
+          return true;
         }
 
         this.logger.log(`[Facebook OAuth] Đợi request song song đang xử lý mã code '${code.slice(0, 10)}...'`);
         try {
           const redirectUrl = await existing.promise;
-          res.redirect(redirectUrl);
-          return false;
+          if (!res.headersSent) {
+            res.redirect(redirectUrl);
+          }
+          return true;
         } catch {}
       }
 
@@ -180,7 +208,21 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
       });
     }
 
-    return super.canActivate(context) as Promise<boolean>;
+    try {
+      return (await super.canActivate(context)) as boolean;
+    } catch (err: any) {
+      if (!res.headersSent) {
+        const front = this.config.get<string>('frontendUrl');
+        const rawMsg = err?.message || 'Đăng nhập Facebook thất bại';
+        this.logger.error(`[Facebook OAuth Exception] ${rawMsg}`, err?.stack || err);
+        const errorUrl = `${front}/login?error=${encodeURIComponent(`Facebook: ${rawMsg}`)}`;
+        if (code) {
+          failOAuthCode(code, errorUrl);
+        }
+        res.redirect(errorUrl);
+      }
+      return true;
+    }
   }
 
   handleRequest(err: any, user: any, info: any, context: ExecutionContext) {
@@ -196,7 +238,9 @@ export class FacebookOAuthGuard extends AuthGuard('facebook') {
       if (code) {
         failOAuthCode(code, errorUrl);
       }
-      res.redirect(errorUrl);
+      if (!res.headersSent) {
+        res.redirect(errorUrl);
+      }
       return null;
     }
     return user;
@@ -211,13 +255,15 @@ export class ZaloOAuthGuard extends AuthGuard('zalo') {
 
   canActivate(context: ExecutionContext) {
     const id = this.config.get<string>('oauth.zalo.clientID');
+    const res = context.switchToHttp().getResponse<Response>();
     if (!id || id === 'dummy-zalo-client-id') {
-      const res = context.switchToHttp().getResponse<Response>();
       const front = this.config.get<string>('frontendUrl');
-      res.redirect(
-        `${front}/login?error=${encodeURIComponent('Zalo OAuth chưa được cấu hình (thiếu ZALO_APP_ID trong .env)')}`,
-      );
-      return false;
+      if (!res.headersSent) {
+        res.redirect(
+          `${front}/login?error=${encodeURIComponent('Zalo OAuth chưa được cấu hình (thiếu ZALO_APP_ID trong .env)')}`,
+        );
+      }
+      return true;
     }
     return super.canActivate(context);
   }

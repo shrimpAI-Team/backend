@@ -242,7 +242,7 @@ export class AuthController {
   @Get('google/callback')
   @UseGuards(GoogleOAuthGuard)
   async googleCallback(@Req() req: Request, @Res() res: Response) {
-    if (!req.user) return;
+    if (res.headersSent || !req.user) return;
     const code = req.query?.code as string | undefined;
     return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
@@ -259,7 +259,7 @@ export class AuthController {
   @Get('facebook/callback')
   @UseGuards(FacebookOAuthGuard)
   async facebookCallback(@Req() req: Request, @Res() res: Response) {
-    if (!req.user) return;
+    if (res.headersSent || !req.user) return;
     const code = req.query?.code as string | undefined;
     return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
@@ -276,12 +276,13 @@ export class AuthController {
   @Get('zalo/callback')
   @UseGuards(ZaloOAuthGuard)
   async zaloCallback(@Req() req: Request, @Res() res: Response) {
-    if (!req.user) return;
+    if (res.headersSent || !req.user) return;
     const code = req.query?.code as string | undefined;
     return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
 
   private async finishOAuth(profile: OAuthProfile, res: Response, code?: string) {
+    if (res.headersSent) return;
     const front = this.config.get<string>('frontendUrl');
     try {
       const { oneTimeToken } = await this.auth.handleOAuthLogin(profile);
@@ -289,14 +290,18 @@ export class AuthController {
       if (code) {
         completeOAuthCode(code, redirectUrl);
       }
-      return res.redirect(redirectUrl);
+      if (!res.headersSent) {
+        return res.redirect(redirectUrl);
+      }
     } catch (e: any) {
       const msg = encodeURIComponent(e?.message ?? 'Đăng nhập thất bại');
       const errorUrl = `${front}/login?error=${msg}`;
       if (code) {
         failOAuthCode(code, errorUrl);
       }
-      return res.redirect(errorUrl);
+      if (!res.headersSent) {
+        return res.redirect(errorUrl);
+      }
     }
   }
 
