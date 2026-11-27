@@ -22,6 +22,8 @@ import {
   GoogleOAuthGuard,
   FacebookOAuthGuard,
   ZaloOAuthGuard,
+  completeOAuthCode,
+  failOAuthCode,
 } from '../shared/guards/oauth.guard';
 import {
   type AuthUser,
@@ -241,7 +243,8 @@ export class AuthController {
   @UseGuards(GoogleOAuthGuard)
   async googleCallback(@Req() req: Request, @Res() res: Response) {
     if (!req.user) return;
-    return this.finishOAuth(req.user as OAuthProfile, res);
+    const code = req.query?.code as string | undefined;
+    return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
 
   // ───────── OAUTH2 FACEBOOK ─────────
@@ -257,7 +260,8 @@ export class AuthController {
   @UseGuards(FacebookOAuthGuard)
   async facebookCallback(@Req() req: Request, @Res() res: Response) {
     if (!req.user) return;
-    return this.finishOAuth(req.user as OAuthProfile, res);
+    const code = req.query?.code as string | undefined;
+    return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
 
   // ───────── OAUTH2 ZALO ─────────
@@ -273,17 +277,26 @@ export class AuthController {
   @UseGuards(ZaloOAuthGuard)
   async zaloCallback(@Req() req: Request, @Res() res: Response) {
     if (!req.user) return;
-    return this.finishOAuth(req.user as OAuthProfile, res);
+    const code = req.query?.code as string | undefined;
+    return this.finishOAuth(req.user as OAuthProfile, res, code);
   }
 
-  private async finishOAuth(profile: OAuthProfile, res: Response) {
+  private async finishOAuth(profile: OAuthProfile, res: Response, code?: string) {
     const front = this.config.get<string>('frontendUrl');
     try {
       const { oneTimeToken } = await this.auth.handleOAuthLogin(profile);
-      return res.redirect(`${front}/oauth/callback?token=${oneTimeToken}`);
+      const redirectUrl = `${front}/oauth/callback?token=${oneTimeToken}`;
+      if (code) {
+        completeOAuthCode(code, redirectUrl);
+      }
+      return res.redirect(redirectUrl);
     } catch (e: any) {
       const msg = encodeURIComponent(e?.message ?? 'Đăng nhập thất bại');
-      return res.redirect(`${front}/login?error=${msg}`);
+      const errorUrl = `${front}/login?error=${msg}`;
+      if (code) {
+        failOAuthCode(code, errorUrl);
+      }
+      return res.redirect(errorUrl);
     }
   }
 
